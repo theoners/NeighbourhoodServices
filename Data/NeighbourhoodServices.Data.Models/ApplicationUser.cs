@@ -15,6 +15,9 @@ namespace NeighbourhoodServices.Data.Models
             this.Roles = new HashSet<IdentityUserRole<string>>();
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
+            this.Services = new HashSet<Service>();
+            this.Opinions = new HashSet<Opinion>();
+            this.Photos = new HashSet<Photo>();
         }
 
         // Audit info
@@ -26,6 +29,18 @@ namespace NeighbourhoodServices.Data.Models
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }
+
+        public string ProfilePictureUrl { get; set; }
+
+        public string City { get; set; }
+
+        public string Address { get; set; }
+
+        public virtual ICollection<Service> Services { get; set; }
+
+        public virtual ICollection<Opinion> Opinions { get; set; }
+
+        public virtual ICollection<Photo> Photos { get; set; }
 
         public virtual ICollection<IdentityUserRole<string>> Roles { get; set; }
 
