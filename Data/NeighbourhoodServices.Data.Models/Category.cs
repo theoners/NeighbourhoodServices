@@ -7,7 +7,7 @@ namespace NeighbourhoodServices.Data.Models
 
     using NeighbourhoodServices.Data.Common.Models;
 
-    public class Category:BaseDeletableModel<string>
+    public class Category : BaseDeletableModel<string>
     {
         public Category()
         {

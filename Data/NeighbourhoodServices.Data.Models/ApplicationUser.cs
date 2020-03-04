@@ -36,6 +36,8 @@ namespace NeighbourhoodServices.Data.Models
 
         public string Address { get; set; }
 
+        public Gender Gender { get; set; }
+
         public virtual ICollection<Service> Services { get; set; }
 
         public virtual ICollection<Opinion> Opinions { get; set; }
