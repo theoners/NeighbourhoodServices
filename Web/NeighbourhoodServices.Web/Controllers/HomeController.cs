@@ -1,4 +1,8 @@
-﻿namespace NeighbourhoodServices.Web.Controllers
+﻿using NeighbourhoodServices.Services.Data;
+using NeighbourhoodServices.Web.ViewModels.Administration.Dashboard;
+using NeighbourhoodServices.Web.ViewModels.Categories;
+
+namespace NeighbourhoodServices.Web.Controllers
 {
     using System.Diagnostics;
 
@@ -7,9 +11,21 @@
 
     public class HomeController : BaseController
     {
+        private readonly ICategoriesService categoriesService;
+
+        public HomeController(ICategoriesService categoriesService)
+        {
+            this.categoriesService = categoriesService;
+        }
         public IActionResult Index()
         {
-            return this.View();
+
+            var viewModel = new IndexViewModel
+            {
+                Categories =
+                    this.categoriesService.GetAll<IndexCategoriesView>(),
+            };
+            return this.View(viewModel);
         }
 
         public IActionResult Privacy()
