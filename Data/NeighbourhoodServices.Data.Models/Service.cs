@@ -1,14 +1,12 @@
 ﻿// ReSharper disable VirtualMemberCallInConstructor
 
-using System.ComponentModel;
-
 namespace NeighbourhoodServices.Data.Models
 {
     using System;
 
     using NeighbourhoodServices.Data.Common.Models;
 
-    public class Service:BaseDeletableModel<string>
+    public class Service : BaseDeletableModel<string>
     {
         public Service()
         {
@@ -22,5 +20,7 @@ namespace NeighbourhoodServices.Data.Models
         public string Place { get; set; }
 
         public Category Category { get; set; }
+
+        public virtual ApplicationUser User { get; set; }
     }
 }

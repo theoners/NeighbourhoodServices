@@ -16,8 +16,8 @@ namespace NeighbourhoodServices.Data.Models
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
             this.Services = new HashSet<Service>();
-            this.Opinions = new HashSet<Opinion>();
             this.Photos = new HashSet<Photo>();
+            this.UserOpinions = new HashSet<UserOpinion>();
         }
 
         // Audit info
@@ -40,7 +40,7 @@ namespace NeighbourhoodServices.Data.Models
 
         public virtual ICollection<Service> Services { get; set; }
 
-        public virtual ICollection<Opinion> Opinions { get; set; }
+        public virtual ICollection<UserOpinion> UserOpinions { get; set; }
 
         public virtual ICollection<Photo> Photos { get; set; }
 

@@ -10,8 +10,8 @@ using NeighbourhoodServices.Data;
 namespace NeighbourhoodServices.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200208131717_Models")]
-    partial class Models
+    [Migration("20200314213144_UpdateModels")]
+    partial class UpdateModels
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -197,6 +197,9 @@ namespace NeighbourhoodServices.Data.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<int>("Gender")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -256,14 +259,22 @@ namespace NeighbourhoodServices.Data.Migrations
 
             modelBuilder.Entity("NeighbourhoodServices.Data.Models.Category", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -278,16 +289,15 @@ namespace NeighbourhoodServices.Data.Migrations
 
                     b.HasIndex("IsDeleted");
 
-                    b.ToTable("Category");
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("NeighbourhoodServices.Data.Models.Opinion", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -309,20 +319,17 @@ namespace NeighbourhoodServices.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId");
-
                     b.HasIndex("IsDeleted");
 
-                    b.ToTable("Opinion");
+                    b.ToTable("Opinions");
                 });
 
             modelBuilder.Entity("NeighbourhoodServices.Data.Models.Photo", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -342,11 +349,14 @@ namespace NeighbourhoodServices.Data.Migrations
                     b.Property<string>("Url")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId");
-
                     b.HasIndex("IsDeleted");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Photo");
                 });
@@ -356,11 +366,8 @@ namespace NeighbourhoodServices.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("CategoryId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -383,15 +390,18 @@ namespace NeighbourhoodServices.Data.Migrations
                     b.Property<int>("ServiceType")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.HasIndex("ApplicationUserId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("IsDeleted");
 
-                    b.ToTable("Service");
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Services");
                 });
 
             modelBuilder.Entity("NeighbourhoodServices.Data.Models.Setting", b =>
@@ -424,6 +434,24 @@ namespace NeighbourhoodServices.Data.Migrations
                     b.HasIndex("IsDeleted");
 
                     b.ToTable("Settings");
+                });
+
+            modelBuilder.Entity("NeighbourhoodServices.Data.Models.UserOpinion", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("OpinionId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int?>("OpinionId1")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "OpinionId");
+
+                    b.HasIndex("OpinionId1");
+
+                    b.ToTable("UserOpinion");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -477,29 +505,35 @@ namespace NeighbourhoodServices.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("NeighbourhoodServices.Data.Models.Opinion", b =>
-                {
-                    b.HasOne("NeighbourhoodServices.Data.Models.ApplicationUser", null)
-                        .WithMany("Opinions")
-                        .HasForeignKey("ApplicationUserId");
-                });
-
             modelBuilder.Entity("NeighbourhoodServices.Data.Models.Photo", b =>
                 {
-                    b.HasOne("NeighbourhoodServices.Data.Models.ApplicationUser", null)
+                    b.HasOne("NeighbourhoodServices.Data.Models.ApplicationUser", "User")
                         .WithMany("Photos")
-                        .HasForeignKey("ApplicationUserId");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("NeighbourhoodServices.Data.Models.Service", b =>
                 {
-                    b.HasOne("NeighbourhoodServices.Data.Models.ApplicationUser", null)
-                        .WithMany("Services")
-                        .HasForeignKey("ApplicationUserId");
-
                     b.HasOne("NeighbourhoodServices.Data.Models.Category", "Category")
                         .WithMany("Services")
                         .HasForeignKey("CategoryId");
+
+                    b.HasOne("NeighbourhoodServices.Data.Models.ApplicationUser", "User")
+                        .WithMany("Services")
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("NeighbourhoodServices.Data.Models.UserOpinion", b =>
+                {
+                    b.HasOne("NeighbourhoodServices.Data.Models.Opinion", "Opinion")
+                        .WithMany("UserOpinions")
+                        .HasForeignKey("OpinionId1");
+
+                    b.HasOne("NeighbourhoodServices.Data.Models.ApplicationUser", "User")
+                        .WithMany("UserOpinions")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

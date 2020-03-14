@@ -1,21 +1,23 @@
 ﻿// ReSharper disable VirtualMemberCallInConstructor
 
-using NeighbourhoodServices.Data.Common.Models;
-
 namespace NeighbourhoodServices.Data.Models
 {
     using System;
 
-    public class Photo: BaseDeletableModel<string>
-    {
+    using NeighbourhoodServices.Data.Common.Models;
 
+    public class Photo : BaseDeletableModel<int>
+    {
         public Photo()
         {
-            this.Id = Guid.NewGuid().ToString();
         }
 
         public string Url { get; set; }
 
         public string Description { get; set; }
+
+        public string UserId { get; set; }
+
+        public ApplicationUser User { get; set; }
     }
 }

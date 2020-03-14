@@ -2,20 +2,22 @@
 
 namespace NeighbourhoodServices.Data.Models
 {
-    using System;
     using System.Collections.Generic;
 
     using NeighbourhoodServices.Data.Common.Models;
 
-    public class Category : BaseDeletableModel<string>
+    public class Category : BaseDeletableModel<int>
     {
         public Category()
         {
-            this.Id = Guid.NewGuid().ToString();
             this.Services = new HashSet<Service>();
         }
 
         public string Name { get; set; }
+
+        public string Description { get; set; }
+
+        public string ImageUrl { get; set; }
 
         public ICollection<Service> Services { get; set; }
     }

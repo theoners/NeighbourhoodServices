@@ -25,6 +25,12 @@
 
         public DbSet<Setting> Settings { get; set; }
 
+        public DbSet<Category> Categories { get; set; }
+
+        public DbSet<Opinion> Opinions { get; set; }
+
+        public DbSet<Service> Services { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
@@ -95,6 +101,11 @@
                 .HasForeignKey(e => e.UserId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<UserOpinion>(entity =>
+            {
+                entity.HasKey(w => new { w.UserId, w.OpinionId });
+            });
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)
