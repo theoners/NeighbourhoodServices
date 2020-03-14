@@ -56,7 +56,7 @@
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 
             // Application services
-            services.AddTransient<IEmailSender>(x=>new SendGridEmailSender("ApiKey"));
+            services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
 
             // Runtime Refresh
