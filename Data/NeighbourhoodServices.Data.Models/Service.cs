@@ -13,6 +13,8 @@ namespace NeighbourhoodServices.Data.Models
             this.Id = Guid.NewGuid().ToString();
         }
 
+       
+
         public string Description { get; set; }
 
         public ServiceType ServiceType { get; set; }
