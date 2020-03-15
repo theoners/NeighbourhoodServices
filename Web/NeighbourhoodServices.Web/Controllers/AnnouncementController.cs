@@ -33,6 +33,7 @@ namespace NeighbourhoodServices.Web.Controllers
                 Description = announcementInputModel.description,
                 Place = announcementInputModel.address,
                 ServiceType = (ServiceType)1,
+                CategoryId = int.Parse(announcementInputModel.category),
             };
 
             

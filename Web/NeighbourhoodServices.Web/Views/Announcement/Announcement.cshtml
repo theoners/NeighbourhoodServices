@@ -23,7 +23,7 @@
                 <form method="post" class="p-5 bg-white">
 
                     <div class="row form-group">
-                        <div class="col-md-12" ><h3>Обяснете какво точно ви трябва</h3></div>
+                        <div class="col-md-12"><h3>Обяснете какво точно ви трябва</h3></div>
                         <div class="col-md-12 mb-3 mb-md-0">
                             <textarea name="description" class="form-control" id="" cols="30" rows="5"></textarea>
                         </div>
@@ -50,17 +50,19 @@
 ">
                         </div>
                     </div>
-                    <div class="selected"  name="category" style="width:200px;">
-                        <select>
-                            <option  name="category" value="0">Select car:</option>
-                           
+                    <div class="form-group col-md-4" name="category">
+                        <label for="inputState">State</label>
+                        <select id="inputState" class="form-control" name="category">
+                            <option selected>Choose...</option>
+                            
                             @foreach (var category in Model)
                             {
                                 <option value="@category.Id">@category.Name</option>
-                                
+
                             }
                         </select>
                     </div>
+                    
 
                     <div class="row form-group">
                         <div class="col-md-12">
