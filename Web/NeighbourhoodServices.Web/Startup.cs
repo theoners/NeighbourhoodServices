@@ -59,6 +59,7 @@
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<ICategoriesService, CategoriesService>();
+            services.AddTransient<IAnnouncementService, AnnouncementService>();
 
             // Runtime Refresh
             services.AddRazorPages()

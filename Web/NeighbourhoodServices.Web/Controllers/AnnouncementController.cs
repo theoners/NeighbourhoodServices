@@ -1,12 +1,24 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace NeighbourhoodServices.Web.Controllers
+﻿namespace NeighbourhoodServices.Web.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+    using NeighbourhoodServices.Services.Data;
+    using NeighbourhoodServices.Web.ViewModels.Announcement;
+
     public class AnnouncementController : BaseController
     {
+        private readonly IAnnouncementService announcementService;
+
+        public AnnouncementController(IAnnouncementService announcementService )
+        {
+            this.announcementService = announcementService;
+        }
+
         public IActionResult Announcement()
         {
-            return this.View();
+            var viewModel =
+                this.announcementService.GetAll<AnnouncementCategoriesView>();
+            return this.View(viewModel);
         }
+
     }
 }

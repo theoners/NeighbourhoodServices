@@ -1,5 +1,4 @@
-﻿@page
-@model NeighbourhoodServices.Web.Views.Home.AnnouncementModel
+﻿
 @{
 }
 
@@ -51,6 +50,17 @@
 ">
                         </div>
                     </div>
+                    <div class="selected" style="width:200px;">
+                        <select>
+                            <option value="0">Select car:</option>
+                            @{int value = 1;}
+                            @foreach (var name in Model)
+                            {
+                                <option value="@value">@name.Name</option>
+                                value++;
+                            }
+                        </select>
+                    </div>
 
                     <div class="row form-group">
                         <div class="col-md-12">
@@ -64,3 +74,5 @@
         </div>
     </div>
 </section>
+
+

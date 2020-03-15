@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using NeighbourhoodServices.Services.Data;
-using NeighbourhoodServices.Web.ViewModels.Categories;
-
-namespace NeighbourhoodServices.Web.Controllers
+﻿namespace NeighbourhoodServices.Web.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+    using NeighbourhoodServices.Services.Data;
+    using NeighbourhoodServices.Web.ViewModels.Categories;
+
     public class CategoriesController : Controller
     {
         private readonly ICategoriesService categoriesService;
