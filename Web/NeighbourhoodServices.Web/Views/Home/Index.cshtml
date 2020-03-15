@@ -1,4 +1,5 @@
 ﻿@using NeighbourhoodServices.Common
+@using NeighbourhoodServices.Data.Models
 @model NeighbourhoodServices.Web.ViewModels.Administration.Dashboard.IndexViewModel
 <div class="hero-wrap img" style="background-image: url(images/bg_1.jpg);">
     <div class="overlay"></div>
@@ -30,8 +31,8 @@
                                             <span class="flaticon-visitor"></span>
                                         </div>
                                         <div class="desc text-left">
-                                            <strong class="number" data-number="450">0</strong>
-                                            <span>Обави</span>
+                                            <strong class="number" data-number="@Model.Categories.Sum(x=>x.ServicesCount)">0</strong>
+                                            <span>Обяви</span>
                                         </div>
                                     </div>
                                 </div>
@@ -43,7 +44,7 @@
                                             <span class="flaticon-resume"></span>
                                         </div>
                                         <div class="desc text-left">
-                                            <strong class="number" data-number="80000">0</strong>
+                                            <strong class="number" data-number="@Model.AspNetUsersCount">0</strong>
                                             <span>Съседи</span>
                                         </div>
                                     </div>

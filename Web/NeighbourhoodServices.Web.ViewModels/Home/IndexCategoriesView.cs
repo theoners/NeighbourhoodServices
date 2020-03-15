@@ -8,5 +8,6 @@ namespace NeighbourhoodServices.Web.ViewModels.Categories
         public string Name { get; set; }
 
         public int ServicesCount { get; set; }
-    }
+
+       }
 }

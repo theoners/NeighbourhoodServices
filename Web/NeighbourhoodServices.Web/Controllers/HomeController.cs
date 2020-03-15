@@ -1,4 +1,6 @@
-﻿using NeighbourhoodServices.Services.Data;
+﻿using System.Linq;
+using NeighbourhoodServices.Data;
+using NeighbourhoodServices.Services.Data;
 using NeighbourhoodServices.Web.ViewModels.Administration.Dashboard;
 using NeighbourhoodServices.Web.ViewModels.Categories;
 
@@ -12,19 +14,22 @@ namespace NeighbourhoodServices.Web.Controllers
     public class HomeController : BaseController
     {
         private readonly ICategoriesService categoriesService;
+        private readonly ApplicationDbContext dbContext;
 
-        public HomeController(ICategoriesService categoriesService)
+        public HomeController(ICategoriesService categoriesService ,ApplicationDbContext dbContext)
         {
             this.categoriesService = categoriesService;
+            this.dbContext = dbContext;
         }
         public IActionResult Index()
         {
-
+            
             var viewModel = new IndexViewModel
             {
                 Categories =
                     this.categoriesService.GetAll<IndexCategoriesView>(),
             };
+            viewModel.AspNetUsersCount = dbContext.Users.Count();
             return this.View(viewModel);
         }
 
