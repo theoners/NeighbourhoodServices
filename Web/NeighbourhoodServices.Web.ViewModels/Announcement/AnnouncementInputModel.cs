@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NeighbourhoodServices.Web.ViewModels.Announcement
+﻿namespace NeighbourhoodServices.Web.ViewModels.Announcement
 {
-   public class AnnouncementInputModel
+    using NeighbourhoodServices.Data.Models;
+
+    public class AnnouncementInputModel
     {
-        public string description { get; set; }
+        public string Description { get; set; }
 
-        public int price { get; set; }
+        public int Price { get; set; }
 
-        public string priceFor { get; set; }
+        public string PriceFor { get; set; }
 
-        public string address { get; set; }
+        public string Address { get; set; }
 
-        public string category{ get; set; }
+        public string Category{ get; set; }
+
+        public ServiceType ServiceType { get; set; }
     }
 }

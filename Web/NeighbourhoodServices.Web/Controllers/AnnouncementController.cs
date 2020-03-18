@@ -30,10 +30,10 @@
         {
             var model = new Service()
             {
-                Description = announcementInputModel.description,
-                Place = announcementInputModel.address,
-                ServiceType = (ServiceType)1,
-                CategoryId = int.Parse(announcementInputModel.category),
+                Description = announcementInputModel.Description,
+                Place = announcementInputModel.Address,
+                ServiceType = announcementInputModel.ServiceType,
+                CategoryId = int.Parse(announcementInputModel.Category),
             };
 
             this.dbContext.Services.Add(model);

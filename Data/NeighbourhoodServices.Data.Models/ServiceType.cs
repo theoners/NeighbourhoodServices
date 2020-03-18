@@ -4,7 +4,7 @@ namespace NeighbourhoodServices.Data.Models
 {
     public enum ServiceType
     {
-        Object = 1,
-        Service = 2,
+        Предмет = 1,
+        Сервиз = 2,
     }
 }
