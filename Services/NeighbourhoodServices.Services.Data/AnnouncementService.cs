@@ -20,10 +20,11 @@
             this.announcementRepository = announcementRepository;
         }
 
-        public async Task<string> CreateAsync(AnnouncementInputModel announcementInputModel,string userId)
+        public async Task<string> CreateAsync(AnnouncementInputModel announcementInputModel, string userId)
         {
             var announcement = new Announcement()
             {
+                Title = announcementInputModel.Title,
                 Description = announcementInputModel.Description,
                 Place = announcementInputModel.Address,
                 ServiceType = announcementInputModel.ServiceType,
