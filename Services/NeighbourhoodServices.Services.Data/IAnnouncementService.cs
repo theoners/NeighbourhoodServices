@@ -8,6 +8,7 @@
     public interface IAnnouncementService
     {
         IEnumerable<T> GetAll<T>(int? count = null);
+        IEnumerable<T> Get<T>(int? count = null);
 
         Task<string> CreateAsync(AnnouncementInputModel announcementInputModel,string userId);
     }

@@ -47,5 +47,18 @@
 
             return query.To<T>().ToList();
         }
+
+        public IEnumerable<T> Get<T>(int? count = null)
+        {
+
+            IQueryable<Service> query =
+                this.announcementRepository.All().OrderByDescending(x => x.CreatedOn);
+            if (count.HasValue)
+            {
+                query = query.Take(count.Value);
+            }
+
+            return query.To<T>().ToList();
+        }
     }
 }
