@@ -29,7 +29,7 @@
 
         public DbSet<Opinion> Opinions { get; set; }
 
-        public DbSet<Service> Services { get; set; }
+        public DbSet<Announcement> Announcements { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 

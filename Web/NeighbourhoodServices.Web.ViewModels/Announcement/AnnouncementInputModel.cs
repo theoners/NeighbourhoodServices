@@ -4,7 +4,7 @@ namespace NeighbourhoodServices.Web.ViewModels.Announcement
 {
     using NeighbourhoodServices.Data.Models;
 
-    public class AnnouncementInputModel : IMapFrom<Service>
+    public class AnnouncementInputModel : IMapFrom<Announcement>
     {
         public string Description { get; set; }
 

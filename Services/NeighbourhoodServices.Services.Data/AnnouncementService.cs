@@ -12,9 +12,9 @@
     public class AnnouncementService : IAnnouncementService
     {
         private readonly IDeletableEntityRepository<Category> categoriesRepository;
-        private readonly IDeletableEntityRepository<Service> announcementRepository;
+        private readonly IDeletableEntityRepository<Announcement> announcementRepository;
 
-        public AnnouncementService(IDeletableEntityRepository<Category> categoriesRepository, IDeletableEntityRepository<Service> announcementRepository)
+        public AnnouncementService(IDeletableEntityRepository<Category> categoriesRepository, IDeletableEntityRepository<Announcement> announcementRepository)
         {
             this.categoriesRepository = categoriesRepository;
             this.announcementRepository = announcementRepository;
@@ -22,7 +22,7 @@
 
         public async Task<string> CreateAsync(AnnouncementInputModel announcementInputModel,string userId)
         {
-            var announcement = new Service()
+            var announcement = new Announcement()
             {
                 Description = announcementInputModel.Description,
                 Place = announcementInputModel.Address,
@@ -51,7 +51,7 @@
         public IEnumerable<T> Get<T>(int? count = null)
         {
 
-            IQueryable<Service> query =
+            IQueryable<Announcement> query =
                 this.announcementRepository.All().OrderByDescending(x => x.CreatedOn);
             if (count.HasValue)
             {

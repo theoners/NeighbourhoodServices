@@ -4,7 +4,7 @@
     using NeighbourhoodServices.Data.Models;
     using NeighbourhoodServices.Services.Mapping;
 
-    public class AnnouncementViewModel : IMapFrom<Service>
+    public class AnnouncementViewModel : IMapFrom<Announcement>
     {
         public string Description { get; set; }
 

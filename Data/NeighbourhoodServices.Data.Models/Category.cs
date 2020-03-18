@@ -11,7 +11,7 @@ namespace NeighbourhoodServices.Data.Models
     {
         public Category()
         {
-            this.Services = new HashSet<Service>();
+            this.Services = new HashSet<Announcement>();
         }
 
         [Required]
@@ -24,6 +24,6 @@ namespace NeighbourhoodServices.Data.Models
 
         public string ImageUrl { get; set; }
 
-        public ICollection<Service> Services { get; set; }
+        public ICollection<Announcement> Services { get; set; }
     }
 }

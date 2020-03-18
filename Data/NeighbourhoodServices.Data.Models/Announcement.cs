@@ -7,12 +7,15 @@ namespace NeighbourhoodServices.Data.Models
 
     using NeighbourhoodServices.Data.Common.Models;
 
-    public class Service : BaseDeletableModel<string>
+    public class Announcement : BaseDeletableModel<string>
     {
-        public Service()
+        public Announcement()
         {
             this.Id = Guid.NewGuid().ToString();
         }
+
+        [Required]
+        public string Title { get; set; }
 
         [Required]
         [MaxLength(500)]
