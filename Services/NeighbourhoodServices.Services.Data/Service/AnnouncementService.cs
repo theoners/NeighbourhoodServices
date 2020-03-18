@@ -49,9 +49,20 @@
             return query.To<T>().ToList();
         }
 
-        public IEnumerable<T> Get<T>(int? count = null)
+        public IEnumerable<T> GetByCategory<T>(string categoryName, int? count = null)
         {
+            IQueryable<Announcement> query =
+                this.announcementRepository.All().Where(x => x.Category.Name == categoryName);
+            if (count.HasValue)
+            {
+                query = query.Take(count.Value);
+            }
 
+            return query.To<T>().ToList();
+        }
+
+        public IEnumerable<T> GetByCreatedOn<T>(int? count = null)
+        {
             IQueryable<Announcement> query =
                 this.announcementRepository.All().OrderByDescending(x => x.CreatedOn);
             if (count.HasValue)

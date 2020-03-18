@@ -49,6 +49,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Announcement\" />
+    <Folder Include="Views\Categories\" />
   </ItemGroup>
 </Project>

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace NeighbourhoodServices.Web
+﻿namespace NeighbourhoodServices.Web
 {
     using System.Reflection;
 
@@ -113,8 +111,8 @@ namespace NeighbourhoodServices.Web
                     {
                         endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
-                        endpoints.MapControllerRoute("category", "Обяви/{name:minlength(3)}", new { controller = "Categories", action = "GetAllServiceInCategory" });
-                        endpoints.MapControllerRoute("service", "Обяви/ПубликувайОбява", new { controller = "Home", action = "CreateAnnouncementPage" });
+                        endpoints.MapControllerRoute("category", "{name}", new { controller = "Announcements", action = "GetByCategory" });
+                        endpoints.MapControllerRoute("service", "ПубликувайОбява", new { controller = "Announcements", action = "Create" });
                         endpoints.MapRazorPages();
                     });
         }

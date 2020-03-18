@@ -49,17 +49,6 @@ namespace NeighbourhoodServices.Web.Controllers
                 new ErrorViewModel { RequestId = Activity.Current?.Id ?? this.HttpContext.TraceIdentifier });
         }
 
-        public IActionResult Announcement()
-        {
-            var viewModel = this.announcementService.Get<AnnouncementViewModel>();
-            return this.View(viewModel);
-        }
-
-        [Authorize]
-        public IActionResult CreateAnnouncementPage()
-        {
-            var viewModel = this.categoriesService.GetAll<AnnouncementCategoriesView>();
-            return this.View(viewModel);
-        }
+        
     }
 }
