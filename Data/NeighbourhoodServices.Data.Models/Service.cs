@@ -24,6 +24,7 @@ namespace NeighbourhoodServices.Data.Models
         public int CategoryId { get; set; }
         public Category Category { get; set; }
 
+        public virtual string UserId { get; set; }
         public virtual ApplicationUser User { get; set; }
     }
 }

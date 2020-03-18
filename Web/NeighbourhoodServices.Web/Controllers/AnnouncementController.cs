@@ -1,4 +1,7 @@
-﻿namespace NeighbourhoodServices.Web.Controllers
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+
+namespace NeighbourhoodServices.Web.Controllers
 {
     using System;
 
@@ -12,11 +15,13 @@
     {
         private readonly IAnnouncementService announcementService;
         private readonly ApplicationDbContext dbContext;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public AnnouncementController(IAnnouncementService announcementService, ApplicationDbContext dbContext)
+        public AnnouncementController(IAnnouncementService announcementService, ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager)
         {
             this.announcementService = announcementService;
             this.dbContext = dbContext;
+            this.userManager = userManager;
         }
 
         public IActionResult Announcement()
@@ -26,14 +31,16 @@
             return this.View(viewModel);
         }
 
-        public IActionResult PostAnnouncement(AnnouncementInputModel announcementInputModel, ApplicationUser user)
+        public async Task<IActionResult> PostAnnouncement(AnnouncementInputModel announcementInputModel)
         {
+            var user = await this.userManager.GetUserAsync(this.User);
             var model = new Service()
             {
                 Description = announcementInputModel.Description,
                 Place = announcementInputModel.Address,
                 ServiceType = announcementInputModel.ServiceType,
                 CategoryId = int.Parse(announcementInputModel.Category),
+                UserId = user.Id,
             };
 
             this.dbContext.Services.Add(model);

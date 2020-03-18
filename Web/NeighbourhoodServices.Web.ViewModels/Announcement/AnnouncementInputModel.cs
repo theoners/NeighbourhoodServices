@@ -15,5 +15,7 @@
         public string Category{ get; set; }
 
         public ServiceType ServiceType { get; set; }
+
+        public ApplicationUser User { get; set; }
     }
 }
