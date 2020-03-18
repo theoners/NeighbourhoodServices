@@ -1,10 +1,10 @@
-﻿using System;
-using NeighbourhoodServices.Data;
-using NeighbourhoodServices.Data.Models;
-
-namespace NeighbourhoodServices.Web.Controllers
+﻿namespace NeighbourhoodServices.Web.Controllers
 {
+    using System;
+
     using Microsoft.AspNetCore.Mvc;
+    using NeighbourhoodServices.Data;
+    using NeighbourhoodServices.Data.Models;
     using NeighbourhoodServices.Services.Data;
     using NeighbourhoodServices.Web.ViewModels.Announcement;
 
@@ -13,7 +13,7 @@ namespace NeighbourhoodServices.Web.Controllers
         private readonly IAnnouncementService announcementService;
         private readonly ApplicationDbContext dbContext;
 
-        public AnnouncementController(IAnnouncementService announcementService , ApplicationDbContext dbContext)
+        public AnnouncementController(IAnnouncementService announcementService, ApplicationDbContext dbContext)
         {
             this.announcementService = announcementService;
             this.dbContext = dbContext;
@@ -26,7 +26,7 @@ namespace NeighbourhoodServices.Web.Controllers
             return this.View(viewModel);
         }
 
-        public IActionResult PostAnnouncement(AnnouncementInputModel announcementInputModel , ApplicationUser user)
+        public IActionResult PostAnnouncement(AnnouncementInputModel announcementInputModel, ApplicationUser user)
         {
             var model = new Service()
             {
@@ -36,12 +36,10 @@ namespace NeighbourhoodServices.Web.Controllers
                 CategoryId = int.Parse(announcementInputModel.category),
             };
 
-            
-           this.dbContext.Services.Add(model);
-           this.dbContext.SaveChanges();
+            this.dbContext.Services.Add(model);
+            this.dbContext.SaveChanges();
 
             return this.Redirect("/");
         }
-
     }
 }

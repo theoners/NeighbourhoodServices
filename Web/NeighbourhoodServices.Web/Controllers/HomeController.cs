@@ -1,35 +1,34 @@
-﻿using System.Linq;
-using NeighbourhoodServices.Data;
-using NeighbourhoodServices.Services.Data;
-using NeighbourhoodServices.Web.ViewModels.Administration.Dashboard;
-using NeighbourhoodServices.Web.ViewModels.Categories;
-
-namespace NeighbourhoodServices.Web.Controllers
+﻿namespace NeighbourhoodServices.Web.Controllers
 {
     using System.Diagnostics;
+    using System.Linq;
 
     using Microsoft.AspNetCore.Mvc;
+    using NeighbourhoodServices.Data;
+    using NeighbourhoodServices.Services.Data;
     using NeighbourhoodServices.Web.ViewModels;
+    using NeighbourhoodServices.Web.ViewModels.Administration.Dashboard;
+    using NeighbourhoodServices.Web.ViewModels.Categories;
 
     public class HomeController : BaseController
     {
         private readonly ICategoriesService categoriesService;
         private readonly ApplicationDbContext dbContext;
 
-        public HomeController(ICategoriesService categoriesService ,ApplicationDbContext dbContext)
+        public HomeController(ICategoriesService categoriesService, ApplicationDbContext dbContext)
         {
             this.categoriesService = categoriesService;
             this.dbContext = dbContext;
         }
+
         public IActionResult Index()
         {
-            
             var viewModel = new IndexViewModel
             {
                 Categories =
                     this.categoriesService.GetAll<IndexCategoriesView>(),
+                AspNetUsersCount = this.dbContext.Users.Count(),
             };
-            viewModel.AspNetUsersCount = dbContext.Users.Count();
             return this.View(viewModel);
         }
 

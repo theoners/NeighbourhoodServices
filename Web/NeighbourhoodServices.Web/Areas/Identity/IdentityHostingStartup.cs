@@ -1,4 +1,5 @@
 ﻿using System;
+
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -9,6 +10,7 @@ using NeighbourhoodServices.Data;
 using NeighbourhoodServices.Data.Models;
 
 [assembly: HostingStartup(typeof(NeighbourhoodServices.Web.Areas.Identity.IdentityHostingStartup))]
+
 namespace NeighbourhoodServices.Web.Areas.Identity
 {
     public class IdentityHostingStartup : IHostingStartup
