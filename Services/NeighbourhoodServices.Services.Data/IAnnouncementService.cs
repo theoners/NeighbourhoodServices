@@ -1,9 +1,14 @@
-﻿using System.Collections.Generic;
-
-namespace NeighbourhoodServices.Services.Data
+﻿namespace NeighbourhoodServices.Services.Data
 {
-   public interface IAnnouncementService
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using NeighbourhoodServices.Data.Models;
+    using NeighbourhoodServices.Web.ViewModels.Announcement;
+
+    public interface IAnnouncementService
     {
         IEnumerable<T> GetAll<T>(int? count = null);
+
+        Task<string> CreateAsync(AnnouncementInputModel announcementInputModel,string userId);
     }
 }

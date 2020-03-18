@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 
 namespace NeighbourhoodServices.Web.Controllers
@@ -24,27 +25,17 @@ namespace NeighbourhoodServices.Web.Controllers
             this.userManager = userManager;
         }
 
-        public IActionResult Announcement()
-        {
-            var viewModel =
-                this.announcementService.GetAll<AnnouncementCategoriesView>();
-            return this.View(viewModel);
-        }
-
+        [HttpPost]
+        [Authorize]
         public async Task<IActionResult> PostAnnouncement(AnnouncementInputModel announcementInputModel)
         {
-            var user = await this.userManager.GetUserAsync(this.User);
-            var model = new Service()
+            if (!this.ModelState.IsValid)
             {
-                Description = announcementInputModel.Description,
-                Place = announcementInputModel.Address,
-                ServiceType = announcementInputModel.ServiceType,
-                CategoryId = int.Parse(announcementInputModel.Category),
-                UserId = user.Id,
-            };
+                return this.Redirect("/");
+            }
 
-            this.dbContext.Services.Add(model);
-            this.dbContext.SaveChanges();
+            var user = await this.userManager.GetUserAsync(this.User);
+            await this.announcementService.CreateAsync(announcementInputModel, user.Id);
 
             return this.Redirect("/");
         }

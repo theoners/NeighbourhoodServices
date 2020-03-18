@@ -1,6 +1,6 @@
 ﻿namespace NeighbourhoodServices.Data.Models
 {
-     public class UserOpinion
+    public class UserOpinion
     {
         public string UserId { get; set; }
 

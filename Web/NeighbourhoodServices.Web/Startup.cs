@@ -63,6 +63,7 @@ namespace NeighbourhoodServices.Web
             services.AddTransient<ICategoriesService, CategoriesService>();
             services.AddTransient<IAnnouncementService, AnnouncementService>();
             services.AddTransient<IServicesService, ServicesService>();
+            services.AddTransient<IUsersService, UsersService>();
 
             // Runtime Refresh
             services.AddRazorPages()
@@ -112,7 +113,8 @@ namespace NeighbourhoodServices.Web
                     {
                         endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
-                        endpoints.MapControllerRoute("category", "{name:minlength(3)}", new { controller = "Categories", action = "GetByName" });
+                        endpoints.MapControllerRoute("category", "Обяви/{name:minlength(3)}", new { controller = "Categories", action = "GetAllServiceInCategory" });
+                        endpoints.MapControllerRoute("service", "Обяви/ПубликувайОбява", new { controller = "Home", action = "CreateAnnouncementPage" });
                         endpoints.MapRazorPages();
                     });
         }

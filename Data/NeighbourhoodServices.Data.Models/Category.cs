@@ -3,6 +3,7 @@
 namespace NeighbourhoodServices.Data.Models
 {
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     using NeighbourhoodServices.Data.Common.Models;
 
@@ -13,8 +14,12 @@ namespace NeighbourhoodServices.Data.Models
             this.Services = new HashSet<Service>();
         }
 
+        [Required]
+        [MaxLength(25)]
         public string Name { get; set; }
 
+        [Required]
+        [MaxLength(100)]
         public string Description { get; set; }
 
         public string ImageUrl { get; set; }

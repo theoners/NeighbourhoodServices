@@ -1,8 +1,10 @@
-﻿namespace NeighbourhoodServices.Web.ViewModels.Announcement
+﻿using NeighbourhoodServices.Services.Mapping;
+
+namespace NeighbourhoodServices.Web.ViewModels.Announcement
 {
     using NeighbourhoodServices.Data.Models;
 
-    public class AnnouncementInputModel
+    public class AnnouncementInputModel : IMapFrom<Service>
     {
         public string Description { get; set; }
 
@@ -15,7 +17,7 @@
         public string Category{ get; set; }
 
         public ServiceType ServiceType { get; set; }
-
-        public ApplicationUser User { get; set; }
+       
+        public string UserId { get; set; }
     }
 }

@@ -1,4 +1,7 @@
-﻿namespace NeighbourhoodServices.Web.Controllers
+﻿using System.Net;
+using Microsoft.AspNetCore.Authorization;
+
+namespace NeighbourhoodServices.Web.Controllers
 {
     using System.Diagnostics;
     using System.Linq;
@@ -8,26 +11,26 @@
     using NeighbourhoodServices.Services.Data;
     using NeighbourhoodServices.Web.ViewModels;
     using NeighbourhoodServices.Web.ViewModels.Administration.Dashboard;
+    using NeighbourhoodServices.Web.ViewModels.Announcement;
     using NeighbourhoodServices.Web.ViewModels.Categories;
 
     public class HomeController : BaseController
     {
         private readonly ICategoriesService categoriesService;
-        private readonly ApplicationDbContext dbContext;
+        private readonly IUsersService userService;
 
-        public HomeController(ICategoriesService categoriesService, ApplicationDbContext dbContext)
+        public HomeController(ICategoriesService categoriesService, IUsersService userService, IAnnouncementService announcementService)
         {
             this.categoriesService = categoriesService;
-            this.dbContext = dbContext;
+            this.userService = userService;
         }
 
         public IActionResult Index()
         {
             var viewModel = new IndexViewModel
             {
-                Categories =
-                    this.categoriesService.GetAll<IndexCategoriesView>(),
-                AspNetUsersCount = this.dbContext.Users.Count(),
+                Categories = this.categoriesService.GetAll<IndexCategoriesView>(),
+                AspNetUsersCount = this.userService.GetUserCount(),
             };
             return this.View(viewModel);
         }
@@ -44,9 +47,12 @@
                 new ErrorViewModel { RequestId = Activity.Current?.Id ?? this.HttpContext.TraceIdentifier });
         }
 
-        public IActionResult Announcement()
+        [Authorize]
+        public IActionResult CreateAnnouncementPage()
         {
-            return this.View();
+            var viewModel =
+                this.categoriesService.GetAll<AnnouncementCategoriesView>();
+            return this.View(viewModel);
         }
     }
 }
