@@ -1,9 +1,11 @@
-﻿using NeighbourhoodServices.Web.ViewModels;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace NeighbourhoodServices.Web.Controllers
 {
     using System;
     using System.Threading.Tasks;
+   // using System.Web.Mvc;
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
@@ -11,8 +13,10 @@ namespace NeighbourhoodServices.Web.Controllers
     using NeighbourhoodServices.Data;
     using NeighbourhoodServices.Data.Models;
     using NeighbourhoodServices.Services.Data;
+    using NeighbourhoodServices.Web.ViewModels;
     using NeighbourhoodServices.Web.ViewModels.Announcement;
 
+    [RoutePrefix("qq")]
     public class AnnouncementsController : BaseController
     {
         private readonly IAnnouncementService announcementService;
@@ -27,6 +31,7 @@ namespace NeighbourhoodServices.Web.Controllers
             this.categoriesService = categoriesService;
         }
 
+        [Route("Обяви")]
         public IActionResult GetAll()
         {
             var viewModel = this.announcementService.GetByCreatedOn<AnnouncementViewModel>();
