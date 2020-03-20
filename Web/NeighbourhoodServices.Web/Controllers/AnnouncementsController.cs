@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using NeighbourhoodServices.Web.ViewModels.Announcements;
+using NeighbourhoodServices.Web.ViewModels.Categories;
 
 namespace NeighbourhoodServices.Web.Controllers
 {
@@ -34,8 +36,15 @@ namespace NeighbourhoodServices.Web.Controllers
         [Route("Обяви")]
         public IActionResult GetAll()
         {
-            var viewModel = this.announcementService.GetByCreatedOn<AnnouncementViewModel>();
-            return this.View(viewModel);
+            var announcementViewModel = this.announcementService.GetByCreatedOn<AnnouncementViewModel>();
+            var categoriesViewModel = this.categoriesService.GetAll<IndexCategoriesView>();
+            var viewModel = new GetAllViewModel()
+            {
+                Announcements = announcementViewModel,
+                Categories = categoriesViewModel,
+
+            };
+           return this.View(viewModel);
         }
 
         public IActionResult GetByCategory(string name)

@@ -269,221 +269,37 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12 ftco-animate">
-                        <div class="job-post-item p-4 d-block d-lg-flex align-items-center">
-                            <div class="one-third mb-4 mb-md-0">
-                                <div class="job-post-item-header align-items-center">
-                                    <span class="subadge">Partime</span>
-                                    <h2 class="mr-3 text-black"><a href="#">Frontend Development</a></h2>
-                                </div>
-                                <div class="job-post-item-body d-block d-md-flex">
-                                    <div class="mr-3"><span class="icon-layers"></span> <a href="#">Facebook, Inc.</a></div>
-                                    <div><span class="icon-my_location"></span> <span>Western City, UK</span></div>
-                                </div>
-                            </div>
 
-                            <div class="one-forth ml-auto d-flex align-items-center mt-4 md-md-0">
-                                <div>
-                                    <a href="#" class="icon text-center d-flex justify-content-center align-items-center icon mr-2">
-                                        <span class="icon-heart"></span>
-                                    </a>
+                    @foreach (var announcement in Model.Announcement)
+                    {
+                        <div class="col-md-12 ftco-animate">
+                            <div class="job-post-item p-4 d-block d-lg-flex align-items-center">
+                                <div class="one-third mb-4 mb-md-0">
+                                    <div class="job-post-item-header align-items-center">
+                                        <span class="subadge">@announcement.ServiceType</span>
+                                        <h2 class="mr-3 text-black"><a href="#">@announcement.Title</a></h2>
+                                        <div>@announcement.Description</div>
+                                    </div>
+                                    <div class="job-post-item-body d-block d-md-flex">
+                                        <div class="mr-3"><span class="icon-layers"></span> <a href="#">@announcement.User</a></div>
+                                        <div><span class="icon-my_location"></span> <span>@announcement.Place</span></div>
+                                        <div><span class="icon-my_location"></span> <span>@DateTime.Parse(announcement.CreatedOn).ToString("MM/dd/yyyy HH:mm")</span></div>
+                                        <div><span class="icon-my_location"></span> <span>@announcement.CategoryName</span></div>
+                                    </div>
                                 </div>
-                                <a href="job-single.html" class="btn btn-primary py-2">Apply Job</a>
+
+                                <div class="one-forth ml-auto d-flex align-items-center mt-4 md-md-0">
+                                    <div>
+                                        <a href="#" class="icon text-center d-flex justify-content-center align-items-center icon mr-2">
+                                            <span class="icon-heart"></span>
+                                        </a>
+                                    </div>
+                                    <a href="job-single.html" class="btn btn-primary py-2">Детайли</a>
+                                </div>
                             </div>
                         </div>
-                    </div><!-- end -->
+                    }
 
-                    <div class="col-md-12 ftco-animate">
-                        <div class="job-post-item p-4 d-block d-lg-flex align-items-center">
-                            <div class="one-third mb-4 mb-md-0">
-                                <div class="job-post-item-header align-items-center">
-                                    <span class="subadge">Fulltime</span>
-                                    <h2 class="mr-3 text-black"><a href="#">Full Stack Developer</a></h2>
-                                </div>
-                                <div class="job-post-item-body d-block d-md-flex">
-                                    <div class="mr-3"><span class="icon-layers"></span> <a href="#">Google, Inc.</a></div>
-                                    <div><span class="icon-my_location"></span> <span>Western City, UK</span></div>
-                                </div>
-                            </div>
-
-                            <div class="one-forth ml-auto d-flex align-items-center mt-4 md-md-0">
-                                <div>
-                                    <a href="#" class="icon text-center d-flex justify-content-center align-items-center icon mr-2">
-                                        <span class="icon-heart"></span>
-                                    </a>
-                                </div>
-                                <a href="job-single.html" class="btn btn-primary py-2">Apply Job</a>
-                            </div>
-                        </div>
-                    </div><!-- end -->
-
-                    <div class="col-md-12 ftco-animate">
-                        <div class="job-post-item p-4 d-block d-lg-flex align-items-center">
-                            <div class="one-third mb-4 mb-md-0">
-                                <div class="job-post-item-header align-items-center">
-                                    <span class="subadge">Freelance</span>
-                                    <h2 class="mr-3 text-black"><a href="#">Open Source Interactive Developer</a></h2>
-                                </div>
-                                <div class="job-post-item-body d-block d-md-flex">
-                                    <div class="mr-3"><span class="icon-layers"></span> <a href="#">New York Times</a></div>
-                                    <div><span class="icon-my_location"></span> <span>Western City, UK</span></div>
-                                </div>
-                            </div>
-
-                            <div class="one-forth ml-auto d-flex align-items-center mt-4 md-md-0">
-                                <div>
-                                    <a href="#" class="icon text-center d-flex justify-content-center align-items-center icon mr-2">
-                                        <span class="icon-heart"></span>
-                                    </a>
-                                </div>
-                                <a href="job-single.html" class="btn btn-primary py-2">Apply Job</a>
-                            </div>
-                        </div>
-                    </div><!-- end -->
-
-                    <div class="col-md-12 ftco-animate">
-                        <div class="job-post-item p-4 d-block d-lg-flex align-items-center">
-                            <div class="one-third mb-4 mb-md-0">
-                                <div class="job-post-item-header align-items-center">
-                                    <span class="subadge">Partime</span>
-                                    <h2 class="mr-3 text-black"><a href="#">Frontend Development</a></h2>
-                                </div>
-                                <div class="job-post-item-body d-block d-md-flex">
-                                    <div class="mr-3"><span class="icon-layers"></span> <a href="#">Facebook, Inc.</a></div>
-                                    <div><span class="icon-my_location"></span> <span>Western City, UK</span></div>
-                                </div>
-                            </div>
-
-                            <div class="one-forth ml-auto d-flex align-items-center mt-4 md-md-0">
-                                <div>
-                                    <a href="#" class="icon text-center d-flex justify-content-center align-items-center icon mr-2">
-                                        <span class="icon-heart"></span>
-                                    </a>
-                                </div>
-                                <a href="job-single.html" class="btn btn-primary py-2">Apply Job</a>
-                            </div>
-                        </div>
-                    </div><!-- end -->
-
-                    <div class="col-md-12 ftco-animate">
-                        <div class="job-post-item p-4 d-block d-lg-flex align-items-center">
-                            <div class="one-third mb-4 mb-md-0">
-                                <div class="job-post-item-header align-items-center">
-                                    <span class="subadge">Temporary</span>
-                                    <h2 class="mr-3 text-black"><a href="#">Open Source Interactive Developer</a></h2>
-                                </div>
-                                <div class="job-post-item-body d-block d-md-flex">
-                                    <div class="mr-3"><span class="icon-layers"></span> <a href="#">New York Times</a></div>
-                                    <div><span class="icon-my_location"></span> <span>Western City, UK</span></div>
-                                </div>
-                            </div>
-
-                            <div class="one-forth ml-auto d-flex align-items-center mt-4 md-md-0">
-                                <div>
-                                    <a href="#" class="icon text-center d-flex justify-content-center align-items-center icon mr-2">
-                                        <span class="icon-heart"></span>
-                                    </a>
-                                </div>
-                                <a href="job-single.html" class="btn btn-primary py-2">Apply Job</a>
-                            </div>
-                        </div>
-                    </div><!-- end -->
-
-                    <div class="col-md-12 ftco-animate">
-                        <div class="job-post-item p-4 d-block d-lg-flex align-items-center">
-                            <div class="one-third mb-4 mb-md-0">
-                                <div class="job-post-item-header align-items-center">
-                                    <span class="subadge">Fulltime</span>
-                                    <h2 class="mr-3 text-black"><a href="#">Full Stack Developer</a></h2>
-                                </div>
-                                <div class="job-post-item-body d-block d-md-flex">
-                                    <div class="mr-3"><span class="icon-layers"></span> <a href="#">Google, Inc.</a></div>
-                                    <div><span class="icon-my_location"></span> <span>Western City, UK</span></div>
-                                </div>
-                            </div>
-
-                            <div class="one-forth ml-auto d-flex align-items-center mt-4 md-md-0">
-                                <div>
-                                    <a href="#" class="icon text-center d-flex justify-content-center align-items-center icon mr-2">
-                                        <span class="icon-heart"></span>
-                                    </a>
-                                </div>
-                                <a href="job-single.html" class="btn btn-primary py-2">Apply Job</a>
-                            </div>
-                        </div>
-                    </div><!-- end -->
-
-                    <div class="col-md-12 ftco-animate">
-                        <div class="job-post-item p-4 d-block d-lg-flex align-items-center">
-                            <div class="one-third mb-4 mb-md-0">
-                                <div class="job-post-item-header align-items-center">
-                                    <span class="subadge">Freelance</span>
-                                    <h2 class="mr-3 text-black"><a href="#">Open Source Interactive Developer</a></h2>
-                                </div>
-                                <div class="job-post-item-body d-block d-md-flex">
-                                    <div class="mr-3"><span class="icon-layers"></span> <a href="#">New York Times</a></div>
-                                    <div><span class="icon-my_location"></span> <span>Western City, UK</span></div>
-                                </div>
-                            </div>
-
-                            <div class="one-forth ml-auto d-flex align-items-center mt-4 md-md-0">
-                                <div>
-                                    <a href="#" class="icon text-center d-flex justify-content-center align-items-center icon mr-2">
-                                        <span class="icon-heart"></span>
-                                    </a>
-                                </div>
-                                <a href="job-single.html" class="btn btn-primary py-2">Apply Job</a>
-                            </div>
-                        </div>
-                    </div><!-- end -->
-
-                    <div class="col-md-12 ftco-animate">
-                        <div class="job-post-item p-4 d-block d-lg-flex align-items-center">
-                            <div class="one-third mb-4 mb-md-0">
-                                <div class="job-post-item-header align-items-center">
-                                    <span class="subadge">Internship</span>
-                                    <h2 class="mr-3 text-black"><a href="#">Frontend Development</a></h2>
-                                </div>
-                                <div class="job-post-item-body d-block d-md-flex">
-                                    <div class="mr-3"><span class="icon-layers"></span> <a href="#">Facebook, Inc.</a></div>
-                                    <div><span class="icon-my_location"></span> <span>Western City, UK</span></div>
-                                </div>
-                            </div>
-
-                            <div class="one-forth ml-auto d-flex align-items-center mt-4 md-md-0">
-                                <div>
-                                    <a href="#" class="icon text-center d-flex justify-content-center align-items-center icon mr-2">
-                                        <span class="icon-heart"></span>
-                                    </a>
-                                </div>
-                                <a href="job-single.html" class="btn btn-primary py-2">Apply Job</a>
-                            </div>
-                        </div>
-                    </div><!-- end -->
-
-                    <div class="col-md-12 ftco-animate">
-                        <div class="job-post-item p-4 d-block d-lg-flex align-items-center">
-                            <div class="one-third mb-4 mb-md-0">
-                                <div class="job-post-item-header align-items-center">
-                                    <span class="subadge">Temporary</span>
-                                    <h2 class="mr-3 text-black"><a href="#">Open Source Interactive Developer</a></h2>
-                                </div>
-                                <div class="job-post-item-body d-block d-md-flex">
-                                    <div class="mr-3"><span class="icon-layers"></span> <a href="#">New York Times</a></div>
-                                    <div><span class="icon-my_location"></span> <span>Western City, UK</span></div>
-                                </div>
-                            </div>
-
-                            <div class="one-forth ml-auto d-flex align-items-center mt-4 md-md-0">
-                                <div>
-                                    <a href="#" class="icon text-center d-flex justify-content-center align-items-center icon mr-2">
-                                        <span class="icon-heart"></span>
-                                    </a>
-                                </div>
-                                <a href="job-single.html" class="btn btn-primary py-2">Apply Job</a>
-                            </div>
-                        </div>
-                    </div><!-- end -->
                 </div>
             </div>
             <div class="col-lg-3 sidebar">
