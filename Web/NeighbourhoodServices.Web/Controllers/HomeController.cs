@@ -27,6 +27,10 @@ namespace NeighbourhoodServices.Web.Controllers
             this.announcementService = announcementService;
         }
 
+        public IActionResult Test()
+        {
+            return this.View();
+        }
         public IActionResult Index()
         {
             var viewModel = new IndexViewModel

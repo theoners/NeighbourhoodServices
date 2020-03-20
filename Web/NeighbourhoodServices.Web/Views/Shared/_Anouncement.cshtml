@@ -1,0 +1,30 @@
+﻿@model NeighbourhoodServices.Web.ViewModels.Announcements.GetAllViewModel;
+@foreach (var announcement in Model.Announcements)
+{
+    <div class="col-md-12 ftco-animate">
+        <div class="job-post-item p-4 d-block d-lg-flex align-items-center">
+            <div class="one-third mb-4 mb-md-0">
+                <div class="job-post-item-header align-items-center">
+                    <span class="subadge">@announcement.ServiceType</span>
+                    <h2 class="mr-3 text-black"><a href="#">@announcement.Title</a></h2>
+                    <div>@announcement.Description</div>
+                </div>
+                <div class="job-post-item-body d-block d-md-flex">
+                    <div class="mr-3"><span class="icon-layers"></span> <a href="#">@announcement.User</a></div>
+                    <div><span class="icon-my_location"></span> <span>@announcement.Place</span></div>
+                    <div><span class="icon-my_location"></span> <span>@announcement.CreatedOn</span></div>
+                    <div><span class="icon-my_location"></span> <span>@announcement.CategoryName</span></div>
+                </div>
+            </div>
+
+            <div class="one-forth ml-auto d-flex align-items-center mt-4 md-md-0">
+                <div>
+                    <a href="#" class="icon text-center d-flex justify-content-center align-items-center icon mr-2">
+                        <span class="icon-heart"></span>
+                    </a>
+                </div>
+                <a href="job-single.html" class="btn btn-primary py-2">Детайли</a>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,10 @@
+﻿@model NeighbourhoodServices.Web.ViewModels.Announcements.GetAllViewModel;
+
+@foreach (var category in Model.Categories.OrderByDescending(x => x.ServicesCount).Take(4))
+{
+    <div class="col-md-3 ftco-animate">
+        <ul class="category text-center">
+            <li><a href="@category.Name">@category.Name<br><span class="number">@category.ServicesCount</span> <span>Отворени Позиции</span><i class="ion-ios-arrow-forward"></i></a></li>
+        </ul>
+    </div>
+}

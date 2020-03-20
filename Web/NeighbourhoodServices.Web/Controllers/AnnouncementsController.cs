@@ -44,12 +44,16 @@ namespace NeighbourhoodServices.Web.Controllers
                 Categories = categoriesViewModel,
 
             };
-           return this.View(viewModel);
+            return this.View(viewModel);
         }
 
         public IActionResult GetByCategory(string name)
         {
-            var viewModel = this.announcementService.GetByCategory<ServiceViewModel>(name);
+            var announcementViewModel = this.announcementService.GetByCategory<AnnouncementViewModel>(name);
+            var viewModel = new GetAllViewModel()
+            {
+                Announcements = announcementViewModel,
+            };
             return this.View(viewModel);
         }
 
