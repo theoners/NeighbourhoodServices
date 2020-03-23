@@ -27,10 +27,10 @@
         }
         else
         {
-            <li>
-                <a class="btn big-login" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Влез/Регистрирай се</a>
-            </li>
-            <partial name="_LoginRegisterPopUp" />
+    <li>
+        <a class="btn big-login"asp-area="Identity" asp-page="/Account/Login">Влез/Регистрирай се</a>
+    </li>
+            
         }
     </ul>
 
