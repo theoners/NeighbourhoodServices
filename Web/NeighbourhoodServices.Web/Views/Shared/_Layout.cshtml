@@ -27,6 +27,9 @@
         <link rel="stylesheet" href="~/css/flaticon.css" asp-append-version="true">
         <link rel="stylesheet" href="~/css/icomoon.css" asp-append-version="true">
         <link rel="stylesheet" href="~/css/style.css" asp-append-version="true">
+        <link rel="stylesheet" href="~/css/login-register.css" asp-append-version="true">
+
+
         @*<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" asp-append-version="true" />
             <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />*@
     </environment>
@@ -48,7 +51,7 @@
 
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active">
-                            <a class="nav-link"  asp-controller="Home" asp-action="Test">Test</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="Test">Test</a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Начало</a>
@@ -146,6 +149,7 @@
     </footer>
 
 
+
     <environment names="Development">
         <script src="~/js/jquery.min.js"></script>
         <script src="~/js/jquery-migrate-3.0.1.min.js"></script>
@@ -159,9 +163,8 @@
         <script src="~/js/aos.js"></script>
         <script src="~/js/jquery.animateNumber.min.js"></script>
         <script src="~/js/scrollax.min.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-        <script src="~/js/google-map.js"></script>
         <script src="~/js/main.js"></script>
+        <script src="~/js/login-register.js" asp-append-version="true"></script>
         @*<script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
             <script src="~/lib/jquery-validation/dist/jquery.validate.js" asp-append-version="true"></script>
             <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
@@ -177,5 +180,6 @@
     </environment>
 
     @this.RenderSection("Scripts", required: false)
+    <partial name="_LoginRegisterPopUp"/>
 </body>
 </html>

@@ -13,7 +13,7 @@
             <li class="nav-item cta mr-md-1">
                 <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@(this.User.Identity.Name)</a>
             </li>
-            if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+            if (!this.User.IsInRole(GlobalConstants.AdministratorRoleName))
             {
                 <li class="nav-item cta cta-colored">
                     <a class="nav-link" asp-area="Administration" asp-controller="Dashboard" asp-action="Index" title="Admin">Admin</a>
@@ -27,12 +27,14 @@
         }
         else
         {
-            <li class="nav-item cta mr-md-1">
-                <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Регистрирай се</a>
+            <li>
+                <a class="btn big-login" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Влез/Регистрирай се</a>
             </li>
-            <li class="nav-item cta cta-colored">
-                <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Вход</a>
-            </li>
-
+            <partial name="_LoginRegisterPopUp" />
         }
     </ul>
+
+
+
+
+
