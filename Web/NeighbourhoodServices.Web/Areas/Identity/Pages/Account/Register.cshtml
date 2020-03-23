@@ -14,16 +14,15 @@
 
 <br>
 
-<div>
-    <form action="" class="form-signup">
+<div class="row justify-content-center align-items-center">
+    <form class="form-signin" id="account" method="post">
+        <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Регистрация</h1>
         <div class="social-login">
             <button class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Sign up with Facebook</span> </button>
-        </div>
-        <div class="social-login">
             <button class="btn google-btn social-btn" type="button"><span><i class="fab fa-google-plus-g"></i> Sign up with Google+</span> </button>
         </div>
 
-        <p style="text-align:center">OR</p>
+        <p style="text-align: center">Или</p>
 
         <div class="form-group">
             <label asp-for="Input.UserName"></label>
@@ -45,16 +44,11 @@
             <input asp-for="Input.ConfirmPassword" class="form-control" />
             <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
         </div>
-        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h4>Регистрация</h4>
-            <hr />
-            <div asp-validation-summary="All" class="text-danger"></div>
-
-            <button type="submit" class="btn btn-primary">Register</button>
-        </form>
-        <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-user-plus"></i> Sign Up</button>
-        <a href="#" id="cancel_signup"><i class="fas fa-angle-left"></i> Back</a>
-    </form>
+       <div class="form-group">
+            <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-user-plus"></i>Регистрация</button>
+            <a href="#" id="cancel_signup"><i class="fas fa-angle-left"></i> Назад</a>
+        </div>
+       </form>
     <br>
 
 </div>
