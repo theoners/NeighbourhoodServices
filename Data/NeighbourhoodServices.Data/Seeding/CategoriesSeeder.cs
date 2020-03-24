@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore.Internal;
-using NeighbourhoodServices.Data.Models;
-using NeighbourhoodServices.Common;
-
-namespace NeighbourhoodServices.Data.Seeding
+﻿namespace NeighbourhoodServices.Data.Seeding
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
+    using Microsoft.EntityFrameworkCore.Internal;
+    using NeighbourhoodServices.Data.Models;
+
     public class CategoriesSeeder : ISeeder
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
@@ -33,7 +32,6 @@ namespace NeighbourhoodServices.Data.Seeding
             };
 
             await dbContext.AddRangeAsync(categories);
-
         }
     }
 }

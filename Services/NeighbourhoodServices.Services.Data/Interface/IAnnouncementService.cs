@@ -1,8 +1,9 @@
-﻿namespace NeighbourhoodServices.Services.Data
+﻿namespace NeighbourhoodServices.Services.Data.Interface
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using NeighbourhoodServices.Web.ViewModels.Announcement;
+
+    using NeighbourhoodServices.Web.ViewModels.Announcements;
 
     public interface IAnnouncementService
     {

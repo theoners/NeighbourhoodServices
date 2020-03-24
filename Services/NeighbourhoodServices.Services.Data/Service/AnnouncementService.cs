@@ -1,4 +1,4 @@
-﻿namespace NeighbourhoodServices.Services.Data
+﻿namespace NeighbourhoodServices.Services.Data.Service
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -6,8 +6,9 @@
 
     using NeighbourhoodServices.Data.Common.Repositories;
     using NeighbourhoodServices.Data.Models;
+    using NeighbourhoodServices.Services.Data.Interface;
     using NeighbourhoodServices.Services.Mapping;
-    using NeighbourhoodServices.Web.ViewModels.Announcement;
+    using NeighbourhoodServices.Web.ViewModels.Announcements;
 
     public class AnnouncementService : IAnnouncementService
     {

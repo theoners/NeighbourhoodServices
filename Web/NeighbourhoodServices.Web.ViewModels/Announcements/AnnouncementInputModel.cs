@@ -1,12 +1,12 @@
-﻿using NeighbourhoodServices.Services.Mapping;
-
-namespace NeighbourhoodServices.Web.ViewModels.Announcement
+﻿namespace NeighbourhoodServices.Web.ViewModels.Announcements
 {
     using NeighbourhoodServices.Data.Models;
+    using NeighbourhoodServices.Services.Mapping;
 
-    public class AnnouncementInputModel : IMapFrom<Announcement>
+    public class AnnouncementInputModel : IMapFrom<Data.Models.Announcement>
     {
         public string Title { get; set; }
+
         public string Description { get; set; }
 
         public int Price { get; set; }
@@ -18,7 +18,7 @@ namespace NeighbourhoodServices.Web.ViewModels.Announcement
         public string Category{ get; set; }
 
         public ServiceType ServiceType { get; set; }
-       
+
         public string UserId { get; set; }
     }
 }

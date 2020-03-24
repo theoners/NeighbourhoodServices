@@ -16,6 +16,8 @@
     using NeighbourhoodServices.Data.Repositories;
     using NeighbourhoodServices.Data.Seeding;
     using NeighbourhoodServices.Services.Data;
+    using NeighbourhoodServices.Services.Data.Interface;
+    using NeighbourhoodServices.Services.Data.Service;
     using NeighbourhoodServices.Services.Mapping;
     using NeighbourhoodServices.Services.Messaging;
     using NeighbourhoodServices.Web.ViewModels;

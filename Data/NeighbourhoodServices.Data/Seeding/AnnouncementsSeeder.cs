@@ -1,24 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using NeighbourhoodServices.Data.Models;
-
-namespace NeighbourhoodServices.Data.Seeding
+﻿namespace NeighbourhoodServices.Data.Seeding
 {
-    class AnnouncementsSeeder: ISeeder
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using NeighbourhoodServices.Data.Models;
+
+    class AnnouncementsSeeder : ISeeder
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
             if (dbContext.Announcements.Count() > 500)
             {
-                var announcements1 = dbContext.Announcements.ToList();
-
-                foreach (var aa in announcements1)
-                {
-                    
-                }
-                return;
+               return;
             }
 
             var place = new char[8];
@@ -44,10 +39,9 @@ namespace NeighbourhoodServices.Data.Seeding
             }
 
             await dbContext.AddRangeAsync(announcements);
-
         }
 
-        public string RandomString(int stringLength)
+        private string RandomString(int stringLength)
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 ?!;,.";
             var random = new Random();

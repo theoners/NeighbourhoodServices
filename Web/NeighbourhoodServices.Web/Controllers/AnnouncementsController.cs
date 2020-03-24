@@ -1,24 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
-using NeighbourhoodServices.Web.ViewModels.Announcements;
-using NeighbourhoodServices.Web.ViewModels.Categories;
-
-namespace NeighbourhoodServices.Web.Controllers
+﻿namespace NeighbourhoodServices.Web.Controllers
 {
-    using System;
     using System.Threading.Tasks;
-   // using System.Web.Mvc;
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using NeighbourhoodServices.Data;
     using NeighbourhoodServices.Data.Models;
     using NeighbourhoodServices.Services.Data;
-    using NeighbourhoodServices.Web.ViewModels;
+    using NeighbourhoodServices.Services.Data.Interface;
     using NeighbourhoodServices.Web.ViewModels.Announcement;
+    using NeighbourhoodServices.Web.ViewModels.Announcements;
+    using NeighbourhoodServices.Web.ViewModels.Categories;
 
-    [RoutePrefix("qq")]
     public class AnnouncementsController : BaseController
     {
         private readonly IAnnouncementService announcementService;

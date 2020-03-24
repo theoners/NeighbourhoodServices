@@ -1,14 +1,10 @@
-﻿using System.Net;
-using Microsoft.AspNetCore.Authorization;
-
-namespace NeighbourhoodServices.Web.Controllers
+﻿namespace NeighbourhoodServices.Web.Controllers
 {
     using System.Diagnostics;
-    using System.Linq;
 
     using Microsoft.AspNetCore.Mvc;
-    using NeighbourhoodServices.Data;
     using NeighbourhoodServices.Services.Data;
+    using NeighbourhoodServices.Services.Data.Interface;
     using NeighbourhoodServices.Web.ViewModels;
     using NeighbourhoodServices.Web.ViewModels.Administration.Dashboard;
     using NeighbourhoodServices.Web.ViewModels.Announcement;
@@ -27,10 +23,11 @@ namespace NeighbourhoodServices.Web.Controllers
             this.announcementService = announcementService;
         }
 
-        public IActionResult Test()
+        public IActionResult Test(int? page)
         {
             return this.View();
         }
+
         public IActionResult Index()
         {
             var viewModel = new IndexViewModel
@@ -53,7 +50,5 @@ namespace NeighbourhoodServices.Web.Controllers
             return this.View(
                 new ErrorViewModel { RequestId = Activity.Current?.Id ?? this.HttpContext.TraceIdentifier });
         }
-
-        
     }
 }
