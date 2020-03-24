@@ -62,7 +62,6 @@
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<ICategoriesService, CategoriesService>();
             services.AddTransient<IAnnouncementService, AnnouncementService>();
-            services.AddTransient<IServicesService, ServicesService>();
             services.AddTransient<IUsersService, UsersService>();
 
             // Runtime Refresh

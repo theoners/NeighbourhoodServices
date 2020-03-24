@@ -1,15 +1,14 @@
 ﻿namespace NeighbourhoodServices.Web.Controllers
 {
-    using Microsoft.AspNetCore.Mvc;
-    using NeighbourhoodServices.Services.Data;
+    using NeighbourhoodServices.Services.Data.Interface;
 
-    public class CategoriesController : Controller
+    public class CategoriesController : BaseController
     {
-        private readonly IServicesService servicesService;
+        private readonly IAnnouncementService announcementService;
 
-        public CategoriesController(IServicesService servicesService)
+        public CategoriesController(IAnnouncementService announcementService)
         {
-            this.servicesService = servicesService;
+            this.announcementService = announcementService;
         }
     }
 }
