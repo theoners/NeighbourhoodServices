@@ -1,4 +1,6 @@
-﻿namespace NeighbourhoodServices.Web.Controllers
+﻿using System.Linq;
+
+namespace NeighbourhoodServices.Web.Controllers
 {
     using System.Threading.Tasks;
 
@@ -12,6 +14,7 @@
     using NeighbourhoodServices.Web.ViewModels.Announcements;
     using NeighbourhoodServices.Web.ViewModels.Categories;
 
+    [Authorize]
     public class AnnouncementsController : BaseController
     {
         private readonly IAnnouncementService announcementService;
@@ -70,6 +73,21 @@
             await this.announcementService.CreateAsync(announcementInputModel, user.Id);
 
             return this.Redirect("/");
+        }
+
+        [Route("Обява")]
+        public IActionResult GetDetails(string id)
+        {
+            var announcementViewModel = this.announcementService.GetByCreatedOn<AnnouncementViewModel>();
+            var categoriesViewModel = this.categoriesService.GetAll<IndexCategoriesView>();
+
+            var viewModel = new GetAllViewModel()
+            {
+                Announcements = announcementViewModel.Where(x => x.Id == id),
+                Categories = categoriesViewModel,
+
+            };
+            return this.View(viewModel);
         }
     }
 }
