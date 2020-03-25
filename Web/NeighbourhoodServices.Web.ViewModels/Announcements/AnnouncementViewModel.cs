@@ -22,8 +22,10 @@ namespace NeighbourhoodServices.Web.ViewModels.Announcement
 
         public string CategoriesName { get; set; }
 
-        public virtual string User { get; set; }
+        public string UserId { get; set; }
 
+        public virtual string User { get; set; }
+        
         public string CategoryName { get; set; }
     }
 }
