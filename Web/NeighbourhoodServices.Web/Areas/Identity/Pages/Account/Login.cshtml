@@ -17,9 +17,16 @@
 <div class="row justify-content-center align-items-center">
     <form class="form-signin" id="account" method="post">
         <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Влез</h1>
+
         <div class="social-login">
-            <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button>
-            <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button>
+            <div>
+                <p>
+                    @foreach (var provider in Model.ExternalLogins)
+                    {
+                        <button id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                    }
+                </p>
+            </div>
         </div>
         <p style="text-align:center">Или</p>
         <div asp-validation-summary="All" class="text">
@@ -62,7 +69,7 @@
 
 
 
-<section>
+@*<section>
     <h4>Use another service to log in.</h4>
     <hr />
     @{
@@ -89,7 +96,7 @@
             </form>
         }
     }
-</section>
+</section>*@
 
 
 @section Scripts {

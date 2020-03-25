@@ -40,10 +40,17 @@
             services.AddDefaultIdentity<ApplicationUser>(IdentityOptionsProvider.GetIdentityOptions)
                 .AddRoles<ApplicationRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddAuthentication().AddFacebook(option =>
+            services.AddAuthentication()
+                .AddGoogle(option =>
+                {
+                    option.ClientId = this.configuration["Google:ClientId"];
+                    option.ClientSecret = this.configuration["Google:ClientSecret"];
+                })
+                .AddFacebook(option =>
             {
                 option.AppId = this.configuration["Facebook:AppId"];
                 option.AppSecret = this.configuration["Facebook:AppSecret"];
+
             });
 
             services.ConfigureApplicationCookie(options =>
