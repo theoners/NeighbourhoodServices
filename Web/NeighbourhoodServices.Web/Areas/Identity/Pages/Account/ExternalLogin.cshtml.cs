@@ -53,6 +53,9 @@
             [Required]
             [EmailAddress]
             public string Email { get; set; }
+
+            [Required]
+            public string Username { get; set; }
         }
 
         public IActionResult OnGetAsync()
@@ -126,7 +129,7 @@
 
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
+                var user = new ApplicationUser { UserName = Input.Username, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
