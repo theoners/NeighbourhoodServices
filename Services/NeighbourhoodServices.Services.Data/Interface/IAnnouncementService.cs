@@ -13,6 +13,8 @@
 
         IEnumerable<T> GetByCategory<T>(string categoryName, int? count = null);
 
+        IEnumerable<T> GetByUser<T>(string userId, int? count = null);
+
         Task<string> CreateAsync(AnnouncementInputModel announcementInputModel,string userId);
     }
 }

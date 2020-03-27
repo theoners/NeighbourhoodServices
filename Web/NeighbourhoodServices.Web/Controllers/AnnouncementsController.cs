@@ -30,13 +30,14 @@ namespace NeighbourhoodServices.Web.Controllers
         }
 
         [Route("Обяви")]
+        [Authorize]
         public IActionResult GetAll()
         {
             var announcementViewModel = this.announcementService.GetByCreatedOn<AnnouncementViewModel>();
             var categoriesViewModel = this.categoriesService.GetAll<IndexCategoriesView>();
             var viewModel = new GetAllViewModel()
             {
-                Announcements = announcementViewModel,
+                Announcements = announcementViewModel.Take(10),
                 Categories = categoriesViewModel,
 
             };
@@ -86,6 +87,17 @@ namespace NeighbourhoodServices.Web.Controllers
                 Announcements = announcementViewModel.Where(x => x.Id == id),
                 Categories = categoriesViewModel,
 
+            };
+            return this.View(viewModel);
+        }
+
+        public IActionResult GetByUser()
+        {
+            var userId = this.userManager.GetUserId(this.User);
+            var announcementViewModel = this.announcementService.GetByUser<AnnouncementViewModel>(userId);
+            var viewModel = new GetAllViewModel()
+            {
+                Announcements = announcementViewModel,
             };
             return this.View(viewModel);
         }

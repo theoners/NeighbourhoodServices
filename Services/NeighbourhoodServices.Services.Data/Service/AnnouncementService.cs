@@ -73,5 +73,17 @@
 
             return query.To<T>().ToList();
         }
+
+        public IEnumerable<T> GetByUser<T>(string userId, int? count = null)
+        {
+            IQueryable<Announcement> query =
+                this.announcementRepository.All().Where(x => x.UserId == userId).OrderByDescending(x => x.CreatedOn);
+            if (count.HasValue)
+            {
+                query = query.Take(count.Value);
+            }
+
+            return query.To<T>().ToList();
+        }
     }
 }
