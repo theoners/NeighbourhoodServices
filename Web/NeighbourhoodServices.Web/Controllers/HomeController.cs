@@ -1,4 +1,6 @@
-﻿namespace NeighbourhoodServices.Web.Controllers
+﻿using System.Linq;
+
+namespace NeighbourhoodServices.Web.Controllers
 {
     using System.Diagnostics;
 
@@ -34,7 +36,7 @@
             {
                 Categories = this.categoriesService.GetAll<IndexCategoriesView>(),
                 AspNetUsersCount = this.userService.GetUserCount(),
-                Announcement = this.announcementService.GetByCreatedOn<AnnouncementViewModel>(),
+                Announcement = this.announcementService.GetByCreatedOn<AnnouncementViewModel>().Take(10),
             };
             return this.View(viewModel);
         }
