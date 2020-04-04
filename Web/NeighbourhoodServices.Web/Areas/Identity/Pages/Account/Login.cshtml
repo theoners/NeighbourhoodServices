@@ -4,28 +4,31 @@
 
 <div class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
-    
+
+</div>
+<div class="row justify-content-center align-items-center">
+    <form class="social-login col-lg-4" id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+        <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Влез</h1>
+        <div style="text-align: center">
+            <p>
+                @foreach (var provider in Model.ExternalLogins)
+                {
+                    <button type="submit" class="btn btn-lg btn-@provider.Name.ToLower() btn-block text-uppercase" name="provider" value="@provider.Name"><i class="fab fa-@provider.Name.ToLower() mr-2"></i> @provider.DisplayName</button>
+                }
+            </p>
+            <p style="text-align: center">Или</p>
+        </div>
+    </form>
+
 </div>
 
 <div class="row justify-content-center align-items-center">
-    <form class="form-signin" id="account" method="post" >
-        <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Влез</h1>
+    <form class="form-signin col-lg-4" id="account" method="post">
 
-        <div class="social-login"  >
-            <div style="text-align:center">
-                <p>
-                    @foreach (var provider in Model.ExternalLogins)
-                    {
-                        <button id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                    }
-                </p>
-            </div>
-        </div>
-        <p style="text-align:center">Или</p>
         <div asp-validation-summary="All" class="text">
             <div class="form-group">
                 <label asp-for="Input.UserNameEmail"></label>
-                <input asp-for="Input.UserNameEmail" class="form-control" placeholder="Потребителско име/Имейл"/>
+                <input asp-for="Input.UserNameEmail" class="form-control" placeholder="Потребителско име/Имейл" />
                 <span asp-validation-for="Input.UserNameEmail" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -51,45 +54,45 @@
                 <a class="btn btn-secondary btn-block" id="forgot-password" asp-page="./ForgotPassword">Забравена парола</a>
             </p>
             <p>
-               <a class="btn btn-primary btn-block" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Регистрация</a>
+                <a class="btn btn-primary btn-block" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Регистрация</a>
             </p>
         </div>
         <hr>
         <!-- <p>Don't have an account!</p>  -->
 
-      </form>
+    </form>
 </div>
 
 
 
 @*<section>
-    <h4>Use another service to log in.</h4>
-    <hr />
-    @{
-        if ((Model.ExternalLogins?.Count ?? 0) == 0)
-        {
-            <div>
-                <p>
-                    There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                    for details on setting up this ASP.NET application to support logging in via external services.
-                </p>
-            </div>
-        }
-        else
-        {
-            <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+        <h4>Use another service to log in.</h4>
+        <hr />
+        @{
+            if ((Model.ExternalLogins?.Count ?? 0) == 0)
+            {
                 <div>
                     <p>
-                        @foreach (var provider in Model.ExternalLogins)
-                        {
-                            <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                        }
+                        There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                        for details on setting up this ASP.NET application to support logging in via external services.
                     </p>
                 </div>
-            </form>
+            }
+            else
+            {
+                <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                    <div>
+                        <p>
+                            @foreach (var provider in Model.ExternalLogins)
+                            {
+                                <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                            }
+                        </p>
+                    </div>
+                </form>
+            }
         }
-    }
-</section>*@
+    </section>*@
 
 
 @section Scripts {

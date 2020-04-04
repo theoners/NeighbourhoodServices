@@ -2,7 +2,7 @@
 {
     using Microsoft.AspNetCore.Mvc;
     using NeighbourhoodServices.Services.Data;
-    using NeighbourhoodServices.Web.ViewModels.Administration.Dashboard;
+    using NeighbourhoodServices.Web.ViewModels.Home;
 
     public class DashboardController : AdministrationController
     {

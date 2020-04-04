@@ -1,16 +1,14 @@
-﻿using System.Linq;
-
-namespace NeighbourhoodServices.Web.Controllers
+﻿namespace NeighbourhoodServices.Web.Controllers
 {
     using System.Diagnostics;
+    using System.Linq;
 
     using Microsoft.AspNetCore.Mvc;
     using NeighbourhoodServices.Services.Data;
     using NeighbourhoodServices.Services.Data.Interface;
     using NeighbourhoodServices.Web.ViewModels;
-    using NeighbourhoodServices.Web.ViewModels.Administration.Dashboard;
     using NeighbourhoodServices.Web.ViewModels.Announcement;
-    using NeighbourhoodServices.Web.ViewModels.Categories;
+    using NeighbourhoodServices.Web.ViewModels.Home;
 
     public class HomeController : BaseController
     {

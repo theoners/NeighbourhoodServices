@@ -53,12 +53,7 @@
 
             });
 
-            services.ConfigureApplicationCookie(options =>
-            {
-                options.LoginPath = $"/Вход";
-                options.LogoutPath = $"/";
-            });
-
+          
             services.Configure<CookiePolicyOptions>(
                 options =>
                     {
@@ -131,8 +126,6 @@
                     {
                         endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
-                        endpoints.MapControllerRoute("category", "{name}", new { controller = "Announcements", action = "GetByCategory" });
-                        endpoints.MapControllerRoute("service", "ПубликувайОбява", new { controller = "Announcements", action = "Create" });
                         endpoints.MapRazorPages();
                     });
         }

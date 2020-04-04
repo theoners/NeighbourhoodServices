@@ -2,28 +2,27 @@
 @model RegisterModel
 <div class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
-    <div class="container">
-        <div class="row no-gutters slider-text align-items-end justify-content-start">
-            <div class="col-md-12 ftco-animate text-center mb-5">
-                <p class="breadcrumbs mb-0"><span class="mr-3"><a asp-controller="Home" asp-action="Index">Начало <i class="ion-ios-arrow-forward"></i></a></span><span>Публикувай Обява</span></p>
-                <h1 class="mb-3 bread">Публикувай Обява</h1>
-            </div>
-        </div>
-    </div>
-</div>
+   </div>
 
 <br>
 
 <div class="row justify-content-center align-items-center">
-    <form class="form-signin" id="account" method="post">
+    <form class="social-login col-lg-4" id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
         <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Регистрация</h1>
-        <div class="social-login">
-            <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button>
-            <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button>
+        <div style="text-align: center">
+            <p>
+                @foreach (var provider in Model.ExternalLogins)
+                {
+                    <button type="submit" class="btn btn-lg btn-@provider.Name.ToLower() btn-block text-uppercase" name="provider" value="@provider.Name"><i class="fab fa-@provider.Name.ToLower() mr-2"></i> @provider.DisplayName</button>
+                }
+            </p>
+            <p style="text-align: center">Или</p>
         </div>
+    </form>
 
-        <p style="text-align: center">Или</p>
-
+</div>
+<div class="row justify-content-center align-items-center">
+    <form class="form-signin col-lg-4" id="account" method="post">
         <div class="form-group">
             <label asp-for="Input.UserName"></label>
             <input asp-for="Input.UserName" class="form-control" />
@@ -45,42 +44,13 @@
             <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
         </div>
        <div class="form-group">
-            <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-user-plus"></i>Регистрация</button>
-            <a href="#" id="cancel_signup"><i class="fas fa-angle-left"></i> Назад</a>
+            <button class="btn btn-primary btn-block" type="submit">Регистрация</button>
+           <a class="btn btn-success btn-block" asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">Назад</a>
         </div>
        </form>
     <br>
 
 </div>
-
-<section>
-    <h4>Use another service to register.</h4>
-    <hr />
-    @{
-        if ((Model.ExternalLogins?.Count ?? 0) == 0)
-        {
-            <div>
-                <p>
-                    There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                    for details on setting up this ASP.NET application to support logging in via external services.
-                </p>
-            </div>
-        }
-        else
-        {
-            <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                <div>
-                    <p>
-                        @foreach (var provider in Model.ExternalLogins)
-                        {
-                            <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                        }
-                    </p>
-                </div>
-            </form>
-        }
-    }
-</section>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

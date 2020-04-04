@@ -1,7 +1,6 @@
-﻿using System.Linq;
-
-namespace NeighbourhoodServices.Web.Controllers
+﻿namespace NeighbourhoodServices.Web.Controllers
 {
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
@@ -12,7 +11,7 @@ namespace NeighbourhoodServices.Web.Controllers
     using NeighbourhoodServices.Services.Data.Interface;
     using NeighbourhoodServices.Web.ViewModels.Announcement;
     using NeighbourhoodServices.Web.ViewModels.Announcements;
-    using NeighbourhoodServices.Web.ViewModels.Categories;
+    using NeighbourhoodServices.Web.ViewModels.Home;
 
     [Authorize]
     public class AnnouncementsController : BaseController
@@ -29,8 +28,7 @@ namespace NeighbourhoodServices.Web.Controllers
             this.categoriesService = categoriesService;
         }
 
-        [Route("Обяви")]
-        [Authorize]
+       [Route("Обяви")]
         public IActionResult GetAll()
         {
             var announcementViewModel = this.announcementService.GetByCreatedOn<AnnouncementViewModel>();
@@ -44,6 +42,7 @@ namespace NeighbourhoodServices.Web.Controllers
             return this.View(viewModel);
         }
 
+        [Route("{name}")]
         public IActionResult GetByCategory(string name)
         {
             var announcementViewModel = this.announcementService.GetByCategory<AnnouncementViewModel>(name);
@@ -54,8 +53,8 @@ namespace NeighbourhoodServices.Web.Controllers
             return this.View(viewModel);
         }
 
-        [Authorize]
-        public IActionResult Create()
+        [Route("ПубликувайОбява")]
+        public IActionResult GetCreateView()
         {
             var viewModel = this.categoriesService.GetAll<AnnouncementCategoriesView>();
             return this.View(viewModel);
@@ -63,7 +62,7 @@ namespace NeighbourhoodServices.Web.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Post(AnnouncementInputModel announcementInputModel)
+        public async Task<IActionResult> Create(AnnouncementInputModel announcementInputModel)
         {
             if (!this.ModelState.IsValid)
             {
@@ -76,7 +75,7 @@ namespace NeighbourhoodServices.Web.Controllers
             return this.Redirect("/");
         }
 
-        [Route("Обява")]
+        [Route("Обява/{id}")]
         public IActionResult GetDetails(string id)
         {
             var announcementViewModel = this.announcementService.GetByCreatedOn<AnnouncementViewModel>();

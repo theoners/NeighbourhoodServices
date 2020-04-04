@@ -1,4 +1,4 @@
-﻿@model NeighbourhoodServices.Web.ViewModels.Administration.Dashboard.IndexViewModel
+﻿@model NeighbourhoodServices.Web.ViewModels.Home.IndexViewModel
 <div class="hero-wrap img" style="background-image: url(images/bg_1.jpg);">
     <div class="overlay"></div>
     <div class="container">
@@ -177,7 +177,7 @@
                         {
                             <div class="col-md-2">
                                 <div class="top-category text-center no-border-left">
-                                    <h3><a href="@category.Name">@category.Name</a></h3>
+                                    <h3><a asp-controller="Announcements" asp-action="GetByCategory" asp-route-name="@category.Name">@category.Name</a></h3>
                                     <span class="fas fa-align-justify"></span>
                                     <p><span class="number">@category.ServicesCount</span> <span>Активни обяви</span></p>
                                 </div>
@@ -300,6 +300,21 @@
                         </div>
                     }
 
+                </div>
+                <div class="row mt-5">
+                    <div class="col text-center">
+                        <div class="block-27">
+                            <ul>
+                                <li><a href="#">&lt;</a></li>
+                                <li class="active"><span>1</span></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li><a href="#">&gt;</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-3 sidebar">

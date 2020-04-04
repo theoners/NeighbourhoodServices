@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using NeighbourhoodServices.Web.ViewModels.Categories;
 
 namespace NeighbourhoodServices.Web.ViewModels.Announcement
 {
@@ -25,7 +24,7 @@ namespace NeighbourhoodServices.Web.ViewModels.Announcement
         public string UserId { get; set; }
 
         public virtual string User { get; set; }
-        
+
         public string CategoryName { get; set; }
     }
 }
