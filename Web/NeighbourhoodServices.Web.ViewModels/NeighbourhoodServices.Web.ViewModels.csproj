@@ -20,12 +20,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Data\NeighbourhoodServices.Data.Models\NeighbourhoodServices.Data.Models.csproj" />
+    <ProjectReference Include="..\..\NeighbourhoodServices.Common\NeighbourhoodServices.Common.csproj" />
     <ProjectReference Include="..\..\Services\NeighbourhoodServices.Services.Mapping\NeighbourhoodServices.Services.Mapping.csproj" />
+    <ProjectReference Include="..\NeighbourhoodServices.Web.Infrastructure\NeighbourhoodServices.Web.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Administration\Dashboard\" />
-    <Folder Include="Categories\" />
   </ItemGroup>
 
 </Project>

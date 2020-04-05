@@ -3,7 +3,7 @@
     using NeighbourhoodServices.Data.Models;
     using NeighbourhoodServices.Services.Mapping;
 
-    public class AnnouncementInputModel : IMapFrom<Data.Models.Announcement>
+    public class AnnouncementInputModel : IMapFrom<Announcement>
     {
         public string Title { get; set; }
 

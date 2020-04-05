@@ -3,18 +3,24 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    using NeighbourhoodServices.Data.Models;
     using NeighbourhoodServices.Web.ViewModels.Announcements;
 
     public interface IAnnouncementService
     {
-        IEnumerable<T> GetAll<T>(int? count = null);
 
-        IEnumerable<T> GetByCreatedOn<T>(int? count = null);
+        Announcement GetDetails<T>(string id);
 
-        IEnumerable<T> GetByCategory<T>(string categoryName, int? count = null);
+        IEnumerable<T> GetByCreatedOn<T>(int skip = 0);
 
-        IEnumerable<T> GetByUser<T>(string userId, int? count = null);
+        IEnumerable<T> GetByCategory<T>(string categoryName, int skip = 0);
 
-        Task<string> CreateAsync(AnnouncementInputModel announcementInputModel,string userId);
+        IEnumerable<T> GetByUser<T>(string userId, int skip = 0);
+
+        Task<string> CreateAsync(AnnouncementInputModel announcementInputModel, string userId);
+
+        int AllAnnouncementCount();
+
+        int AllAnnouncementByCategoryCount(string name);
     }
 }

@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-
-namespace NeighbourhoodServices.Web.ViewModels.Announcement
+﻿namespace NeighbourhoodServices.Web.ViewModels.Announcements
 {
     using NeighbourhoodServices.Data.Models;
     using NeighbourhoodServices.Services.Mapping;
+    using NeighbourhoodServices.Web.Infrastructure;
 
     public class AnnouncementViewModel : IMapFrom<Announcement>
     {
@@ -26,5 +25,7 @@ namespace NeighbourhoodServices.Web.ViewModels.Announcement
         public virtual string User { get; set; }
 
         public string CategoryName { get; set; }
+
+        public Page Page { get; set; }
     }
 }

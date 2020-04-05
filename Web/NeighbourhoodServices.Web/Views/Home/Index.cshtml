@@ -1,4 +1,6 @@
-﻿@model NeighbourhoodServices.Web.ViewModels.Home.IndexViewModel
+﻿@using NeighbourhoodServices.Common
+@model NeighbourhoodServices.Web.ViewModels.Home.IndexViewModel
+
 <div class="hero-wrap img" style="background-image: url(images/bg_1.jpg);">
     <div class="overlay"></div>
     <div class="container">
@@ -177,7 +179,7 @@
                         {
                             <div class="col-md-2">
                                 <div class="top-category text-center no-border-left">
-                                    <h3><a asp-controller="Announcements" asp-action="GetByCategory" asp-route-name="@category.Name">@category.Name</a></h3>
+                                    <h3><a asp-controller="Categories" asp-action="AnnouncementsByCategory" asp-route-categoryName="@category.Name">@category.Name</a></h3>
                                     <span class="fas fa-align-justify"></span>
                                     <p><span class="number">@category.ServicesCount</span> <span>Активни обяви</span></p>
                                 </div>
@@ -192,68 +194,22 @@
     </div>
 </section>
 
-<section class="ftco-section">
+<section class="ftco-section services-section">
     <div class="container">
         <div class="row justify-content-center mb-5">
             <div class="col-md-7 heading-section text-center ftco-animate">
-                                <h2 class="mb-0">Топ Категории</h2>
+                <h2 class="mb-0">Топ Категории</h2>
             </div>
         </div>
         <div class="row">
-            
-
-                @foreach (var category in Model.Categories.OrderByDescending(x => x.ServicesCount).Take(4))
-                {
-                    <div class="col-md-3 ftco-animate">
-                        <ul class="category text-center">
-                            <li><a href="@category.Name">@category.Name<br><span class="number">@category.ServicesCount</span> <span>Активни обяви</span><i class="ion-ios-arrow-forward"></i></a></li>
-                        </ul>
-                    </div>
-                }
-                
-        </div>
-    </div>
-</section>
-
-<section class="ftco-section services-section">
-    <div class="container">
-        <div class="row d-flex">
-            <div class="col-md-3 d-flex align-self-stretch ftco-animate">
-                <div class="media block-6 services d-block">
-                    <div class="icon"><span class="flaticon-resume"></span></div>
-                    <div class="media-body">
-                        <h3 class="heading mb-3">Search Millions of Jobs</h3>
-                        <p>A small river named Duden flows by their place and supplies.</p>
-                    </div>
+            @foreach (var category in Model.Categories.OrderByDescending(x => x.ServicesCount).Take(4))
+            {
+                <div class="col-md-3 ftco-animate">
+                    <ul class="category text-center">
+                        <li><a href="@category.Name">@category.Name<br><span class="number">@category.ServicesCount</span> <span>Активни обяви</span><i class="ion-ios-arrow-forward"></i></a></li>
+                    </ul>
                 </div>
-            </div>
-            <div class="col-md-3 d-flex align-self-stretch ftco-animate">
-                <div class="media block-6 services d-block">
-                    <div class="icon"><span class="flaticon-team"></span></div>
-                    <div class="media-body">
-                        <h3 class="heading mb-3">Easy To Manage Jobs</h3>
-                        <p>A small river named Duden flows by their place and supplies.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 d-flex align-self-stretch ftco-animate">
-                <div class="media block-6 services d-block">
-                    <div class="icon"><span class="flaticon-career"></span></div>
-                    <div class="media-body">
-                        <h3 class="heading mb-3">Top Careers</h3>
-                        <p>A small river named Duden flows by their place and supplies.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 d-flex align-self-stretch ftco-animate">
-                <div class="media block-6 services d-block">
-                    <div class="icon"><span class="flaticon-employees"></span></div>
-                    <div class="media-body">
-                        <h3 class="heading mb-3">Search Expert Candidates</h3>
-                        <p>A small river named Duden flows by their place and supplies.</p>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     </div>
 </section>
@@ -265,7 +221,7 @@
                 <div class="row justify-content-center pb-3">
                     <div class="col-md-12 heading-section ftco-animate">
                         <span class="subheading">Последни Обяви</span>
-                        <h2 class="mb-4">Обяви от Преди Една Седмица</h2>
+                        <h2 class="mb-4">Последни @IndexConstants.TopAnnouncementsCount Обяви</h2>
                     </div>
                 </div>
                 <div class="row">
@@ -320,7 +276,7 @@
             <div class="col-lg-3 sidebar">
                 <div class="row justify-content-center pb-3">
                     <div class="col-md-12 heading-section ftco-animate">
-                        <h2 class="mb-4">Top Recruitments</h2>
+                        <h2 class="mb-4">Топ Профили</h2>
                     </div>
                 </div>
                 <div class="sidebar-box ftco-animate">
@@ -329,33 +285,6 @@
                         <div class="text p-3">
                             <h3><a href="#">Company Company</a></h3>
                             <p><span class="number">500</span> <span>Open position</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="sidebar-box ftco-animate">
-                    <div class="">
-                        <a href="#" class="company-wrap"><img src="images/company-2.jpg" class="img-fluid" alt="Colorlib Free Template"></a>
-                        <div class="text p-3">
-                            <h3><a href="#">Facebook Company</a></h3>
-                            <p><span class="number">700</span> <span>Open position</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="sidebar-box ftco-animate">
-                    <div class="">
-                        <a href="#" class="company-wrap"><img src="images/company-3.jpg" class="img-fluid" alt="Colorlib Free Template"></a>
-                        <div class="text p-3">
-                            <h3><a href="#">IT Programming INC</a></h3>
-                            <p><span class="number">700</span> <span>Open position</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="sidebar-box ftco-animate">
-                    <div class="">
-                        <a href="#" class="company-wrap"><img src="images/company-4.jpg" class="img-fluid" alt="Colorlib Free Template"></a>
-                        <div class="text p-3">
-                            <h3><a href="#">IT Programming INC</a></h3>
-                            <p><span class="number">700</span> <span>Open position</span></p>
                         </div>
                     </div>
                 </div>
@@ -377,48 +306,6 @@
         <div class="row ftco-animate">
             <div class="col-md-12">
                 <div class="carousel-testimony owl-carousel ftco-owl">
-                    <div class="item">
-                        <div class="testimony-wrap py-4">
-                            <div class="text">
-                                <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                                <div class="d-flex align-items-center">
-                                    <div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
-                                    <div class="pl-3">
-                                        <p class="name">Roger Scott</p>
-                                        <span class="position">Marketing Manager</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimony-wrap py-4">
-                            <div class="text">
-                                <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                                <div class="d-flex align-items-center">
-                                    <div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
-                                    <div class="pl-3">
-                                        <p class="name">Roger Scott</p>
-                                        <span class="position">Marketing Manager</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimony-wrap py-4">
-                            <div class="text">
-                                <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                                <div class="d-flex align-items-center">
-                                    <div class="user-img" style="background-image: url(images/person_3.jpg)"></div>
-                                    <div class="pl-3">
-                                        <p class="name">Roger Scott</p>
-                                        <span class="position">Marketing Manager</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="item">
                         <div class="testimony-wrap py-4">
                             <div class="text">

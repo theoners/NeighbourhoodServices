@@ -1,6 +1,6 @@
 ﻿namespace NeighbourhoodServices.Web.Controllers
 {
-    using System.Linq;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
@@ -11,7 +11,7 @@
     using NeighbourhoodServices.Services.Data.Interface;
     using NeighbourhoodServices.Web.ViewModels.Announcement;
     using NeighbourhoodServices.Web.ViewModels.Announcements;
-    using NeighbourhoodServices.Web.ViewModels.Home;
+    using NeighbourhoodServices.Web.ViewModels.Categories;
 
     [Authorize]
     public class AnnouncementsController : BaseController
@@ -26,31 +26,6 @@
             this.announcementService = announcementService;
             this.userManager = userManager;
             this.categoriesService = categoriesService;
-        }
-
-       [Route("Обяви")]
-        public IActionResult GetAll()
-        {
-            var announcementViewModel = this.announcementService.GetByCreatedOn<AnnouncementViewModel>();
-            var categoriesViewModel = this.categoriesService.GetAll<IndexCategoriesView>();
-            var viewModel = new GetAllViewModel()
-            {
-                Announcements = announcementViewModel.Take(10),
-                Categories = categoriesViewModel,
-
-            };
-            return this.View(viewModel);
-        }
-
-        [Route("{name}")]
-        public IActionResult GetByCategory(string name)
-        {
-            var announcementViewModel = this.announcementService.GetByCategory<AnnouncementViewModel>(name);
-            var viewModel = new GetAllViewModel()
-            {
-                Announcements = announcementViewModel,
-            };
-            return this.View(viewModel);
         }
 
         [Route("ПубликувайОбява")]
@@ -78,15 +53,16 @@
         [Route("Обява/{id}")]
         public IActionResult GetDetails(string id)
         {
-            var announcementViewModel = this.announcementService.GetByCreatedOn<AnnouncementViewModel>();
+            var announcementViewModel = this.announcementService.GetDetails<AnnouncementViewModel>(id);
             var categoriesViewModel = this.categoriesService.GetAll<IndexCategoriesView>();
 
             var viewModel = new GetAllViewModel()
             {
-                Announcements = announcementViewModel.Where(x => x.Id == id),
+                Announcements = new List<AnnouncementViewModel>(),
                 Categories = categoriesViewModel,
 
             };
+
             return this.View(viewModel);
         }
 

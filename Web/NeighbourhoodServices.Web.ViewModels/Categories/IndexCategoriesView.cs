@@ -1,4 +1,4 @@
-﻿namespace NeighbourhoodServices.Web.ViewModels.Home
+﻿namespace NeighbourhoodServices.Web.ViewModels.Categories
 {
     using NeighbourhoodServices.Data.Models;
     using NeighbourhoodServices.Services.Mapping;

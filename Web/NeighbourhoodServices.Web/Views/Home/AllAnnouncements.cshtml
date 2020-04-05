@@ -159,16 +159,23 @@
                     <partial name="_Anouncement" />
 
                 </div>
+
+
                 <div class="row mt-5">
                     <div class="col text-center">
                         <div class="block-27">
                             <ul>
                                 <li><a href="#">&lt;</a></li>
-                                <li class="active"><span>1</span></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
+                                @if (Model.Page.PagesCount>1)
+                                {
+                                    for (int i = 1; i <= Model.Page.PagesCount; i++)
+                                    {
+                                        var active = Model.Page.CurrentPage == i ? "active" : string.Empty;
+                                        
+                                        <li class="@active"><a  asp-controller="Home" asp-action="AllAnnouncements" value="@i" asp-route-currentPage="@i">@i</a></li>
+                                    }
+
+                                }
                                 <li><a href="#">&gt;</a></li>
                             </ul>
                         </div>

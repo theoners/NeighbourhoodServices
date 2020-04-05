@@ -10,14 +10,15 @@
     using NeighbourhoodServices.Services.Mapping;
     using NeighbourhoodServices.Web.ViewModels.Announcements;
 
+    using static NeighbourhoodServices.Common.AnnouncementsConstants;
+
     public class AnnouncementService : IAnnouncementService
     {
-        private readonly IDeletableEntityRepository<Category> categoriesRepository;
         private readonly IDeletableEntityRepository<Announcement> announcementRepository;
+
 
         public AnnouncementService(IDeletableEntityRepository<Category> categoriesRepository, IDeletableEntityRepository<Announcement> announcementRepository)
         {
-            this.categoriesRepository = categoriesRepository;
             this.announcementRepository = announcementRepository;
         }
 
@@ -38,52 +39,61 @@
             return announcement.Id;
         }
 
-        public IEnumerable<T> GetAll<T>(int? count = null)
+        public IEnumerable<T> GetByCategory<T>(string categoryName, int skip = 0)
         {
-            IQueryable<Category> query =
-                this.categoriesRepository.All().OrderBy(x => x.Name);
-            if (count.HasValue)
-            {
-                query = query.Take(count.Value);
-            }
+            var query =
+                 this.announcementRepository
+                     .All()
+                     .Where(x => x.Category.Name == categoryName)
+                     .Skip(skip)
+                     .Take(AnnouncementsPerPage);
 
             return query.To<T>().ToList();
         }
 
-        public IEnumerable<T> GetByCategory<T>(string categoryName, int? count = null)
+        public IEnumerable<T> GetByCreatedOn<T>(int skip = 0)
         {
-            IQueryable<Announcement> query =
-                this.announcementRepository.All().Where(x => x.Category.Name == categoryName);
-            if (count.HasValue)
-            {
-                query = query.Take(count.Value);
-            }
+            var query =
+                 this.announcementRepository
+                     .All()
+                     .OrderByDescending(x => x.CreatedOn)
+                     .Skip(skip)
+                     .Take(AnnouncementsPerPage);
 
             return query.To<T>().ToList();
         }
 
-        public IEnumerable<T> GetByCreatedOn<T>(int? count = null)
+        public IEnumerable<T> GetByUser<T>(string userId, int skip = 0)
         {
-            IQueryable<Announcement> query =
-                this.announcementRepository.All().OrderByDescending(x => x.CreatedOn);
-            if (count.HasValue)
-            {
-                query = query.Take(count.Value);
-            }
+            var query =
+                 this.announcementRepository
+                     .All()
+                     .Where(x => x.UserId == userId)
+                     .OrderByDescending(x => x.CreatedOn)
+                     .Skip(skip)
+                     .Take(AnnouncementsPerPage);
 
             return query.To<T>().ToList();
         }
 
-        public IEnumerable<T> GetByUser<T>(string userId, int? count = null)
+        public Announcement GetDetails<T>(string id)
         {
-            IQueryable<Announcement> query =
-                this.announcementRepository.All().Where(x => x.UserId == userId).OrderByDescending(x => x.CreatedOn);
-            if (count.HasValue)
-            {
-                query = query.Take(count.Value);
-            }
+            var announcement =
+                 this.announcementRepository
+                     .All()
+                     .FirstOrDefault(x => x.Id == id);
 
-            return query.To<T>().ToList();
+            return announcement;
+        }
+
+        public int AllAnnouncementByCategoryCount(string categoryName)
+        {
+            return this.announcementRepository.All().Count(x => x.Category.Name == categoryName);
+        }
+
+        public int AllAnnouncementCount()
+        {
+            return this.announcementRepository.All().Count();
         }
     }
 }

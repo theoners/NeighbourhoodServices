@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\NeighbourhoodServices.Data.Common\NeighbourhoodServices.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\NeighbourhoodServices.Data.Models\NeighbourhoodServices.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Web\NeighbourhoodServices.Web.Infrastructure\NeighbourhoodServices.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Web\NeighbourhoodServices.Web.ViewModels\NeighbourhoodServices.Web.ViewModels.csproj" />
     <ProjectReference Include="..\NeighbourhoodServices.Services.Mapping\NeighbourhoodServices.Services.Mapping.csproj" />
   </ItemGroup>
