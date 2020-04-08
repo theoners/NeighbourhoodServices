@@ -27,7 +27,7 @@
                     @if (userId == announcement.UserId || User.IsInRole("Administrator"))
                     {
                         <a class="btn btn-danger" type="submit" asp-controller="Announcements" asp-action="Delete" asp-route-id="@announcement.Id">Изтрий</a>
-                        <button class="btn btn-secondary" type="submit">Редактирай</button>
+                        <a class="btn btn-secondary" type="submit" asp-controller="Announcements" asp-action="GetUpdateView" asp-route-id="@announcement.Id">Редактирай</a>
                     }
                 </div>
                

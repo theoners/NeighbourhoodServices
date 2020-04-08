@@ -16,7 +16,7 @@
     {
         private readonly IDeletableEntityRepository<Announcement> announcementRepository;
 
-
+       
         public AnnouncementService(IDeletableEntityRepository<Category> categoriesRepository, IDeletableEntityRepository<Announcement> announcementRepository)
         {
             this.announcementRepository = announcementRepository;
@@ -103,6 +103,20 @@
             var announcement = await this.announcementRepository.GetByIdWithDeletedAsync(id);
             this.announcementRepository.Delete(announcement);
             return await this.announcementRepository.SaveChangesAsync();
+        }
+
+        public async Task<string> UpdateAsync(AnnouncementInputModel announcementInputModel, string id)
+        {
+            var announcement = this.announcementRepository.All().FirstOrDefault(x => x.Id == id);
+
+            announcement.Title = announcementInputModel.Title;
+            announcement.Description = announcementInputModel.Description;
+            announcement.Place = announcementInputModel.Address;
+            announcement.ServiceType = announcementInputModel.ServiceType;
+            announcement.CategoryId = int.Parse(announcementInputModel.Category);
+
+            await this.announcementRepository.SaveChangesAsync();
+            return announcement.Id;
         }
     }
 }

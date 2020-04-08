@@ -3,8 +3,6 @@
 namespace NeighbourhoodServices.Web.ViewModels.Home
 {
     using System.Collections.Generic;
-
-    using NeighbourhoodServices.Web.ViewModels.Announcement;
     using NeighbourhoodServices.Web.ViewModels.Categories;
 
     public class IndexViewModel

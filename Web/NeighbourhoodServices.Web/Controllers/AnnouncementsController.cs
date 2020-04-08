@@ -12,7 +12,6 @@ namespace NeighbourhoodServices.Web.Controllers
     using NeighbourhoodServices.Data.Models;
     using NeighbourhoodServices.Services.Data;
     using NeighbourhoodServices.Services.Data.Interface;
-    using NeighbourhoodServices.Web.ViewModels.Announcement;
     using NeighbourhoodServices.Web.ViewModels.Announcements;
     using NeighbourhoodServices.Web.ViewModels.Categories;
 
@@ -83,6 +82,24 @@ namespace NeighbourhoodServices.Web.Controllers
         {
             await this.announcementService.DeleteAsync(id);
             return this.Redirect("/");
+        }
+
+        public IActionResult GetUpdateView(string id)
+        {
+            var announcement = this.announcementService.GetDetails<AnnouncementViewModel>(id);
+            var categories = this.categoriesService.GetAll<AnnouncementCategoriesView>();
+            var viewModel = new AnnouncementUpdateModel()
+            {
+                Categories = categories,
+                Announcement = announcement,
+            };
+            return this.View(viewModel);
+        }
+
+        public async Task<IActionResult> Update(AnnouncementInputModel announcementInputModel, string id)
+        {
+            await this.announcementService.UpdateAsync(announcementInputModel, id);
+            return this.RedirectToAction("GetDetails", new { id = id });
         }
     }
 }

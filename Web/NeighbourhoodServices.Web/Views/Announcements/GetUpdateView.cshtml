@@ -1,4 +1,5 @@
-﻿@model IEnumerable<NeighbourhoodServices.Web.ViewModels.Announcements.AnnouncementCategoriesView>
+﻿@using NeighbourhoodServices.Data.Models
+@model NeighbourhoodServices.Web.ViewModels.Announcements.AnnouncementUpdateModel
 @{
 }
 
@@ -15,23 +16,30 @@
 
                 <form method="post" class="p-5 bg-white">
                     <div class="radio">
-                        <label><input type="radio" name="ServiceType" value="1">Object</label>
-                        <label><input type="radio" name="ServiceType" value="2">Work</label>
-                    </div>
+                        @{
+                            var serviceTypes = Enum.GetValues(typeof(ServiceType));
+                            @foreach (var serviceType in serviceTypes)
+                            {
+                                var check = serviceType.ToString() == Model.Announcement.ServiceType.ToString() ? "checked" : string.Empty;
+                                <label><input @check type="radio" name="ServiceType" value="@serviceType">@serviceType</label>
+                            }
+                        }
+                       </div>
                     <div class="col-md-12 mb-3 mb-md-0">
-                        <input type="text" class="form-control" name="title" placeholder="Тема">
+                        <input type="text" class="form-control" name="title" value="@Model.Announcement.Title">
+                       
                     </div>
                     <div class="row form-group">
                         <div class="col-md-12"><h3>Обяснете какво точно ви трябва</h3></div>
                         <div class="col-md-12 mb-3 mb-md-0">
-                            <textarea name="description" class="form-control" id="" cols="30" rows="5"></textarea>
+                            <textarea name="description" class="form-control" id="" cols="30" rows="5">@Model.Announcement.Description</textarea>
                         </div>
                     </div>
                     <div class="row form-group">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Бюджет</label>
-                        <input type="number" class="form-control" min="10" placeholder="50лева/ден" name="price">
+                        <input type="number" class="form-control" min="10"  name="price" value="">
                         <select class="form-control" id="exampleFormControlSelect1" name="priceFor">
                             <option>На час</option>
                             <option>На ден</option>
@@ -45,7 +53,8 @@
                             <h3>Място</h3>
                         </div>
                         <div class="col-md-12 mb-3 mb-md-0">
-                            <input type="text" class="form-control" name="address" placeholder="Улица, Град">
+                            <input type="text" class="form-control" name="address" value="@Model.Announcement.Place">
+                            
                         </div>
                     </div>
                     <div class="form-group col-md-4" name="category">
@@ -53,9 +62,17 @@
                         <select id="inputState" class="form-control" name="category">
                             <option selected>Choose...</option>
 
-                            @foreach (var category in Model)
+                            @foreach (var category in Model.Categories)
                             {
-                                <option value="@category.Id">@category.Name</option>
+                                if (category.Name == @Model.Announcement.CategoryName)
+                                {
+                                    <option value="@category.Id" selected>@category.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@category.Id">@category.Name</option>
+                                }
+
 
                             }
                         </select>
@@ -64,7 +81,7 @@
 
                     <div class="row form-group">
                         <div class="col-md-12">
-                            <input type="submit" value="Post" asp-controller="Announcements" asp-action="Create" class="btn btn-primary  py-2 px-5">
+                            <input type="submit" value="Post" asp-controller="Announcements" asp-action="Update" asp-route-id="@Model.Announcement.Id" class="btn btn-primary  py-2 px-5">
                         </div>
                     </div>
 
@@ -74,6 +91,3 @@
         </div>
     </div>
 </section>
-
-
-

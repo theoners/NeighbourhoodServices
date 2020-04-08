@@ -25,5 +25,7 @@ namespace NeighbourhoodServices.Services.Data.Interface
         int AllAnnouncementByCategoryCount(string name);
 
         Task<int> DeleteAsync(string id);
+
+        Task<string> UpdateAsync(AnnouncementInputModel announcementInputModel, string id);
     }
 }
