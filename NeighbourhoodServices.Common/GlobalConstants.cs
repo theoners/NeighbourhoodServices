@@ -9,7 +9,7 @@
 
     public static class IndexConstants
     {
-        public const int TopAnnouncementsCount = 5;
+        public const int TopAnnouncementsCount = 10;
     }
 
     public static class AnnouncementsConstants

@@ -97,5 +97,12 @@
         {
             return this.announcementRepository.All().Count();
         }
+
+        public async Task<int> DeleteAsync(string id)
+        {
+            var announcement = await this.announcementRepository.GetByIdWithDeletedAsync(id);
+            this.announcementRepository.Delete(announcement);
+            return await this.announcementRepository.SaveChangesAsync();
+        }
     }
 }

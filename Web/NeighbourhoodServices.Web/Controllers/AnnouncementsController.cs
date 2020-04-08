@@ -78,5 +78,11 @@ namespace NeighbourhoodServices.Web.Controllers
             };
             return this.View(viewModel);
         }
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            await this.announcementService.DeleteAsync(id);
+            return this.Redirect("/");
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace NeighbourhoodServices.Services.Data.Interface
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace NeighbourhoodServices.Services.Data.Interface
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -21,5 +23,7 @@
         int AllAnnouncementCount();
 
         int AllAnnouncementByCategoryCount(string name);
+
+        Task<int> DeleteAsync(string id);
     }
 }
