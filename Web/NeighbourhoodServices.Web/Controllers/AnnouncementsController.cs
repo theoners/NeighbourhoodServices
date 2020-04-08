@@ -1,4 +1,7 @@
-﻿namespace NeighbourhoodServices.Web.Controllers
+﻿using NeighbourhoodServices.Common;
+using NeighbourhoodServices.Web.Infrastructure;
+
+namespace NeighbourhoodServices.Web.Controllers
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -21,7 +24,7 @@
         private readonly UserManager<ApplicationUser> userManager;
         private readonly ICategoriesService categoriesService;
 
-        public AnnouncementsController(IAnnouncementService announcementService, UserManager<ApplicationUser> userManager , ICategoriesService categoriesService)
+        public AnnouncementsController(IAnnouncementService announcementService, UserManager<ApplicationUser> userManager, ICategoriesService categoriesService)
         {
             this.announcementService = announcementService;
             this.userManager = userManager;
@@ -53,26 +56,25 @@
         [Route("Обява/{id}")]
         public IActionResult GetDetails(string id)
         {
-            var announcementViewModel = this.announcementService.GetDetails<AnnouncementViewModel>(id);
-            var categoriesViewModel = this.categoriesService.GetAll<IndexCategoriesView>();
-
-            var viewModel = new GetAllViewModel()
-            {
-                Announcements = new List<AnnouncementViewModel>(),
-                Categories = categoriesViewModel,
-
-            };
-
-            return this.View(viewModel);
+            var announcementViewModel = this.announcementService.GetDetails<AnnouncementDetails>(id);
+            return this.View(announcementViewModel);
         }
 
-        public IActionResult GetByUser()
+        [Route("МоитеОбяви/{currentPage?}")]
+        public IActionResult GetByUser(int currentPage = 1)
         {
+
+            var skip = (currentPage - 1) * AnnouncementsConstants.AnnouncementsPerPage;
+            var pageModel = new Page
+            {
+                CurrentPage = currentPage,
+            };
             var userId = this.userManager.GetUserId(this.User);
             var announcementViewModel = this.announcementService.GetByUser<AnnouncementViewModel>(userId);
             var viewModel = new GetAllViewModel()
             {
                 Announcements = announcementViewModel,
+                Page = pageModel,
             };
             return this.View(viewModel);
         }

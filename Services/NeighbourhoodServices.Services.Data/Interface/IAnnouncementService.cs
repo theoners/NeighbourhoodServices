@@ -8,8 +8,7 @@
 
     public interface IAnnouncementService
     {
-
-        Announcement GetDetails<T>(string id);
+        T GetDetails<T>(string id);
 
         IEnumerable<T> GetByCreatedOn<T>(int skip = 0);
 

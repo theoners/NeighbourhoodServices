@@ -1,3 +1,90 @@
 ﻿@model NeighbourhoodServices.Web.ViewModels.Announcements.GetAllViewModel
 
-<partial name="_Anouncement" model="Model"/>
+<div class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+</div>
+
+
+<section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 pr-lg-4">
+                <div class="row">
+                    <partial name="_Anouncement" />
+                </div>
+                <div class="row mt-5">
+                    <div class="col text-center">
+                        <div class="block-27">
+                            <ul>
+                                <li><a href="#">&lt;</a></li>
+                                @if (Model.Page.PagesCount > 1)
+                                {
+                                    for (int i = 1; i <= Model.Page.PagesCount; i++)
+                                    {
+                                        var active = Model.Page.CurrentPage == i ? "active" : string.Empty;
+
+                                        <li class="@active"><a asp-controller="Announcements" asp-action="GetByUser" value="@i" asp-route-currentPage="@i">@i</a></li>
+                                    }
+
+                                }
+                                <li><a href="#">&gt;</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 sidebar">
+                <div class="sidebar-box bg-white p-4 ftco-animate">
+                    <h3 class="heading-sidebar">Browse Category</h3>
+                    <form action="#" class="search-form mb-3">
+                        <div class="form-group">
+                            <span class="icon icon-search"></span>
+                            <input type="text" class="form-control" placeholder="Search...">
+                        </div>
+                    </form>
+                    <form action="#" class="browse-form">
+                        <label for="option-job-1"><input type="checkbox" id="option-job-1" name="vehicle" value="" checked> Website &amp; Software</label><br>
+                        <label for="option-job-2"><input type="checkbox" id="option-job-2" name="vehicle" value=""> Education &amp; Training</label><br>
+                        <label for="option-job-3"><input type="checkbox" id="option-job-3" name="vehicle" value=""> Graphics Design</label><br>
+                        <label for="option-job-4"><input type="checkbox" id="option-job-4" name="vehicle" value=""> Accounting &amp; Finance</label><br>
+                        <label for="option-job-5"><input type="checkbox" id="option-job-5" name="vehicle" value=""> Restaurant &amp; Food</label><br>
+                        <label for="option-job-6"><input type="checkbox" id="option-job-6" name="vehicle" value=""> Health &amp; Hospital</label><br>
+                    </form>
+                </div>
+
+                <div class="sidebar-box bg-white p-4 ftco-animate">
+                    <h3 class="heading-sidebar">Select Location</h3>
+                    <form action="#" class="search-form mb-3">
+                        <div class="form-group">
+                            <span class="icon icon-search"></span>
+                            <input type="text" class="form-control" placeholder="Search...">
+                        </div>
+                    </form>
+                    <form action="#" class="browse-form">
+                        <label for="option-location-1"><input type="checkbox" id="option-location-1" name="vehicle" value="" checked> Sydney, Australia</label><br>
+                        <label for="option-location-2"><input type="checkbox" id="option-location-2" name="vehicle" value=""> New York, United States</label><br>
+                        <label for="option-location-3"><input type="checkbox" id="option-location-3" name="vehicle" value=""> Tokyo, Japan</label><br>
+                        <label for="option-location-4"><input type="checkbox" id="option-location-4" name="vehicle" value=""> Manila, Philippines</label><br>
+                        <label for="option-location-5"><input type="checkbox" id="option-location-5" name="vehicle" value=""> Seoul, South Korea</label><br>
+                        <label for="option-location-6"><input type="checkbox" id="option-location-6" name="vehicle" value=""> Western City, UK</label><br>
+                    </form>
+                </div>
+
+                <div class="sidebar-box bg-white p-4 ftco-animate">
+                    <h3 class="heading-sidebar">Job Type</h3>
+                    <form action="#" class="browse-form">
+                        <label for="option-job-type-1"><input type="checkbox" id="option-job-type-1" name="vehicle" value="" checked> Partime</label><br>
+                        <label for="option-job-type-2"><input type="checkbox" id="option-job-type-2" name="vehicle" value=""> Fulltime</label><br>
+                        <label for="option-job-type-3"><input type="checkbox" id="option-job-type-3" name="vehicle" value=""> Intership</label><br>
+                        <label for="option-job-type-4"><input type="checkbox" id="option-job-type-4" name="vehicle" value=""> Temporary</label><br>
+                        <label for="option-job-type-5"><input type="checkbox" id="option-job-type-5" name="vehicle" value=""> Freelance</label><br>
+                        <label for="option-job-type-6"><input type="checkbox" id="option-job-type-6" name="vehicle" value=""> Fixed</label><br>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

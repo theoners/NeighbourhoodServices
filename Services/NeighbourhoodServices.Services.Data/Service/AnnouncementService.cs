@@ -76,12 +76,14 @@
             return query.To<T>().ToList();
         }
 
-        public Announcement GetDetails<T>(string id)
+        public T GetDetails<T>(string id)
         {
             var announcement =
                  this.announcementRepository
                      .All()
-                     .FirstOrDefault(x => x.Id == id);
+                     .Where(x => x.Id == id)
+                     .To<T>()
+                     .FirstOrDefault();
 
             return announcement;
         }
