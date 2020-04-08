@@ -24,6 +24,7 @@
             _signInManager = signInManager;
         }
 
+        [Display(Name = "Потребителско Име")]
         public string Username { get; set; }
 
         [TempData]
@@ -35,20 +36,32 @@
         public class InputModel
         {
             [Phone]
-            [Display(Name = "Phone number")]
+            [Display(Name = "Телефонен Номер")]
             public string PhoneNumber { get; set; }
+
+            public string ProfilePictureUrl { get; set; }
+
+            public Gender Gender { get; set; }
+
+            [Display(Name = "Град")]
+            public string City { get; set; }
+
+            [Display(Name = "Адрес")]
+            public string Address { get; set; }
         }
 
         private async Task LoadAsync(ApplicationUser user)
         {
-            var userName = await _userManager.GetUserNameAsync(user);
+            this.Username = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
-            Username = userName;
-
-            Input = new InputModel
+            this.Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                ProfilePictureUrl = user.ProfilePictureUrl,
+                City = user.City,
+                Address = user.Address,
+                Gender = user.Gender,
             };
         }
 
@@ -64,7 +77,7 @@
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(Gender gender)
         {
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
@@ -89,8 +102,29 @@
                 }
             }
 
+            if (Input.City != user.City)
+            {
+                user.City = this.Input.City;
+
+            }
+
+            if (Input.Address != user.Address)
+            {
+                user.Address = Input.Address;
+
+            }
+
+            if (Input.Address != user.Address)
+            {
+                user.Address = Input.Address;
+
+            }
+
+            user.Gender = gender;
+
+            await _userManager.UpdateAsync(user);
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your profile has been updated";
+            StatusMessage = "Профила е обновен";
             return RedirectToPage();
         }
     }

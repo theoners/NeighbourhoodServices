@@ -1,21 +1,21 @@
 ﻿@{
-    Layout = "/Areas/Identity/Pages/_Layout.cshtml";
+    Layout = "/Views/Shared/_Layout.cshtml";
 }
-
+<div class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+</div>
 <h1>Manage your account</h1>
 
-<div>
-    <h4>Change your account settings</h4>
-    <hr />
-    <div class="row">
-        <div class="col-md-3">
-            <partial name="_ManageNav" />
-        </div>
-        <div class="col-md-9">
-            @RenderBody()
-        </div>
+
+<div class="row justify-content-center">
+    <div class="col-md-12 col-lg-12 mb-3">
+        <partial name="_ManageNav" />
+    </div>
+    <div class="col-md-4 justify-content-center">
+        @RenderBody()
     </div>
 </div>
+
 
 @section Scripts {
     @RenderSection("Scripts", required: false)

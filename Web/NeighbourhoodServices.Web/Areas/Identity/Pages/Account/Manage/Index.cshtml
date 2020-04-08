@@ -5,15 +5,65 @@
     ViewData["ActivePage"] = ManageNavPages.Index;
 }
 
-<h4>@ViewData["Title"]</h4>
 <partial name="_StatusMessage" model="Model.StatusMessage" />
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12 justify-content-center">
+        <div class="row py-4">
+            <div class="col-lg-6 mx-auto">
+                <div class="image-area mt-4"><img id="imageResult" src="@Model.Input.ProfilePictureUrl" alt="" class="img-thumbnail rounded-circle"></div>
+                <!-- Upload image input-->
+                <div>
+                    <input id="upload" type="file" onchange="readURL(this);">
+
+
+                </div>
+
+                <!-- Uploaded image area-->
+
+
+            </div>
+        </div>
+        <hr />
         <form id="profile-form" method="post">
+            @{
+                var genders = Enum.GetValues(typeof(Gender));
+
+                @foreach (var gender in genders)
+                {
+                    var checkedGender = Model.Input.Gender.ToString() == gender.ToString() ? "checked" : string.Empty;
+
+                    <div class="form-check-inline">
+                        <label class="form-check-label" asp-for="Input.Gender">
+                            <input  type="radio" class="form-check-input" name="gender" value="@gender" @checkedGender>@gender
+                        </label>
+                    </div>
+
+                }
+
+
+
+
+            }
+
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Username"></label>
                 <input asp-for="Username" class="form-control" disabled />
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.PhoneNumber"></label>
+                <input asp-for="Input.PhoneNumber" class="form-control" />
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Address"></label>
+                <input asp-for="Input.Address" class="form-control" />
+                <span asp-validation-for="Input.Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.City"></label>
+                <input asp-for="Input.City" class="form-control" />
+                <span asp-validation-for="Input.City" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Input.PhoneNumber"></label>
@@ -28,4 +78,37 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#imageResult')
+                    .attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $(function () {
+        $('#upload').on('change', function () {
+            readURL(input);
+        });
+    });
+
+    /*  ==========================================
+        SHOW UPLOADED IMAGE NAME
+    * ========================================== */
+    var input = document.getElementById('upload');
+    var infoArea = document.getElementById('upload-label');
+
+    input.addEventListener('change', showFileName);
+    function showFileName(event) {
+        var input = event.srcElement;
+        var fileName = input.files[0].name;
+        infoArea.textContent = 'File name: ' + fileName;
+    }
+</script>
 
