@@ -1,4 +1,6 @@
-﻿namespace NeighbourhoodServices.Web
+﻿using CloudinaryDotNet;
+
+namespace NeighbourhoodServices.Web
 {
     using System.Reflection;
 
@@ -76,6 +78,15 @@
             services.AddTransient<ICategoriesService, CategoriesService>();
             services.AddTransient<IAnnouncementService, AnnouncementService>();
             services.AddTransient<IUsersService, UsersService>();
+
+           var account = new Account(
+                this.configuration["Cloudinary:ApiName"],
+                this.configuration["Cloudinary:ApiKey"],
+                this.configuration["Cloudinary:ApiSecret"]);
+
+            var cloudinary = new Cloudinary(account);
+
+            services.AddSingleton(cloudinary);
 
             // Runtime Refresh
             services.AddRazorPages()

@@ -10,21 +10,13 @@
     <div class="col-md-12 justify-content-center">
         <div class="row py-4">
             <div class="col-lg-6 mx-auto">
-                <div class="image-area mt-4"><img id="imageResult" src="@Model.Input.ProfilePictureUrl" alt="" class="img-thumbnail rounded-circle"></div>
-                <!-- Upload image input-->
-                <div>
-                    <input id="upload" type="file" onchange="readURL(this);">
-
-
-                </div>
-
-                <!-- Uploaded image area-->
-
-
+                
             </div>
         </div>
         <hr />
-        <form id="profile-form" method="post">
+        <form id="profile-form" method="post" enctype="multipart/form-data">
+            <div  class="image-area mt-4"><img id="imageResult" src="@Model.Input.ProfilePictureUrl" alt="" class="img-thumbnail rounded"></div>
+            <input e id="upload" name="file" type="file" onchange="readURL(this);">
             @{
                 var genders = Enum.GetValues(typeof(Gender));
 
@@ -34,7 +26,7 @@
 
                     <div class="form-check-inline">
                         <label class="form-check-label" asp-for="Input.Gender">
-                            <input  type="radio" class="form-check-input" name="gender" value="@gender" @checkedGender>@gender
+                            <input type="radio" class="form-check-input" name="gender" value="@gender" @checkedGender>@gender
                         </label>
                     </div>
 

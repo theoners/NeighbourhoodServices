@@ -1,4 +1,8 @@
-﻿namespace NeighbourhoodServices.Web.Areas.Identity.Pages.Account.Manage
+﻿using CloudinaryDotNet;
+using Microsoft.AspNetCore.Http;
+using NeighbourhoodServices.Common;
+
+namespace NeighbourhoodServices.Web.Areas.Identity.Pages.Account.Manage
 {
     using System;
     using System.Collections.Generic;
@@ -15,13 +19,16 @@
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly Cloudinary cloudinary;
 
         public IndexModel(
             UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager)
+            SignInManager<ApplicationUser> signInManager,
+            Cloudinary cloudinary)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            this.cloudinary = cloudinary;
         }
 
         [Display(Name = "Потребителско Име")]
@@ -48,6 +55,7 @@
 
             [Display(Name = "Адрес")]
             public string Address { get; set; }
+
         }
 
         private async Task LoadAsync(ApplicationUser user)
@@ -77,7 +85,7 @@
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(Gender gender)
+        public async Task<IActionResult> OnPostAsync(Gender gender, IFormFile file)
         {
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
@@ -120,6 +128,12 @@
 
             }
 
+            if (file != null)
+            {
+                var imageUrl = await CloudinaryApp.UploadFileAsync(this.cloudinary, file);
+                user.ProfilePictureUrl = imageUrl;
+            }
+
             user.Gender = gender;
 
             await _userManager.UpdateAsync(user);
@@ -127,5 +141,6 @@
             StatusMessage = "Профила е обновен";
             return RedirectToPage();
         }
+
     }
 }
