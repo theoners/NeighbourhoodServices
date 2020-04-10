@@ -19,7 +19,7 @@ namespace NeighbourhoodServices.Web.ViewModels.Users
 
         public Gender Gender { get; set; }
 
-        public virtual ICollection<AnnouncementViewModel> Services { get; set; }
+        public virtual ICollection<AnnouncementViewModel> Announcements { get; set; }
 
         public virtual ICollection<UserOpinion> UserOpinions { get; set; }
 

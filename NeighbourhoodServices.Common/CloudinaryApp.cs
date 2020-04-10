@@ -24,6 +24,8 @@ namespace NeighbourhoodServices.Common
             var uploadParams = new ImageUploadParams()
             {
                 File = new FileDescription(file.FileName, destinationStream),
+                Transformation = new Transformation().Width(200).Height(200),
+
             };
             var result = await cloudinary.UploadAsync(uploadParams);
 
