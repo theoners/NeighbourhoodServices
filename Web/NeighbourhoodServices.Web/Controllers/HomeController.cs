@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using NeighbourhoodServices.Web.ViewModels.Users;
 
 namespace NeighbourhoodServices.Web.Controllers
 {
@@ -40,6 +41,7 @@ namespace NeighbourhoodServices.Web.Controllers
                 Categories = this.categoriesService.GetAll<IndexCategoriesView>(),
                 AspNetUsersCount = this.userService.GetUserCount(),
                 Announcement = this.announcementService.GetByCreatedOn<AnnouncementViewModel>(),
+                TopUsers = this.userService.GetTopUsers<TopUserViewModel>(),
             };
             return this.View(viewModel);
         }

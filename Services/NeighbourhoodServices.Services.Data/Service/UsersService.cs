@@ -1,13 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using NeighbourhoodServices.Services.Mapping;
-
-namespace NeighbourhoodServices.Services.Data
+﻿namespace NeighbourhoodServices.Services.Data
 {
+    using System.Collections.Generic;
     using System.Linq;
 
     using NeighbourhoodServices.Data.Common.Repositories;
     using NeighbourhoodServices.Data.Models;
+    using NeighbourhoodServices.Services.Mapping;
 
     public class UsersService : IUsersService
     {
@@ -37,6 +35,17 @@ namespace NeighbourhoodServices.Services.Data
                     .FirstOrDefault();
 
             return user;
+        }
+
+        public IEnumerable<T> GetTopUsers<T>()
+        {
+            var query =
+                this.userRepository
+                    .All().OrderByDescending(x => x.Announcements.Count)
+                    .Take(5)
+                    .To<T>();
+
+            return query;
         }
     }
 }

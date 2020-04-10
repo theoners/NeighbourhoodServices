@@ -8,5 +8,7 @@ namespace NeighbourhoodServices.Services.Data
         int GetUserCount();
 
         T GetUser<T>(string id);
+
+        IEnumerable<T> GetTopUsers<T>();
     }
 }

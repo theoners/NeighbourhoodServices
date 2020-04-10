@@ -10,21 +10,8 @@
                     <p class="mb-4">Лесен Начин Да Опознаеш Съседите Си</p>
                     <h1 class="mb-5">Имаш Нужда От Услуга? Довери Се На Съсед</h1>
                     <div class="ftco-counter ftco-no-pt ftco-no-pb">
-                        <div class="row">
-                            <div class="col-md-4 d-flex justify-content-center counter-wrap ftco-animate">
-                                <div class="block-18">
-                                    <div class="text d-flex">
-                                        <div class="icon mr-2">
-                                            <span class="flaticon-worldwide"></span>
-                                        </div>
-                                        <div class="desc text-left">
-                                            <strong class="number" data-number="46">0</strong>
-                                            <span>Професионалисти</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 d-flex justify-content-center counter-wrap ftco-animate">
+                        <div class="row justify-content-center">
+                           <div class="col-md-4 d-flex justify-content-center counter-wrap ftco-animate">
                                 <div class="block-18 text-center">
                                     <div class="text d-flex">
                                         <div class="icon mr-2">
@@ -73,24 +60,7 @@
                                                     <div class="form-group">
                                                         <div class="form-field">
                                                             <div class="icon"><span class="icon-briefcase"></span></div>
-                                                            <input type="text" class="form-control" placeholder="eg. Garphic. Web Developer">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md mr-md-2">
-                                                    <div class="form-group">
-                                                        <div class="form-field">
-                                                            <div class="select-wrap">
-                                                                <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                                                <select name="" id="" class="form-control">
-                                                                    <option value="">Category</option>
-                                                                    <option value="">Full Time</option>
-                                                                    <option value="">Part Time</option>
-                                                                    <option value="">Freelance</option>
-                                                                    <option value="">Internship</option>
-                                                                    <option value="">Temporary</option>
-                                                                </select>
-                                                            </div>
+                                                            <input type="text" class="form-control" placeholder="Потребителско име">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -98,14 +68,14 @@
                                                     <div class="form-group">
                                                         <div class="form-field">
                                                             <div class="icon"><span class="icon-map-marker"></span></div>
-                                                            <input type="text" class="form-control" placeholder="Location">
+                                                            <input type="text" class="form-control" placeholder="Град">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md">
                                                     <div class="form-group">
                                                         <div class="form-field">
-                                                            <button type="submit" class="form-control btn btn-primary">Search</button>
+                                                            <button type="submit" class="form-control btn btn-primary">Търси</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -120,7 +90,7 @@
                                                     <div class="form-group">
                                                         <div class="form-field">
                                                             <div class="icon"><span class="icon-user"></span></div>
-                                                            <input type="text" class="form-control" placeholder="eg. Adam Scott">
+                                                            <input type="text" class="form-control" placeholder="Ключова дума">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -130,12 +100,11 @@
                                                             <div class="select-wrap">
                                                                 <div class="icon"><span class="ion-ios-arrow-down"></span></div>
                                                                 <select name="" id="" class="form-control">
-                                                                    <option value="">Category</option>
-                                                                    <option value="">Full Time</option>
-                                                                    <option value="">Part Time</option>
-                                                                    <option value="">Freelance</option>
-                                                                    <option value="">Internship</option>
-                                                                    <option value="">Temporary</option>
+                                                                    <option value="">Категория</option>
+                                                                    @foreach (var category in Model.Categories)
+                                                                    {
+                                                                        <option value="">@category.Name</option>
+                                                                    }
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -145,14 +114,14 @@
                                                     <div class="form-group">
                                                         <div class="form-field">
                                                             <div class="icon"><span class="icon-map-marker"></span></div>
-                                                            <input type="text" class="form-control" placeholder="Location">
+                                                            <input type="text" class="form-control" placeholder="Град">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md">
                                                     <div class="form-group">
                                                         <div class="form-field">
-                                                            <button type="submit" class="form-control btn btn-primary">Search</button>
+                                                            <button type="submit" class="form-control btn btn-primary">Търси</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -257,7 +226,7 @@
                     }
 
                 </div>
-                </div>
+            </div>
             <div class="col-lg-3 sidebar">
                 <div class="row justify-content-center pb-3">
                     <div class="col-md-12 heading-section ftco-animate">
@@ -265,190 +234,19 @@
                     </div>
                 </div>
                 <div class="sidebar-box ftco-animate">
-                    <div class="">
-                        <a href="#" class="company-wrap"><img src="images/company-1.jpg" class="img-fluid" alt="Colorlib Free Template"></a>
-                        <div class="text p-3">
-                            <h3><a href="#">Company Company</a></h3>
-                            <p><span class="number">500</span> <span>Open position</span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+                    @foreach (var user in Model.TopUsers)
+                    {
+                        <div class="">
 
-
-
-<section class="ftco-section testimony-section">
-    <div class="container">
-        <div class="row justify-content-center mb-4">
-            <div class="col-md-7 text-center heading-section ftco-animate">
-                <span class="subheading">Testimonial</span>
-                <h2 class="mb-4">Happy Clients</h2>
-            </div>
-        </div>
-        <div class="row ftco-animate">
-            <div class="col-md-12">
-                <div class="carousel-testimony owl-carousel ftco-owl">
-                    <div class="item">
-                        <div class="testimony-wrap py-4">
-                            <div class="text">
-                                <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                                <div class="d-flex align-items-center">
-                                    <div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
-                                    <div class="pl-3">
-                                        <p class="name">Roger Scott</p>
-                                        <span class="position">Marketing Manager</span>
-                                    </div>
-                                </div>
+                            <a class="company-wrap"><img src="@user.ProfilePictureUrl" class="img-fluid img-thumbnail"></a>
+                            <div class="text p-3">
+                                <h3><a asp-controller="Users" asp-action="UserProfile" asp-route-id="@user.Id">@user.UserName</a></h3>
+                                <a asp-controller="Announcements" asp-action="GetByUser" asp-route-id="@user.Id"><span class="number">@user.AnnouncementsCount</span> <span>Обяви</span></a>
                             </div>
                         </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimony-wrap py-4">
-                            <div class="text">
-                                <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                                <div class="d-flex align-items-center">
-                                    <div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
-                                    <div class="pl-3">
-                                        <p class="name">Roger Scott</p>
-                                        <span class="position">Marketing Manager</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
-<section class="ftco-section ftco-candidates bg-primary">
-    <div class="container">
-        <div class="row justify-content-center pb-3">
-            <div class="col-md-10 heading-section heading-section-white text-center ftco-animate">
-                <span class="subheading">Candidates</span>
-                <h2 class="mb-4">Latest Candidates</h2>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 ftco-animate">
-                <div class="carousel-candidates owl-carousel">
-                    <div class="item">
-                        <a href="#" class="team text-center">
-                            <div class="img" style="background-image: url(images/person_1.jpg);"></div>
-                            <h2>Danica Lewis</h2>
-                            <span class="position">Western City, UK</span>
-                        </a>
-                    </div>
-                    <div class="item">
-                        <a href="#" class="team text-center">
-                            <div class="img" style="background-image: url(images/person_2.jpg);"></div>
-                            <h2>Nicole Simon</h2>
-                            <span class="position">Western City, UK</span>
-                        </a>
-                    </div>
-                    <div class="item">
-                        <a href="#" class="team text-center">
-                            <div class="img" style="background-image: url(images/person_3.jpg);"></div>
-                            <h2>Cloe Meyer</h2>
-                            <span class="position">Western City, UK</span>
-                        </a>
-                    </div>
-                    <div class="item">
-                        <a href="#" class="team text-center">
-                            <div class="img" style="background-image: url(images/person_4.jpg);"></div>
-                            <h2>Rachel Clinton</h2>
-                            <span class="position">Western City, UK</span>
-                        </a>
-                    </div>
-                    <div class="item">
-                        <a href="#" class="team text-center">
-                            <div class="img" style="background-image: url(images/person_5.jpg);"></div>
-                            <h2>Dave Buff</h2>
-                            <span class="position">Western City, UK</span>
-                        </a>
-                    </div>
-                    <div class="item">
-                        <a href="#" class="team text-center">
-                            <div class="img" style="background-image: url(images/person_6.jpg);"></div>
-                            <h2>Dave Buff</h2>
-                            <span class="position">Western City, UK</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+                    }
 
-<section class="ftco-section bg-light">
-    <div class="container">
-        <div class="row justify-content-center mb-5 pb-3">
-            <div class="col-md-7 heading-section text-center ftco-animate">
-                <span class="subheading">Our Blog</span>
-                <h2><span>Recent</span> Blog</h2>
-            </div>
-        </div>
-        <div class="row d-flex">
-            <div class="col-md-3 d-flex ftco-animate">
-                <div class="blog-entry align-self-stretch">
-                    <a href="blog-single.html" class="block-20" style="background-image: url('images/image_1.jpg');">
-                    </a>
-                    <div class="text mt-3">
-                        <div class="meta mb-2">
-                            <div><a href="#">August 28, 2019</a></div>
-                            <div><a href="#">Admin</a></div>
-                            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                        </div>
-                        <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 d-flex ftco-animate">
-                <div class="blog-entry align-self-stretch">
-                    <a href="blog-single.html" class="block-20" style="background-image: url('images/image_2.jpg');">
-                    </a>
-                    <div class="text mt-3">
-                        <div class="meta mb-2">
-                            <div><a href="#">August 28, 2019</a></div>
-                            <div><a href="#">Admin</a></div>
-                            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                        </div>
-                        <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 d-flex ftco-animate">
-                <div class="blog-entry align-self-stretch">
-                    <a href="blog-single.html" class="block-20" style="background-image: url('images/image_3.jpg');">
-                    </a>
-                    <div class="text mt-3">
-                        <div class="meta mb-2">
-                            <div><a href="#">August 28, 2019</a></div>
-                            <div><a href="#">Admin</a></div>
-                            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                        </div>
-                        <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 d-flex ftco-animate">
-                <div class="blog-entry align-self-stretch">
-                    <a href="blog-single.html" class="block-20" style="background-image: url('images/image_4.jpg');">
-                    </a>
-                    <div class="text mt-3">
-                        <div class="meta mb-2">
-                            <div><a href="#">August 28, 2019</a></div>
-                            <div><a href="#">Admin</a></div>
-                            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                        </div>
-                        <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                    </div>
                 </div>
             </div>
         </div>
@@ -460,14 +258,14 @@
         <div class="container">
             <div class="row d-flex justify-content-center">
                 <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
-                    <h2>Subcribe to our Newsletter</h2>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in</p>
+                    <h2>Абонирай се</h2>
+                    <p>Получавай първи новите обяви</p>
                     <div class="row d-flex justify-content-center mt-4 mb-4">
                         <div class="col-md-12">
                             <form action="#" class="subscribe-form">
                                 <div class="form-group d-flex">
-                                    <input type="text" class="form-control" placeholder="Enter email address">
-                                    <input type="submit" value="Subscribe" class="submit px-3">
+                                    <input type="text" class="form-control" placeholder="Имейл">
+                                    <input type="submit" value="Абонирай се" class="submit px-3">
                                 </div>
                             </form>
                         </div>

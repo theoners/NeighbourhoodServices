@@ -1,9 +1,10 @@
-﻿using NeighbourhoodServices.Web.ViewModels.Announcements;
-
-namespace NeighbourhoodServices.Web.ViewModels.Home
+﻿namespace NeighbourhoodServices.Web.ViewModels.Home
 {
     using System.Collections.Generic;
+
+    using NeighbourhoodServices.Web.ViewModels.Announcements;
     using NeighbourhoodServices.Web.ViewModels.Categories;
+    using NeighbourhoodServices.Web.ViewModels.Users;
 
     public class IndexViewModel
     {
@@ -14,5 +15,7 @@ namespace NeighbourhoodServices.Web.ViewModels.Home
         public IEnumerable<AnnouncementViewModel> Announcement { get; set; }
 
         public int AspNetUsersCount { get; set; }
+
+        public IEnumerable<TopUserViewModel> TopUsers { get; set; }
     }
 }

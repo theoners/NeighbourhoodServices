@@ -60,7 +60,7 @@ namespace NeighbourhoodServices.Web.Controllers
         }
 
         [Route("МоитеОбяви/{currentPage?}")]
-        public IActionResult GetByUser(int currentPage = 1)
+        public IActionResult GetByUser(string id, int currentPage = 1)
         {
 
             var skip = (currentPage - 1) * AnnouncementsConstants.AnnouncementsPerPage;
@@ -68,8 +68,7 @@ namespace NeighbourhoodServices.Web.Controllers
             {
                 CurrentPage = currentPage,
             };
-            var userId = this.userManager.GetUserId(this.User);
-            var announcementViewModel = this.announcementService.GetByUser<AnnouncementViewModel>(userId);
+            var announcementViewModel = this.announcementService.GetByUser<AnnouncementViewModel>(id);
             var viewModel = new GetAllViewModel()
             {
                 Announcements = announcementViewModel,

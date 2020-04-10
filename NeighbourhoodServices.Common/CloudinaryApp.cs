@@ -1,4 +1,6 @@
-﻿namespace NeighbourhoodServices.Common
+﻿using System.Collections.Generic;
+
+namespace NeighbourhoodServices.Common
 {
     using System.IO;
     using System.Threading.Tasks;
@@ -18,6 +20,7 @@
             var destinationFile = memoryStream.ToArray();
 
             using var destinationStream = new MemoryStream(destinationFile);
+
             var uploadParams = new ImageUploadParams()
             {
                 File = new FileDescription(file.FileName, destinationStream),

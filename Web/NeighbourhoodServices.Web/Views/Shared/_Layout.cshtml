@@ -1,4 +1,10 @@
-﻿@using NeighbourhoodServices.Common
+﻿@using Microsoft.AspNetCore.Identity
+@using NeighbourhoodServices.Common
+@using NeighbourhoodServices.Data.Models
+@inject UserManager<ApplicationUser> UserManager
+@{
+     var userId = UserManager.GetUserId(this.User);
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,7 +72,7 @@
                         <a class="nav-link" asp-area="" asp-controller="Settings" asp-action="Index">Професионалисти</a>
                         <li class="nav-item">
 
-                            <a class="nav-link" asp-controller="Announcements" asp-action="GetByUser">Моите Обяви</a>
+                            <a class="nav-link" asp-controller="Announcements" asp-action="GetByUser" asp-route-id="@userId">Моите Обяви</a>
                         </li>
 
                     </ul>
