@@ -1,22 +1,11 @@
-﻿using System.Linq;
-using System.Net.Mime;
-using CloudinaryDotNet;
-using Microsoft.AspNetCore.Http;
-using NeighbourhoodServices.Common;
-using NeighbourhoodServices.Data.Common.Repositories;
-using NeighbourhoodServices.Services.Data;
-using NeighbourhoodServices.Web.ViewModels.Users;
-
-namespace NeighbourhoodServices.Web.Controllers
+﻿namespace NeighbourhoodServices.Web.Controllers
 {
-    using System.Threading.Tasks;
-
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.Logging;
+    using NeighbourhoodServices.Data.Common.Repositories;
     using NeighbourhoodServices.Data.Models;
-    using NeighbourhoodServices.Web.Areas.Identity.Pages.Account;
+    using NeighbourhoodServices.Services.Data;
+    using NeighbourhoodServices.Web.ViewModels.Users;
 
     public class UsersController : BaseController
     {
