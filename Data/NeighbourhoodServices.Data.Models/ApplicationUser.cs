@@ -15,7 +15,7 @@ namespace NeighbourhoodServices.Data.Models
             this.Roles = new HashSet<IdentityUserRole<string>>();
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
-            this.Services = new HashSet<Announcement>();
+            this.Announcements = new HashSet<Announcement>();
             this.Photos = new HashSet<Photo>();
             this.UserOpinions = new HashSet<UserOpinion>();
         }
@@ -38,7 +38,7 @@ namespace NeighbourhoodServices.Data.Models
 
         public Gender Gender { get; set; }
 
-        public virtual ICollection<Announcement> Services { get; set; }
+        public virtual ICollection<Announcement> Announcements { get; set; }
 
         public virtual ICollection<UserOpinion> UserOpinions { get; set; }
 
