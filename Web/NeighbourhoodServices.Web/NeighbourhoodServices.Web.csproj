@@ -52,4 +52,8 @@
     <ProjectReference Include="..\NeighbourhoodServices.Web.Infrastructure\NeighbourhoodServices.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\NeighbourhoodServices.Web.ViewModels\NeighbourhoodServices.Web.ViewModels.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\NewFolder\" />
+  </ItemGroup>
 </Project>

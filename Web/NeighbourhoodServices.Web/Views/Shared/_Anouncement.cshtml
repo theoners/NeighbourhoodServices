@@ -16,7 +16,7 @@
                     <div>@announcement.Description</div>
                 </div>
                 <div class="job-post-item-body d-block d-md-flex">
-                    <div class="mr-3"><span class="icon-layers"></span> <a href="#">@announcement.User</a></div>
+                    <div class="mr-3"><span class="icon-layers"></span> <a asp-controller="Users" asp-action="UserProfile" asp-route-id="@announcement.UserId">@announcement.User</a></div>
                     <div><span class="icon-my_location"></span> <span>@announcement.Place</span></div>
                     <div><span class="icon-my_location"></span> <span>@announcement.CreatedOn</span></div>
                     <div><span class="icon-my_location"></span> <span>@announcement.CategoryName</span></div>

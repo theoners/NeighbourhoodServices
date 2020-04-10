@@ -3,6 +3,9 @@ using System.Net.Mime;
 using CloudinaryDotNet;
 using Microsoft.AspNetCore.Http;
 using NeighbourhoodServices.Common;
+using NeighbourhoodServices.Data.Common.Repositories;
+using NeighbourhoodServices.Services.Data;
+using NeighbourhoodServices.Web.ViewModels.Users;
 
 namespace NeighbourhoodServices.Web.Controllers
 {
@@ -17,6 +20,21 @@ namespace NeighbourhoodServices.Web.Controllers
 
     public class UsersController : BaseController
     {
-     
+        private readonly UserManager<ApplicationUser> userManager;
+        private readonly IRepository<ApplicationUser> userRepository;
+        private readonly IUsersService userService;
+
+        public UsersController(UserManager<ApplicationUser> userManager, IRepository<ApplicationUser> userRepository, IUsersService userService)
+        {
+            this.userManager = userManager;
+            this.userRepository = userRepository;
+            this.userService = userService;
+        }
+
+        public IActionResult UserProfile(string id)
+        {
+            var user = this.userService.GetUser<UserViewModel>(id);
+            return this.View(user);
+        }
     }
 }

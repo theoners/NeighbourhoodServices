@@ -1,0 +1,141 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using NeighbourhoodServices.Data.Models
+@model NeighbourhoodServices.Web.ViewModels.Users.UserViewModel
+@inject UserManager<ApplicationUser> UserManager
+@{
+    var userId = UserManager.GetUserId(this.User);
+}
+
+<div class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+</div>
+<div class="container">
+    <div class="row my-2">
+        <div class="col-lg-8 order-lg-2">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Профил</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" data-target="#announcement" data-toggle="tab" class="nav-link">Обяви</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" data-target="#opinions" data-toggle="tab" class="nav-link">Коментари</a>
+                </li>
+            </ul>
+            <div class="tab-content py-4">
+                <div class="tab-pane active" id="profile">
+                    <h5 class="mb-3">Потребителски Профил</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Потребителско Име</h5>
+                            <p>
+                                @Model.UserName
+                            </p>
+                            <h5>Град</h5>
+                            <p>
+                                @Model.City
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Предлага Услуги</h6>
+                            <a href="#" class="badge badge-dark badge-pill"></a>
+                            <a href="#" class="badge badge-dark badge-pill">react</a>
+                            <a href="#" class="badge badge-dark badge-pill">codeply</a>
+                            <a href="#" class="badge badge-dark badge-pill">angularjs</a>
+                            <a href="#" class="badge badge-dark badge-pill">css3</a>
+                            <a href="#" class="badge badge-dark badge-pill">jquery</a>
+                            <a href="#" class="badge badge-dark badge-pill">bootstrap</a>
+                            <a href="#" class="badge badge-dark badge-pill">responsive-design</a>
+                            <hr>
+                            <span class="badge badge-danger"><i class="fa fa-eye"></i> 245 Прегледи</span>
+                            <span class="badge badge-danger"><i class="fa fa-eye"></i> 245 Рейтинг</span>
+                        </div>
+                        <div class="col-md-12">
+                            <h5 class="mt-2"><span class="fa ion-clock float-right"></span>Последни Оценки</h5>
+                            <table class="table table-sm table-hover table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong>Abby</strong> joined ACME Project Team in <strong>`Collaboration`</strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Gary</strong> deleted My Board1 in <strong>`Discussions`</strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Kensington</strong> deleted MyBoard3 in <strong>`Discussions`</strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>John</strong> deleted My Board1 in <strong>`Discussions`</strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Skell</strong> deleted his post Look at Why this is.. in <strong>`Discussions`</strong>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!--/row-->
+                </div>
+                <div class="tab-pane" id="announcement">
+                    @foreach (var announcement in Model.Services)
+                    {
+                        <div class="col-md-12 ftco-animate">
+                            <div class="job-post-item p-4 d-block d-lg-flex align-items-center">
+                                <div class="one-third mb-4 mb-md-0">
+                                    <div class="align-items-center">
+                                        <h2 class="mr-3 text-black"><a href="#">@announcement.Title</a></h2>
+                                        <span class="subadge">@announcement.ServiceType</span>
+                                        <div>@announcement.Description</div>
+                                    </div>
+                                    <div class="job-post-item-body d-block d-md-flex">
+                                        <div class="mr-3"><span class="icon-layers"></span> <a asp-controller="Users" asp-action="UserProfile" asp-route-id="@announcement.UserId">@Model.UserName</a></div>
+                                        <div><span class="icon-my_location"></span> <span>@announcement.Place</span></div>
+                                        <div><span class="icon-my_location"></span> <span>@announcement.CreatedOn</span></div>
+                                        <div><span class="icon-my_location"></span> <span></span></div>
+                                    </div>
+                                    <div>
+
+
+                                        @if (userId == announcement.UserId || User.IsInRole("Administrator"))
+                                        {
+                                            <a class="btn btn-danger" type="submit" asp-controller="Announcements" asp-action="Delete" asp-route-id="@announcement.Id">Изтрий</a>
+                                            <a class="btn btn-secondary" type="submit" asp-controller="Announcements" asp-action="GetUpdateView" asp-route-id="@announcement.Id">Редактирай</a>
+                                        }
+                                    </div>
+
+
+                                </div>
+
+                                <div class="one-forth ml-auto d-flex align-items-center mt-4 md-md-0">
+                                    <div>
+                                        <a href="#" class="icon text-center d-flex justify-content-center align-items-center icon mr-2">
+                                            <span class="icon-heart"></span>
+                                        </a>
+                                    </div>
+
+                                    <a asp-controller="Announcements" asp-action="GetDetails" asp-route-id="@announcement.Id" class="btn btn-primary py-2">Детайли</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="tab-pane" id="opinions">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 order-lg-1 text-center">
+            <img src="@Model.ProfilePictureUrl" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+        </div>
+    </div>
+</div>

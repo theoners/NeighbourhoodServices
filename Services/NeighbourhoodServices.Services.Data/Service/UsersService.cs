@@ -1,4 +1,8 @@
-﻿namespace NeighbourhoodServices.Services.Data
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using NeighbourhoodServices.Services.Mapping;
+
+namespace NeighbourhoodServices.Services.Data
 {
     using System.Linq;
 
@@ -21,6 +25,18 @@
 
 
             return userCount;
+        }
+
+        public T GetUser<T>(string id)
+        {
+            var user =
+                this.userRepository
+                    .All()
+                    .Where(x => x.Id == id)
+                    .To<T>()
+                    .FirstOrDefault();
+
+            return user;
         }
     }
 }
