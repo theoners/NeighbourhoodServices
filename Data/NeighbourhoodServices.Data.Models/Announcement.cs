@@ -1,5 +1,7 @@
 ﻿// ReSharper disable VirtualMemberCallInConstructor
 
+using System.Collections.Generic;
+
 namespace NeighbourhoodServices.Data.Models
 {
     using System;
@@ -12,6 +14,7 @@ namespace NeighbourhoodServices.Data.Models
         public Announcement()
         {
             this.Id = Guid.NewGuid().ToString();
+            this.Comments = new HashSet<Comment>();
         }
 
         [Required]
@@ -34,6 +37,8 @@ namespace NeighbourhoodServices.Data.Models
         public int Price { get; set; }
 
         public Category Category { get; set; }
+
+        public IEnumerable<Comment> Comments { get; set; }
 
         [Required]
         public virtual string UserId { get; set; }

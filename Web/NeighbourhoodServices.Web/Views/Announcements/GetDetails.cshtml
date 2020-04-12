@@ -1,5 +1,11 @@
 ﻿@using Microsoft.AspNetCore.Http.Extensions
+@using Microsoft.AspNetCore.Identity
+@using NeighbourhoodServices.Data.Models
 @model NeighbourhoodServices.Web.ViewModels.Announcements.AnnouncementDetails;
+@inject UserManager<ApplicationUser> usermanager
+@{
+    var userId = usermanager.GetUserId(User);
+}
 
 <div class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
@@ -24,7 +30,7 @@
             </div>
 
             <div class="fb-share-button" data-href=" @Context.Request.GetEncodedUrl()" data-layout="button_count" data-size="large"><a target="_blank" href="" class="fb-xfbml-parse-ignore">Споделяне</a></div>
-           
+
         </div>
 
         <div class="one-forth ml-auto d-flex align-items-center mt-4 md-md-0">
@@ -36,17 +42,57 @@
         </div>
     </div>
 </div>
-<div class="col-md-8 order-md-last d-flex">
-    <form action="#" class="bg-white p-5 contact-form">
-        <div class="form-group">
-            <textarea name="comment" id="" cols="30" rows="7" class="form-control" placeholder="Коментар"></textarea>
-        </div>
-        <div class="form-group">
-            <input asp-controller="Home" asp-action="Test" type="submit" value="Коментирай" class="btn btn-primary py-3 px-5">
-        </div>
-    </form>
+<div class="justify-content-center"><h3>Коментари</h3></div>
 
-</div>
+
+@foreach (var comment in Model.Comments)
+{<div class="col-md-12 ftco-animate">
+        <div class="job-post-item p-4 d-block d-lg-flex align-items-center">
+            <div class="one-third mb-4 mb-md-0">
+                <div class="align-items-center">
+                    <img src="@comment.UserProfilePictureUrl" class="avatar rounded-circle" />
+                    <p>
+                        <a asp-controller="Users" asp-action="UserProfile" asp-route-id="@comment.UserId" class="text-secondary text-left"><strong>@comment.UserUserName</strong></a>
+                    </p>
+                    
+                    <p>@comment.Text</p>
+                    <p>@comment.CreatedOn</p>
+                </div>
+                </div>
+        </div>
+
+    </div>
 }
+
+
+
+
+<section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12 col-lg-12 mb-5">
+
+                <form method="post" class="p-5 bg-white">
+
+                    <div class="row form-group">
+                        <div class="col-md-12"><h3>Коментирай</h3></div>
+                        <div class="col-md-12 mb-3 mb-md-0">
+                            <textarea name="text" class="form-control" id="" cols="30" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <input type="submit" value="Post" asp-controller="Comments" asp-action="Create" asp-route-AnnouncementId="@Model.Id" asp-route-UserId="@userId" class="btn btn-primary  py-2 px-5">
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+    }
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/bg_BG/sdk.js#xfbml=1&version=v6.0"></script>

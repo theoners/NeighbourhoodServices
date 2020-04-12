@@ -1,5 +1,6 @@
 ﻿using NeighbourhoodServices.Common;
 using NeighbourhoodServices.Web.Infrastructure;
+using NeighbourhoodServices.Web.ViewModels.Comments;
 
 namespace NeighbourhoodServices.Web.Controllers
 {
@@ -22,12 +23,14 @@ namespace NeighbourhoodServices.Web.Controllers
 
         private readonly UserManager<ApplicationUser> userManager;
         private readonly ICategoriesService categoriesService;
+        private readonly ICommentService commentService;
 
-        public AnnouncementsController(IAnnouncementService announcementService, UserManager<ApplicationUser> userManager, ICategoriesService categoriesService)
+        public AnnouncementsController(IAnnouncementService announcementService, UserManager<ApplicationUser> userManager, ICategoriesService categoriesService, ICommentService commentService)
         {
             this.announcementService = announcementService;
             this.userManager = userManager;
             this.categoriesService = categoriesService;
+            this.commentService = commentService;
         }
 
         [Route("ПубликувайОбява")]
@@ -56,6 +59,8 @@ namespace NeighbourhoodServices.Web.Controllers
         public IActionResult GetDetails(string id)
         {
             var announcementViewModel = this.announcementService.GetDetails<AnnouncementDetails>(id);
+            var comments = this.commentService.GetCommentByPostId<CommentViewModel>(id);
+            announcementViewModel.Comments = comments;
             return this.View(announcementViewModel);
         }
 

@@ -78,8 +78,9 @@ namespace NeighbourhoodServices.Web
             services.AddTransient<ICategoriesService, CategoriesService>();
             services.AddTransient<IAnnouncementService, AnnouncementService>();
             services.AddTransient<IUsersService, UsersService>();
+            services.AddTransient<ICommentService, CommentsService>();
 
-           var account = new Account(
+            var account = new Account(
                 this.configuration["Cloudinary:ApiName"],
                 this.configuration["Cloudinary:ApiKey"],
                 this.configuration["Cloudinary:ApiSecret"]);
