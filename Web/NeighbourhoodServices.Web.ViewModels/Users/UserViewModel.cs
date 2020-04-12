@@ -1,4 +1,5 @@
 ﻿using NeighbourhoodServices.Web.ViewModels.Announcements;
+using NeighbourhoodServices.Web.ViewModels.Comments;
 
 namespace NeighbourhoodServices.Web.ViewModels.Users
 {
@@ -21,6 +22,8 @@ namespace NeighbourhoodServices.Web.ViewModels.Users
 
         public virtual ICollection<AnnouncementViewModel> Announcements { get; set; }
 
+        public virtual ICollection<CommentViewModel> Comments { get; set; }
+        
         public virtual ICollection<UserOpinion> UserOpinions { get; set; }
 
         public virtual ICollection<Photo> Photos { get; set; }

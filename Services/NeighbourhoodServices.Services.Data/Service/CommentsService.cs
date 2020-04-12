@@ -43,7 +43,18 @@ namespace NeighbourhoodServices.Services.Data.Service
                     .All().OrderByDescending(x => x.CreatedOn)
                     .Where(x => x.AnnouncementId == announcementId);
 
-            return comments.To<T>();
+            return comments.To<T>().ToList();
+        }
+
+        public IEnumerable<T> GetCommentByUserId<T>(string userId)
+        {
+            var comments =
+                this.commentRepository
+                    .All()
+                    .OrderByDescending(x => x.CreatedOn)
+                    .Where(x => x.UserId == userId);
+
+            return comments.To<T>().ToList();
         }
     }
 }
