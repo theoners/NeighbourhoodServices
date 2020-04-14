@@ -1,4 +1,6 @@
-﻿namespace NeighbourhoodServices.Web.ViewModels.Announcements
+﻿using System;
+
+namespace NeighbourhoodServices.Web.ViewModels.Announcements
 {
     using NeighbourhoodServices.Data.Models;
     using NeighbourhoodServices.Services.Mapping;
@@ -16,10 +18,10 @@
 
         public string Place { get; set; }
 
-        public string CreatedOn { get; set; }
+        public DateTime CreatedOn { get; set; }
 
         public int Price { get; set; }
-        
+
         public string UserId { get; set; }
 
         public virtual string User { get; set; }

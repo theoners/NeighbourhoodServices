@@ -1,6 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using NeighbourhoodServices.Data.Models
-@model NeighbourhoodServices.Web.ViewModels.Announcements.GetAllViewModel;
 @inject UserManager<ApplicationUser> UserManager
 @{
     var userId = UserManager.GetUserId(this.User);
@@ -11,15 +10,15 @@
         <div class="job-post-item p-4 d-block d-lg-flex align-items-center">
             <div class="one-third mb-4 mb-md-0">
                 <div class="align-items-center">
-                    <h2 class="mr-3 text-black"><a href="#">@announcement.Title</a></h2>
+                    <h2 class="mr-3 text-black">@announcement.Title</h2>
                     <span class="subadge">@announcement.ServiceType</span>
                     <div>@announcement.Description</div>
                 </div>
                 <div class="job-post-item-body d-block d-md-flex">
-                    <div class="mr-3"><span class="icon-layers"></span> <a asp-controller="Users" asp-action="UserProfile" asp-route-id="@announcement.UserId">@announcement.User</a></div>
-                    <div><span class="icon-my_location"></span> <span>@announcement.Place</span></div>
-                    <div><span class="icon-my_location"></span> <span>@announcement.CreatedOn</span></div>
-                    <div><span class="icon-my_location"></span> <span>@announcement.CategoryName</span></div>
+                    <div class="mr-3"><span class="icon-user"></span> <a asp-controller="Users" asp-action="UserProfile" asp-route-id="@announcement.UserId">@announcement.User</a></div>
+                    <div class="mr-3"><span class="icon-my_location"></span> <span>@announcement.Place</span></div>
+                    <div class="mr-3"><span class="icon-calendar"></span> <span>@announcement.CreatedOn</span></div>
+                    <div class="mr-3"><span class="icon-align-justify"></span> <a asp-controller="Categories" asp-action="AnnouncementsByCategory" asp-route-categoryName="@announcement.CategoryName">@announcement.CategoryName</a></div>
                 </div>
                 <div>
 
@@ -45,5 +44,6 @@
             </div>
         </div>
     </div>
+
 }
 

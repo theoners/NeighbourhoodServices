@@ -3,7 +3,7 @@
 @using NeighbourhoodServices.Data.Models
 @inject UserManager<ApplicationUser> UserManager
 @{
-     var userId = UserManager.GetUserId(this.User);
+    var userId = UserManager.GetUserId(this.User);
 }
 <!DOCTYPE html>
 <html>
@@ -37,7 +37,7 @@
 
 
         @*<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" asp-append-version="true" />
-        <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />*@
+            <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />*@
     </environment>
     <environment names="Staging,Production">
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&display=swap" rel="stylesheet">
@@ -88,7 +88,7 @@
                             <a class="nav-link" asp-area="" asp-controller="Settings" asp-action="Index">Предложи Услуга</a>
                         <li class="nav-item">
                         <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="Settings" asp-action="Index">Професионалисти</a>
+                            <a class="nav-link" asp-area="" asp-controller="Settings" asp-action="Index">Професионалисти</a>
                         <li class="nav-item">
 
                             <a class="nav-link" asp-controller="Announcements" asp-action="GetByUser" asp-route-id="@userId">Моите Обяви</a>
@@ -100,81 +100,16 @@
             </div>
         </nav>
     </header>
-    <partial name="_CookieConsentPartial" />
-    @this.RenderBody()
-    <footer class="ftco-footer ftco-bg-dark ftco-section">
-        <div class="container">
-            <div class="row mb-5">
-                <div class="col-md">
-                    <div class="ftco-footer-widget mb-4">
-                        <h2 class="ftco-heading-2">Skillhunt Jobboard</h2>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                        <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
-                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md">
-                    <div class="ftco-footer-widget mb-4">
-                        <h2 class="ftco-heading-2">Employers</h2>
-                        <ul class="list-unstyled">
-                            <li><a href="#" class="pb-1 d-block">Browse Candidates</a></li>
-                            <li><a href="#" class="pb-1 d-block">Post a Job</a></li>
-                            <li><a href="#" class="pb-1 d-block">Employer Listing</a></li>
-                            <li><a href="#" class="pb-1 d-block">Resume Page</a></li>
-                            <li><a href="#" class="pb-1 d-block">Dashboard</a></li>
-                            <li><a href="#" class="pb-1 d-block">Job Packages</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md">
-                    <div class="ftco-footer-widget mb-4 ml-md-4">
-                        <h2 class="ftco-heading-2">Candidate</h2>
-                        <ul class="list-unstyled">
-                            <li><a href="#" class="pb-1 d-block">Browse Jobs</a></li>
-                            <li><a href="#" class="pb-1 d-block">Submit Resume</a></li>
-                            <li><a href="#" class="pb-1 d-block">Dashboard</a></li>
-                            <li><a href="#" class="pb-1 d-block">Browse Categories</a></li>
-                            <li><a href="#" class="pb-1 d-block">My Bookmarks</a></li>
-                            <li><a href="#" class="pb-1 d-block">Candidate Listing</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md">
-                    <div class="ftco-footer-widget mb-4 ml-md-4">
-                        <h2 class="ftco-heading-2">Account</h2>
-                        <ul class="list-unstyled">
-                            <li><a href="#" class="pb-1 d-block">My Account</a></li>
-                            <li><a href="#" class="pb-1 d-block">Sign In</a></li>
-                            <li><a href="#" class="pb-1 d-block">Create Account</a></li>
-                            <li><a href="#" class="pb-1 d-block">Checkout</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md">
-                    <div class="ftco-footer-widget mb-4">
-                        <h2 class="ftco-heading-2">Have a Questions?</h2>
-                        <div class="block-23 mb-3">
-                            <ul>
-                                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-                                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-                                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 text-center">
+    <div class="fixed-bottom">
+        <partial name="_CookieConsentPartial" />
+    </div>
 
-                    <p>
-                        &copy; @DateTime.Now.Year - @GlobalConstants.SystemName - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                    </p>
-                </div>
-            </div>
-        </div>
+    @this.RenderBody()
+    <footer class="text-center">
+        <p>
+            &copy; @DateTime.Now.Year - @GlobalConstants.SystemName - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </p>
+
     </footer>
 
 
@@ -202,10 +137,10 @@
     </environment>
     <environment names="Staging,Production">
         @*<script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
-        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
-        <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>*@
+            <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
+            <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
+            <script src="~/js/site.min.js" asp-append-version="true"></script>*@
         <script src="~/js/jquery.min.js"></script>
         <script src="~/js/jquery-migrate-3.0.1.min.js"></script>
         <script src="~/js/popper.min.js"></script>
@@ -223,5 +158,5 @@
     </environment>
 
     @this.RenderSection("Scripts", required: false)
-    </body>
+</body>
 </html>

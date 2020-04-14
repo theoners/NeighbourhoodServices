@@ -30,7 +30,7 @@ namespace NeighbourhoodServices.Data.Models
 
         public DateTime? DeletedOn { get; set; }
 
-        public string ProfilePictureUrl { get; set; }
+        public string ProfilePictureUrl { get; set; } = "/images/avatar.png";
 
         public string City { get; set; }
 

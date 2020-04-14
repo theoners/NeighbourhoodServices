@@ -165,18 +165,23 @@
                     <div class="col text-center">
                         <div class="block-27">
                             <ul>
-                                <li><a href="#">&lt;</a></li>
-                                @if (Model.Page.PagesCount>1)
+
+                                @if (Model.Page.PagesCount > 1)
                                 {
+
+                                    var disabledPrevious = Model.Page.CurrentPage == 1?"disabled":string.Empty;
+                                   
+                                    <li><a class="@disabledPrevious" asp-controller="Home" asp-action="AllAnnouncements"  asp-route-currentPage="(Model.Page.CurrentPage-1)">&lt;</a></li>
                                     for (int i = 1; i <= Model.Page.PagesCount; i++)
                                     {
                                         var active = Model.Page.CurrentPage == i ? "active" : string.Empty;
-                                        
-                                        <li class="@active"><a  asp-controller="Home" asp-action="AllAnnouncements" value="@i" asp-route-currentPage="@i">@i</a></li>
-                                    }
 
+                                        <li class="@active"><a asp-controller="Home" asp-action="AllAnnouncements" value="@i" asp-route-currentPage="@i">@i</a></li>
+                                    }
+                                    var disabledNext = Model.Page.CurrentPage == 1?"disabled":string.Empty;
+                                    <li><a class="@disabledNext" asp-controller="Home" asp-action="AllAnnouncements"  asp-route-currentPage="(Model.Page.CurrentPage+1)">&gt;</a></li>
                                 }
-                                <li><a href="#">&gt;</a></li>
+
                             </ul>
                         </div>
                     </div>

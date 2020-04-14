@@ -12,7 +12,7 @@
 
         public int SettingsCount { get; set; }
 
-        public IEnumerable<AnnouncementViewModel> Announcement { get; set; }
+        public IEnumerable<AnnouncementViewModel> Announcements { get; set; }
 
         public int AspNetUsersCount { get; set; }
 

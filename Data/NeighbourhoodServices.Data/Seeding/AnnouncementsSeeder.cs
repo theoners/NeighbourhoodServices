@@ -11,7 +11,7 @@
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
-            if (dbContext.Announcements.Count() > 500)
+            if (dbContext.Announcements.Count() > 100)
             {
                return;
             }
@@ -27,12 +27,12 @@
             {
                 var announcement = new Announcement
                 {
-                    CategoryId = random.Next(1, 12),
-                    ServiceType = (ServiceType)random.Next(1, 2),
-                    Description = this.RandomString(random.Next(100, 200)),
+                    CategoryId = random.Next(5, 16),
+                    ServiceType = (ServiceType)random.Next(1, 3),
+                    Description = this.RandomString(random.Next(20)),
                     Place = this.RandomString(random.Next(6, 20)),
                     Title = this.RandomString(random.Next(10, 30)),
-                    User = users[random.Next(users.Count)],
+                    UserId = users[random.Next(users.Count)].Id,
                     Price = 50,
                 };
 
