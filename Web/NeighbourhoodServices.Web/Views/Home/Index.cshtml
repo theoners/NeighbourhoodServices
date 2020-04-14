@@ -11,7 +11,7 @@
                     <h1 class="mb-5">Имаш Нужда От Услуга? Довери Се На Съсед</h1>
                     <div class="ftco-counter ftco-no-pt ftco-no-pb">
                         <div class="row justify-content-center">
-                           <div class="col-md-4 d-flex justify-content-center counter-wrap ftco-animate">
+                            <div class="col-md-4 d-flex justify-content-center counter-wrap ftco-animate">
                                 <div class="block-18 text-center">
                                     <div class="text d-flex">
                                         <div class="icon mr-2">
@@ -147,11 +147,16 @@
                         @foreach (var category in Model.Categories)
                         {
                             <div class="col-md-2">
-                                <div class="top-category text-center no-border-left">
-                                    <h3><a asp-controller="Categories" asp-action="AnnouncementsByCategory" asp-route-categoryName="@category.Name">@category.Name</a></h3>
-                                    <span class="fas fa-align-justify"></span>
-                                    <p><span class="number">@category.ServicesCount</span> <span>Активни обяви</span></p>
-                                </div>
+
+                                <a asp-controller="Categories" asp-action="AnnouncementsByCategory" asp-route-categoryName="@category.Name">
+                                    <div class="top-category text-center no-border-left">
+                                        <h3>@category.Name</h3>
+                                        <span class="fas fa-align-justify"></span>
+                                        <p><span class="number">@category.ServicesCount</span> <span>Активни обяви</span></p>
+                                    </div>
+                                </a>
+
+
                             </div>
                         }
 

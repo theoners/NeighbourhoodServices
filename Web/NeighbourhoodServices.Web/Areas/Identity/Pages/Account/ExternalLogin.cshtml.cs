@@ -52,9 +52,11 @@
         {
             [Required]
             [EmailAddress]
+            [Display(Name = "Имейл")]
             public string Email { get; set; }
 
             [Required]
+            [Display(Name = "Потребителско Име")]
             public string Username { get; set; }
         }
 
