@@ -23,7 +23,7 @@
             var announcements = new List<Announcement>();
             var random = new Random();
             var users = dbContext.Users.ToList();
-            for (int i = 0; i < 500; i++)
+            for (int i = 0; i < 5; i++)
             {
                 var announcement = new Announcement
                 {
@@ -33,6 +33,7 @@
                     Place = this.RandomString(random.Next(6, 20)),
                     Title = this.RandomString(random.Next(10, 30)),
                     User = users[random.Next(users.Count)],
+                    Price = 50,
                 };
 
                 announcements.Add(announcement);

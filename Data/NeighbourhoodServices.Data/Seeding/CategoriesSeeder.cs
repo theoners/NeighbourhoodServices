@@ -19,16 +19,16 @@
             var categories = new List<Category>()
             {
                 new Category() { Name = "Ремонт", Description = "Ремонт"},
-                new Category() { Name = "Градинарство" },
-                new Category() { Name = "Преместване" },
-                new Category() { Name = "Подръжка-ремонт на кола" },
-                new Category() { Name = "Деца" },
-                new Category() { Name = "Животни" },
-                new Category() { Name = "Информационни Услуги" },
-                new Category() { Name = "Курсове" },
-                new Category() { Name = "Административни" },
-                new Category() { Name = "Мода Здраве" },
-                new Category() { Name = "Спорт" },
+                new Category() { Name = "Градинарство" , Description = "Ремонт"},
+                new Category() { Name = "Преместване" , Description = "Ремонт"},
+                new Category() { Name = "Подръжка-ремонт на кола", Description = "Ремонт" },
+                new Category() { Name = "Деца" , Description = "Ремонт"},
+                new Category() { Name = "Животни" , Description = "Ремонт"},
+                new Category() { Name = "Информационни Услуги", Description = "Ремонт" },
+                new Category() { Name = "Курсове" , Description = "Ремонт"},
+                new Category() { Name = "Административни", Description = "Ремонт" },
+                new Category() { Name = "Мода Здраве", Description = "Ремонт" },
+                new Category() { Name = "Спорт" , Description = "Ремонт"},
             };
 
             await dbContext.AddRangeAsync(categories);
