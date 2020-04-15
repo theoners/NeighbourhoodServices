@@ -1,4 +1,5 @@
-﻿using NeighbourhoodServices.Common;
+﻿using System;
+using NeighbourhoodServices.Common;
 using NeighbourhoodServices.Web.Infrastructure;
 using NeighbourhoodServices.Web.ViewModels.Comments;
 
@@ -59,6 +60,11 @@ namespace NeighbourhoodServices.Web.Controllers
         public IActionResult GetDetails(string id)
         {
             var announcementViewModel = this.announcementService.GetDetails<AnnouncementDetails>(id);
+            if (announcementViewModel == null)
+            {
+                return Redirect("/");
+            }
+
             var comments = this.commentService.GetCommentByPostId<CommentViewModel>(id);
             announcementViewModel.Comments = comments;
             return this.View(announcementViewModel);
@@ -104,6 +110,22 @@ namespace NeighbourhoodServices.Web.Controllers
         {
             await this.announcementService.UpdateAsync(announcementInputModel, id);
             return this.RedirectToAction("GetDetails", new { id = id });
+        }
+
+        public IActionResult Search(string search, string category, string city, int currentPage = 1)
+        {
+            var skip = (currentPage - 1) * AnnouncementsConstants.AnnouncementsPerPage;
+            var pageModel = new Page
+            {
+                CurrentPage = currentPage,
+            };
+            var announcementViewModel = this.announcementService.GetByKeyWord<AnnouncementViewModel>(search, category, city);
+            var viewModel = new GetAllViewModel()
+            {
+                Announcements = announcementViewModel,
+                Page = pageModel,
+            };
+            return this.View(viewModel);
         }
     }
 }

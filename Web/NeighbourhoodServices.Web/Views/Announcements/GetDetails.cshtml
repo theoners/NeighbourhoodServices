@@ -14,7 +14,7 @@
     <div class="job-post-item p-4 d-block d-lg-flex align-items-center">
         <div class="one-third mb-4 mb-md-0">
             <div class="align-items-center">
-                <h2 class="mr-3 text-black"><a href="#">@Model.Title</a></h2>
+                <h2 class="mr-3"><a>@Model.Title</a></h2>
                 <span class="subadge">@Model.ServiceType</span>
                 <div>@Model.Description</div>
             </div>
@@ -42,6 +42,7 @@
         </div>
     </div>
 </div>
+<hr/>
 <div class="justify-content-center"><h3>Коментари</h3></div>
 
 
@@ -83,7 +84,7 @@
                     </div>
                     <div class="row form-group">
                         <div class="col-md-12">
-                            <input type="submit" value="Post" asp-controller="Comments" asp-action="Create" asp-route-AnnouncementId="@Model.Id" asp-route-UserId="@userId" class="btn btn-primary  py-2 px-5">
+                            <input type="submit" value="Изпрати" asp-controller="Comments" asp-action="Create" asp-route-AnnouncementId="@Model.Id" asp-route-UserId="@userId" class="btn btn-primary  py-2 px-5">
                         </div>
                     </div>
 

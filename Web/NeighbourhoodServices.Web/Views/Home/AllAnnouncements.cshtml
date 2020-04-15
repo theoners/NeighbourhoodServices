@@ -8,8 +8,7 @@
     <div class="container">
         <div class="row justify-content-center mb-5">
             <div class="col-md-7 heading-section text-center ftco-animate">
-                <span class="subheading">Job Categories</span>
-                <h2 class="mb-0">Топ Категории</h2>
+               <h2 class="mb-0">Топ Категории</h2>
             </div>
         </div>
         <div class="row">
@@ -20,124 +19,8 @@
 
 <section class="ftco-section ftco-no-pb bg-light">
     <div class="container">
-        <div class="row justify-content-center mb-4">
-            <div class="col-md-7 text-center heading-section ftco-animate">
-                <span class="subheading">Browse Jobs</span>
-                <h2 class="mb-4">Advance Search</h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="ftco-search">
-                <div class="row">
-                    <div class="col-md-12 nav-link-wrap">
-                        <div class="nav nav-pills text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                            <a class="nav-link active mr-md-1" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true">Find a Job</a>
-
-                            <a class="nav-link" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false">Find a Candidate</a>
-
-                        </div>
-                    </div>
-                    <div class="col-md-12 tab-wrap">
-
-                        <div class="tab-content p-4" id="v-pills-tabContent">
-
-                            <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-nextgen-tab">
-                                <form action="#" class="search-job">
-                                    <div class="row no-gutters">
-                                        <div class="col-md mr-md-2">
-                                            <div class="form-group">
-                                                <div class="form-field">
-                                                    <div class="icon"><span class="icon-briefcase"></span></div>
-                                                    <input type="text" class="form-control" placeholder="eg. Garphic. Web Developer">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md mr-md-2">
-                                            <div class="form-group">
-                                                <div class="form-field">
-                                                    <div class="select-wrap">
-                                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                                        <select name="" id="" class="form-control">
-                                                            <option value="">Category</option>
-                                                            <option value="">Full Time</option>
-                                                            <option value="">Part Time</option>
-                                                            <option value="">Freelance</option>
-                                                            <option value="">Internship</option>
-                                                            <option value="">Temporary</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md mr-md-2">
-                                            <div class="form-group">
-                                                <div class="form-field">
-                                                    <div class="icon"><span class="icon-map-marker"></span></div>
-                                                    <input type="text" class="form-control" placeholder="Location">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md">
-                                            <div class="form-group">
-                                                <div class="form-field">
-                                                    <button type="submit" class="form-control btn btn-primary">Search</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-
-                            <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-performance-tab">
-                                <form action="#" class="search-job">
-                                    <div class="row">
-                                        <div class="col-md">
-                                            <div class="form-group">
-                                                <div class="form-field">
-                                                    <div class="icon"><span class="icon-user"></span></div>
-                                                    <input type="text" class="form-control" placeholder="eg. Adam Scott">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md">
-                                            <div class="form-group">
-                                                <div class="form-field">
-                                                    <div class="select-wrap">
-                                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                                        <select name="" id="" class="form-control">
-                                                            <option value="">Category</option>
-                                                            <option value="">Full Time</option>
-                                                            <option value="">Part Time</option>
-                                                            <option value="">Freelance</option>
-                                                            <option value="">Internship</option>
-                                                            <option value="">Temporary</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md">
-                                            <div class="form-group">
-                                                <div class="form-field">
-                                                    <div class="icon"><span class="icon-map-marker"></span></div>
-                                                    <input type="text" class="form-control" placeholder="Location">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md">
-                                            <div class="form-group">
-                                                <div class="form-field border">
-                                                    <button type="submit" class="form-control btn btn-primary">Search</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+       <div class="row">
+            <partial name="_Search"/>
         </div>
     </div>
 </section>
@@ -186,70 +69,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 sidebar">
-                <div class="sidebar-box bg-white p-4 ftco-animate">
-                    <h3 class="heading-sidebar">Търси по категория</h3>
-                    <form action="#" class="search-form mb-3">
-                        <div class="form-group">
-                            <span class="icon icon-search"></span>
-                            <input type="text" class="form-control" placeholder="Търси...">
-                        </div>
-                    </form>
-                    <form action="#" class="browse-form">
-                        <label for="option-job-1"><input type="checkbox" id="option-job-1" name="vehicle" value="" checked> Website &amp; Software</label><br>
-                        <label for="option-job-2"><input type="checkbox" id="option-job-2" name="vehicle" value=""> Education &amp; Training</label><br>
-                        <label for="option-job-3"><input type="checkbox" id="option-job-3" name="vehicle" value=""> Graphics Design</label><br>
-                        <label for="option-job-4"><input type="checkbox" id="option-job-4" name="vehicle" value=""> Accounting &amp; Finance</label><br>
-                        <label for="option-job-5"><input type="checkbox" id="option-job-5" name="vehicle" value=""> Restaurant &amp; Food</label><br>
-                        <label for="option-job-6"><input type="checkbox" id="option-job-6" name="vehicle" value=""> Health &amp; Hospital</label><br>
-                    </form>
-                </div>
-
-                <div class="sidebar-box bg-white p-4 ftco-animate">
-                    <h3 class="heading-sidebar">Търси по място</h3>
-                    <form action="#" class="search-form mb-3">
-                        <div class="form-group">
-                            <span class="icon icon-search"></span>
-                            <input type="text" class="form-control" placeholder="Търси...">
-                        </div>
-                    </form>
-                    <form action="#" class="browse-form">
-                        <label for="option-location-1"><input type="checkbox" id="option-location-1" name="vehicle" value="" checked> Sydney, Australia</label><br>
-                        <label for="option-location-2"><input type="checkbox" id="option-location-2" name="vehicle" value=""> New York, United States</label><br>
-                        <label for="option-location-3"><input type="checkbox" id="option-location-3" name="vehicle" value=""> Tokyo, Japan</label><br>
-                        <label for="option-location-4"><input type="checkbox" id="option-location-4" name="vehicle" value=""> Manila, Philippines</label><br>
-                        <label for="option-location-5"><input type="checkbox" id="option-location-5" name="vehicle" value=""> Seoul, South Korea</label><br>
-                        <label for="option-location-6"><input type="checkbox" id="option-location-6" name="vehicle" value=""> Western City, UK</label><br>
-                    </form>
-                </div>
-
-            </div>
-        </div>
+           </div>
     </div>
 </section>
 
-<section class="ftco-section-parallax">
-    <div class="parallax-img d-flex align-items-center">
-        <div class="container">
-            <div class="row d-flex justify-content-center">
-                <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
-                    <h2>Абонамент за известия</h2>
-                    <p>
-                        Vestibulum sollicitudin erat id pulvinar mollis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pulvinar ex at diam pellentesque.
-                    </p>
-                    <div class="row d-flex justify-content-center mt-4 mb-4">
-                        <div class="col-md-12">
-                            <form action="#" class="subscribe-form">
-                                <div class="form-group d-flex">
-                                    <input type="text" class="form-control" placeholder="Имейл адрес" />
-                                    <input type="submit" value="Aбонирай се" class="submit px-3">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
+<partial name="_Subscribe"/>

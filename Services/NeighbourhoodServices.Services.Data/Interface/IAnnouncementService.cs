@@ -27,5 +27,8 @@ namespace NeighbourhoodServices.Services.Data.Interface
         Task<int> DeleteAsync(string id);
 
         Task<string> UpdateAsync(AnnouncementInputModel announcementInputModel, string id);
+
+        IEnumerable<T> GetByKeyWord<T>(string search, string category, string city);
+
     }
 }

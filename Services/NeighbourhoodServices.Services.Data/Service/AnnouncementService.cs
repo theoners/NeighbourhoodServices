@@ -16,7 +16,7 @@
     {
         private readonly IDeletableEntityRepository<Announcement> announcementRepository;
 
-       
+
         public AnnouncementService(IDeletableEntityRepository<Category> categoriesRepository, IDeletableEntityRepository<Announcement> announcementRepository)
         {
             this.announcementRepository = announcementRepository;
@@ -117,6 +117,34 @@
 
             await this.announcementRepository.SaveChangesAsync();
             return announcement.Id;
+        }
+
+        public IEnumerable<T> GetByKeyWord<T>(string search, string category, string city)
+        {
+            IQueryable<Announcement> query;
+            if (category != null)
+            {
+                query = this.announcementRepository
+                    .All()
+                    .Where(x => x.Category.Name == category);
+            }
+            else
+            {
+                query = this.announcementRepository
+                    .All();
+            }
+
+            if (city != null)
+            {
+                query = query.Where(x => x.Place.Contains(city));
+            }
+
+            if (search != null)
+            {
+                query = query.Where(x => x.Title.Contains(search) || x.Description.Contains(search));
+            }
+
+            return query.To<T>().ToList();
         }
     }
 }
