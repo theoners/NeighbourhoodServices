@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace NeighbourhoodServices.Services.Data
 {
@@ -41,12 +42,10 @@ namespace NeighbourhoodServices.Services.Data
 
         public T SearchUser<T>(string userName, string city)
         {
-            var user = this.userRepository
+            var userId = this.userRepository
                 .All()
-                .Where(x => x.UserName.Contains(userName) || x.City.Contains(city))
-                .To<T>()
-                .FirstOrDefault();
-            return user;
+                .FirstOrDefault(x => x.UserName.Contains(userName) || x.City.Contains(city))?.Id;
+            return this.GetUser<T>(userId);
         }
 
         public IEnumerable<T> GetTopUsers<T>()
