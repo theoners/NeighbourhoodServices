@@ -1,14 +1,16 @@
-﻿using System.Collections.Generic;
-using NeighbourhoodServices.Web.ViewModels.Comments;
-
-namespace NeighbourhoodServices.Web.ViewModels.Announcements
+﻿namespace NeighbourhoodServices.Web.ViewModels.Announcements
 {
-    using NeighbourhoodServices.Services.Mapping;
+    using System;
+    using System.Collections.Generic;
+
     using NeighbourhoodServices.Data.Models;
+    using NeighbourhoodServices.Services.Mapping;
+    using NeighbourhoodServices.Web.ViewModels.Comments;
 
     public class AnnouncementDetails : IMapFrom<Announcement>
-    { 
+    {
         public string Id { get; set; }
+
         public string Title { get; set; }
 
         public string Description { get; set; }
@@ -19,7 +21,7 @@ namespace NeighbourhoodServices.Web.ViewModels.Announcements
 
         public string CategoryName { get; set; }
 
-        public string CreatedOn { get; set; }
+        public DateTime CreatedOn { get; set; }
 
         public Category Category { get; set; }
 

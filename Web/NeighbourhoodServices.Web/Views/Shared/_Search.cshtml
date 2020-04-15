@@ -19,7 +19,7 @@
                                 <div class="form-group">
                                     <div class="form-field">
                                         <div class="icon"><span class="icon-briefcase"></span></div>
-                                        <input type="text" class="form-control" placeholder="Потребителско име">
+                                        <input type="text" name="username" class="form-control" placeholder="Потребителско име">
                                     </div>
                                 </div>
                             </div>
@@ -27,14 +27,14 @@
                                 <div class="form-group">
                                     <div class="form-field">
                                         <div class="icon"><span class="icon-map-marker"></span></div>
-                                        <input type="text" class="form-control" placeholder="Град">
+                                        <input type="text" name="city" class="form-control" placeholder="Град">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md">
                                 <div class="form-group">
                                     <div class="form-field">
-                                        <button type="submit" class="form-control btn btn-primary">Търси</button>
+                                        <button type="submit" asp-controller="Users" asp-action="SearchUser" class="form-control btn btn-primary">Търси</button>
                                     </div>
                                 </div>
                             </div>

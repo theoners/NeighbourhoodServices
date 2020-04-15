@@ -1,4 +1,6 @@
-﻿namespace NeighbourhoodServices.Services.Data
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace NeighbourhoodServices.Services.Data
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -34,6 +36,16 @@
                     .To<T>()
                     .FirstOrDefault();
 
+            return user;
+        }
+
+        public T SearchUser<T>(string userName, string city)
+        {
+            var user = this.userRepository
+                .All()
+                .Where(x => x.UserName.Contains(userName) || x.City.Contains(city))
+                .To<T>()
+                .FirstOrDefault();
             return user;
         }
 

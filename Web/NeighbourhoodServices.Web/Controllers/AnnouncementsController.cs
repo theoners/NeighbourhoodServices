@@ -62,7 +62,7 @@ namespace NeighbourhoodServices.Web.Controllers
             var announcementViewModel = this.announcementService.GetDetails<AnnouncementDetails>(id);
             if (announcementViewModel == null)
             {
-                return Redirect("/");
+                return this.Redirect("/");
             }
 
             var comments = this.commentService.GetCommentByPostId<CommentViewModel>(id);

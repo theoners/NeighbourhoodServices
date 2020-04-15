@@ -32,5 +32,17 @@ namespace NeighbourhoodServices.Web.Controllers
             user.Comments = this.commentService.GetCommentByUserId<CommentViewModel>(id).ToList();
             return this.View(user);
         }
+
+        public IActionResult SearchUser(string username, string city)
+        {
+            var user = this.userService.SearchUser<UserViewModel>(username, city);
+            if (user == null)
+            {
+                return this.Redirect("/");
+            }
+
+            user.Comments = this.commentService.GetCommentByUserId<CommentViewModel>(user.Id).ToList();
+            return this.View("UserProfile", user);
+        }
     }
 }

@@ -2,6 +2,7 @@
 {
     using NeighbourhoodServices.Data.Models;
     using NeighbourhoodServices.Services.Mapping;
+
     public class TopUserViewModel : IMapFrom<ApplicationUser>
     {
         public string Id { get; set; }
