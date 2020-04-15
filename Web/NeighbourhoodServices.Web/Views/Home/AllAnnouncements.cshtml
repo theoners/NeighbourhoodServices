@@ -1,7 +1,7 @@
 ﻿@model NeighbourhoodServices.Web.ViewModels.Announcements.GetAllViewModel;
 <div class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
-    </div>
+</div>
 
 
 <section class="ftco-section">
@@ -161,17 +161,24 @@
                                 @if (Model.Page.PagesCount > 1)
                                 {
 
-                                    var disabledPrevious = Model.Page.CurrentPage == 1?"disabled":string.Empty;
-                                   
-                                    <li><a class="@disabledPrevious" asp-controller="Home" asp-action="AllAnnouncements"  asp-route-currentPage="(Model.Page.CurrentPage-1)">&lt;</a></li>
+                                    if (Model.Page.CurrentPage != 1)
+                                    {
+                                        <li><a asp-controller="Home" asp-action="AllAnnouncements" asp-route-currentPage="@(Model.Page.CurrentPage - 1)">&lt;</a></li>
+                                    }
+
+
                                     for (int i = 1; i <= Model.Page.PagesCount; i++)
                                     {
                                         var active = Model.Page.CurrentPage == i ? "active" : string.Empty;
 
                                         <li class="@active"><a asp-controller="Home" asp-action="AllAnnouncements" value="@i" asp-route-currentPage="@i">@i</a></li>
                                     }
-                                    var disabledNext = Model.Page.CurrentPage == 1?"disabled":string.Empty;
-                                    <li><a class="@disabledNext" asp-controller="Home" asp-action="AllAnnouncements"  asp-route-currentPage="(Model.Page.CurrentPage+1)">&gt;</a></li>
+                                    var disabledNext = Model.Page.CurrentPage == 1 ? "disabled" : string.Empty;
+                                    if (Model.Page.CurrentPage != Model.Page.PagesCount)
+                                    {
+                                        <li><a class="@disabledNext" asp-controller="Home" asp-action="AllAnnouncements" asp-route-currentPage="@(Model.Page.CurrentPage + 1)">&gt;</a></li>
+                                    }
+
                                 }
 
                             </ul>
