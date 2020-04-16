@@ -1,4 +1,6 @@
-﻿namespace NeighbourhoodServices.Services.Data.Service
+﻿using System.Web.Mvc;
+
+namespace NeighbourhoodServices.Services.Data.Service
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -22,6 +24,7 @@
             this.announcementRepository = announcementRepository;
         }
 
+        [HttpPost]
         public async Task<string> CreateAsync(AnnouncementInputModel announcementInputModel, string userId)
         {
             var announcement = new Announcement()
@@ -32,6 +35,8 @@
                 ServiceType = announcementInputModel.ServiceType,
                 CategoryId = int.Parse(announcementInputModel.Category),
                 UserId = userId,
+                Price = announcementInputModel.Price,
+
             };
 
             await this.announcementRepository.AddAsync(announcement);
