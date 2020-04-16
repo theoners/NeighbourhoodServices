@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using NeighbourhoodServices.Data.Models
+@using NeighbourhoodServices.Web.Pages
 @model NeighbourhoodServices.Web.ViewModels.Users.UserViewModel
 @inject UserManager<ApplicationUser> UserManager
 @{
@@ -162,3 +163,5 @@
         </div>
     </div>
 </div>
+
+@(await Html.RenderComponentAsync<Test>(RenderMode.ServerPrerendered))

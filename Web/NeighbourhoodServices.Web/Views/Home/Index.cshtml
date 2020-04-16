@@ -1,4 +1,5 @@
 ﻿@using NeighbourhoodServices.Common
+@using NeighbourhoodServices.Web.Pages
 @model NeighbourhoodServices.Web.ViewModels.Home.IndexViewModel
 
 <div class="hero-wrap img" style="background-image: url(images/bg_1.jpg);">
@@ -39,7 +40,7 @@
                             </div>
                         </div>
                     </div>
-                    <partial name="_Search"/>
+                    <partial name="_Search" />
                 </div>
             </div>
         </div>
@@ -54,18 +55,18 @@
                     <div class="row no-gutters">
                         @foreach (var category in Model.Categories)
                         {
-                        <div class="col-md-2">
+                            <div class="col-md-2">
 
-                            <a asp-controller="Categories" asp-action="AnnouncementsByCategory" asp-route-categoryName="@category.Name">
-                                <div class="top-category text-center no-border-left">
-                                    <h3>@category.Name</h3>
-                                    <span class="fas fa-align-justify"></span>
-                                    <p><span class="number">@category.ServicesCount</span> <span>Активни обяви</span></p>
-                                </div>
-                            </a>
+                                <a asp-controller="Categories" asp-action="AnnouncementsByCategory" asp-route-categoryName="@category.Name">
+                                    <div class="top-category text-center no-border-left">
+                                        <h3>@category.Name</h3>
+                                        <span class="fas fa-align-justify"></span>
+                                        <p><span class="number">@category.ServicesCount</span> <span>Активни обяви</span></p>
+                                    </div>
+                                </a>
 
 
-                        </div>
+                            </div>
                         }
 
 
@@ -86,11 +87,11 @@
         <div class="row">
             @foreach (var category in Model.Categories.OrderByDescending(x => x.ServicesCount).Take(4))
             {
-            <div class="col-md-3 ftco-animate">
-                <ul class="category text-center">
-                    <li><a href="@category.Name">@category.Name<br><span class="number">@category.ServicesCount</span> <span>Активни обяви</span><i class="ion-ios-arrow-forward"></i></a></li>
-                </ul>
-            </div>
+                <div class="col-md-3 ftco-animate">
+                    <ul class="category text-center">
+                        <li><a href="@category.Name">@category.Name<br><span class="number">@category.ServicesCount</span> <span>Активни обяви</span><i class="ion-ios-arrow-forward"></i></a></li>
+                    </ul>
+                </div>
             }
         </div>
     </div>
@@ -119,14 +120,14 @@
                 <div class="sidebar-box ftco-animate">
                     @foreach (var user in Model.TopUsers)
                     {
-                    <div class="">
+                        <div class="">
 
-                        <a class="company-wrap"><img src="@user.ProfilePictureUrl" class="img-fluid img-thumbnail"></a>
-                        <div class="text p-3">
-                            <h3><a asp-controller="Users" asp-action="UserProfile" asp-route-id="@user.Id">@user.UserName</a></h3>
-                            <a asp-controller="Announcements" asp-action="GetByUser" asp-route-id="@user.Id"><span class="number">@user.AnnouncementsCount</span> <span>Обяви</span></a>
+                            <a class="company-wrap"><img src="@user.ProfilePictureUrl" class="img-fluid img-thumbnail"></a>
+                            <div class="text p-3">
+                                <h3><a asp-controller="Users" asp-action="UserProfile" asp-route-id="@user.Id">@user.UserName</a></h3>
+                                <a asp-controller="Announcements" asp-action="GetByUser" asp-route-id="@user.Id"><span class="number">@user.AnnouncementsCount</span> <span>Обяви</span></a>
+                            </div>
                         </div>
-                    </div>
 
                     }
 
@@ -138,7 +139,7 @@
 
 <partial name="_Subscribe" />
 
-
+@(await Html.RenderComponentAsync<Test>(RenderMode.ServerPrerendered))
 
 
 <!-- loader -->

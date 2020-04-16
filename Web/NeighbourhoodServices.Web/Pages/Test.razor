@@ -1,0 +1,23 @@
+﻿@page "/Hello"
+
+<h3>HelloWorld</h3>
+
+Hello @Name
+
+<button @onclick="Toggle">Toggle</button>
+
+@code {
+    public string Name { get; set; } = "Jon";
+
+    protected async Task Toggle()
+    {
+        if (Name == "Jon")
+        {
+            Name = "Susan";
+        }
+        else
+        {
+            Name = "Jon";
+        }
+    }
+}

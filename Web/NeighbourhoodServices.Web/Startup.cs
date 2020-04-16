@@ -64,7 +64,7 @@ namespace NeighbourhoodServices.Web
 
             services.AddControllersWithViews();
             services.AddRazorPages();
-
+            services.AddServerSideBlazor();
             services.AddSingleton(this.configuration);
 
             // Data repositories
@@ -138,6 +138,7 @@ namespace NeighbourhoodServices.Web
                         endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapRazorPages();
+                        endpoints.MapBlazorHub();
                     });
         }
     }
