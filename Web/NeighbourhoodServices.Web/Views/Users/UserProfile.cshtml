@@ -11,6 +11,7 @@
     <div class="overlay"></div>
 </div>
 <div class="container">
+    <div class="text-center"><h2>Профил на @Model.UserName</h2></div>
     <div class="row my-2">
         <div class="col-lg-8 order-lg-2">
             <ul class="nav nav-tabs">
@@ -29,65 +30,18 @@
                     <h5 class="mb-3">Потребителски Профил</h5>
                     <div class="row">
                         <div class="col-md-6">
-                            <h5>Потребителско Име</h5>
-                            <p>
-                                @Model.UserName
-                            </p>
-                            <h5>Град</h5>
-                            <p>
-                                @Model.City
-                            </p>
+                            <h5>Пол :  @Model.Gender</h5>
+                            <h5>Потребителско Име : @Model.UserName</h5>
+                            <h5>Град : @Model.City</h5>
+                            <h5>Брой обяви : @Model.Announcements.Count</h5>
                         </div>
-                        <div class="col-md-6">
-                            <h6>Предлага Услуги</h6>
-                            <a href="#" class="badge badge-dark badge-pill"></a>
-                            <a href="#" class="badge badge-dark badge-pill">react</a>
-                            <a href="#" class="badge badge-dark badge-pill">codeply</a>
-                            <a href="#" class="badge badge-dark badge-pill">angularjs</a>
-                            <a href="#" class="badge badge-dark badge-pill">css3</a>
-                            <a href="#" class="badge badge-dark badge-pill">jquery</a>
-                            <a href="#" class="badge badge-dark badge-pill">bootstrap</a>
-                            <a href="#" class="badge badge-dark badge-pill">responsive-design</a>
-                            <hr>
-                            <span class="badge badge-danger"><i class="fa fa-eye"></i> 245 Прегледи</span>
-                            <span class="badge badge-danger"><i class="fa fa-eye"></i> 245 Рейтинг</span>
-                        </div>
-                        <div class="col-md-12">
-                            <h5 class="mt-2"><span class="fa ion-clock float-right"></span>Последни Оценки</h5>
-                            <table class="table table-sm table-hover table-striped">
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <strong>Abby</strong> joined ACME Project Team in <strong>`Collaboration`</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <strong>Gary</strong> deleted My Board1 in <strong>`Discussions`</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <strong>Kensington</strong> deleted MyBoard3 in <strong>`Discussions`</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <strong>John</strong> deleted My Board1 in <strong>`Discussions`</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <strong>Skell</strong> deleted his post Look at Why this is.. in <strong>`Discussions`</strong>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+
+
                     </div>
                     <!--/row-->
                 </div>
                 <div class="tab-pane" id="announcement">
+                    <h5 class="mb-3">Обяви</h5>
                     @foreach (var announcement in Model.Announcements)
                     {
                         <div class="col-md-12 ftco-animate">
@@ -131,7 +85,7 @@
                     }
                 </div>
                 <div class="tab-pane" id="opinions">
-
+                    <h5 class="mb-3">Коментари</h5>
                     @foreach (var comment in Model.Comments)
                     {
                         <div class="col-md-12 ftco-animate">
