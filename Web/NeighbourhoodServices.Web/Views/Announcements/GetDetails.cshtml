@@ -43,7 +43,7 @@
         </div>
     </div>
 </div>
-<hr/>
+<hr />
 <div class="justify-content-center"><h3>Коментари</h3></div>
 
 
@@ -56,16 +56,15 @@
                     <p>
                         <a asp-controller="Users" asp-action="UserProfile" asp-route-id="@comment.UserId" class="text-secondary text-left"><strong>@comment.UserUserName</strong></a>
                     </p>
-                    
+
                     <p>@comment.Text</p>
                     <p>@comment.CreatedOn</p>
                     @if (comment.UserId == userId)
                     {
-                         <a class="btn btn-danger" type="submit" asp-controller="Comments" asp-action="Delete" asp-route-commentId="@comment.Id">Изтрий</a>
-                                        <a class="btn btn-secondary" type="submit" asp-controller="Comments" asp-action="GetUpdateView" asp-route-id="@comment.Id">Редактирай</a>
+                        <a class="btn btn-danger" type="submit" asp-controller="Comments" asp-action="Delete" asp-route-commentId="@comment.Id">Изтрий</a>
                     }
                 </div>
-                </div>
+            </div>
         </div>
 
     </div>

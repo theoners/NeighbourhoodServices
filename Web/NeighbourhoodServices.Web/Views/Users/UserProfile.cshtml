@@ -42,7 +42,7 @@
                 </div>
                 <div class="tab-pane" id="announcement">
                     <h5 class="mb-3">Обяви</h5>
-                   <partial name="_Anouncement", model="@Model"/>
+                    <partial name="_Anouncement" , model="@Model" />
                 </div>
                 <div class="tab-pane" id="opinions">
                     <h5 class="mb-3">Коментари</h5>
@@ -60,7 +60,6 @@
                                     @if (userId == comment.UserId || User.IsInRole("Administrator"))
                                     {
                                         <a class="btn btn-danger" type="submit" asp-controller="Comments" asp-action="Delete" asp-route-commentId="@comment.Id">Изтрий</a>
-                                        <a class="btn btn-secondary" type="submit" asp-controller="Comments" asp-action="GetUpdateView" asp-route-id="@comment.Id">Редактирай</a>
                                     }
                                 </div>
 
