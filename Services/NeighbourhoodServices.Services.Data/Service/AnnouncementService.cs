@@ -31,7 +31,7 @@ namespace NeighbourhoodServices.Services.Data.Service
             {
                 Title = announcementInputModel.Title,
                 Description = announcementInputModel.Description,
-                Place = announcementInputModel.Address,
+                Place = announcementInputModel.Place,
                 ServiceType = announcementInputModel.ServiceType,
                 CategoryId = int.Parse(announcementInputModel.Category),
                 UserId = userId,
@@ -116,9 +116,10 @@ namespace NeighbourhoodServices.Services.Data.Service
 
             announcement.Title = announcementInputModel.Title;
             announcement.Description = announcementInputModel.Description;
-            announcement.Place = announcementInputModel.Address;
+            announcement.Place = announcementInputModel.Place;
             announcement.ServiceType = announcementInputModel.ServiceType;
             announcement.CategoryId = int.Parse(announcementInputModel.Category);
+            announcement.Price = announcementInputModel.Price;
 
             await this.announcementRepository.SaveChangesAsync();
             return announcement.Id;

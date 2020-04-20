@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace NeighbourhoodServices.Web.ViewModels.Announcements
 {
@@ -9,9 +10,9 @@ namespace NeighbourhoodServices.Web.ViewModels.Announcements
     public class AnnouncementViewModel : IMapFrom<Announcement>
     {
         public string Id { get; set; }
-
+        
         public string Title { get; set; }
-
+        
         public string Description { get; set; }
 
         public ServiceType ServiceType { get; set; }

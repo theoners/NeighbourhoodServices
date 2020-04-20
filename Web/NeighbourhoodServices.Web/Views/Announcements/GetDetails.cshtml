@@ -20,9 +20,10 @@
             </div>
             <div class="job-post-item-body d-block d-md-flex">
                 <div class="mr-3"><span class="icon-layers"></span> <a href="#">@Model.User</a></div>
-                <div><span class="icon-my_location"></span> <span>@Model.Place</span></div>
-                <div><span class="icon-my_location"></span> <span>@Model.CreatedOn</span></div>
-                <div><span class="icon-my_location"></span> <span>@Model.CategoryName</span></div>
+                <div class="mr-3"><span class="icon-my_location"></span> <span>@Model.Place</span></div>
+                <div class="mr-3"><span class="icon-my_location"></span> <span>@Model.CreatedOn</span></div>
+                <div class="mr-3"><span class="icon-my_location"></span> <span>@Model.CategoryName</span></div>
+                <div class="mr-3"><span class="icon-money"></span> <span>@Model.Price</span></div>
             </div>
             <div>
 
@@ -58,6 +59,11 @@
                     
                     <p>@comment.Text</p>
                     <p>@comment.CreatedOn</p>
+                    @if (comment.UserId == userId)
+                    {
+                         <a class="btn btn-danger" type="submit" asp-controller="Comments" asp-action="Delete" asp-route-commentId="@comment.Id">Изтрий</a>
+                                        <a class="btn btn-secondary" type="submit" asp-controller="Comments" asp-action="GetUpdateView" asp-route-id="@comment.Id">Редактирай</a>
+                    }
                 </div>
                 </div>
         </div>

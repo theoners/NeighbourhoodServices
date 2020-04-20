@@ -29,5 +29,14 @@ namespace NeighbourhoodServices.Web.Controllers
 
             return this.RedirectToAction("GetDetails", "Announcements", new { id = commentInputModel.AnnouncementId });
         }
+
+        [Authorize]
+        public async Task<IActionResult> Delete(int commentId)
+        {
+            
+           var announcementId = await this.commentService.DeleteAsync(commentId);
+
+            return this.RedirectToAction("GetDetails", "Announcements", new { id = announcementId });
+        }
     }
 }

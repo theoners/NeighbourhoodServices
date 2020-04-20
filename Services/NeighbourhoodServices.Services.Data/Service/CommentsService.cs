@@ -13,7 +13,7 @@ namespace NeighbourhoodServices.Services.Data.Service
     using NeighbourhoodServices.Services.Data.Interface;
     using NeighbourhoodServices.Web.ViewModels.Comments;
 
-   public class CommentsService : ICommentService
+    public class CommentsService : ICommentService
     {
         private readonly IDeletableEntityRepository<Comment> commentRepository;
 
@@ -55,6 +55,20 @@ namespace NeighbourhoodServices.Services.Data.Service
                     .Where(x => x.UserId == userId);
 
             return comments.To<T>().ToList();
+        }
+
+        public async Task<string> DeleteAsync(int id)
+        {
+            var comment = await this.commentRepository.GetByIdWithDeletedAsync(id);
+            var announcementId = comment.AnnouncementId;
+            this.commentRepository.Delete(comment);
+            await this.commentRepository.SaveChangesAsync();
+            return announcementId;
+        }
+
+        public Task<string> UpdateAsync(CommentViewModel commentViewModel)
+        {
+            throw new NotImplementedException();
         }
     }
 }

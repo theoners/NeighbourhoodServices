@@ -46,7 +46,24 @@
         {
             if (!this.ModelState.IsValid)
             {
-                return this.Redirect("/");
+                var categories = this.categoriesService.GetAll<AnnouncementCategoriesView>();
+                var currentAnnouncement = new AnnouncementViewModel()
+                {
+                    Title = announcementInputModel.Title,
+                    ServiceType = announcementInputModel.ServiceType,
+                    CategoryName = announcementInputModel.Category,
+                    Description = announcementInputModel.Description,
+                    Price = announcementInputModel.Price,
+                    Place = announcementInputModel.Place,
+                };
+                var viewModel = new AnnouncementUpdateModel()
+                {
+                    Categories = categories,
+                    Announcement = currentAnnouncement,
+                };
+
+                return this.View("GetUpdateView", viewModel);
+
             }
 
             var user = await this.userManager.GetUserAsync(this.User);
@@ -107,6 +124,27 @@
 
         public async Task<IActionResult> Update(AnnouncementInputModel announcementInputModel, string id)
         {
+            
+            if (!this.ModelState.IsValid)
+            {
+                var categories = this.categoriesService.GetAll<AnnouncementCategoriesView>();
+                var currentAnnouncement = new AnnouncementViewModel()
+                {
+                    Title = announcementInputModel.Title,
+                    ServiceType = announcementInputModel.ServiceType,
+                    CategoryName = announcementInputModel.Category,
+                    Description = announcementInputModel.Description,
+                    Price = announcementInputModel.Price,
+                    Place = announcementInputModel.Place,
+                };
+                var viewModel = new AnnouncementUpdateModel()
+                {
+                    Categories = categories,
+                    Announcement = currentAnnouncement,
+                };
+                return this.View("GetUpdateView", viewModel);
+            }
+
             await this.announcementService.UpdateAsync(announcementInputModel, id);
             return this.RedirectToAction("GetDetails", new { id = id });
         }

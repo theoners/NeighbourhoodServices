@@ -1,9 +1,20 @@
-﻿@model NeighbourhoodServices.Web.ViewModels.Announcements.GetAllViewModel
+﻿@using Microsoft.AspNetCore.Http
+@model NeighbourhoodServices.Web.ViewModels.Announcements.GetAllViewModel
 
-    <div class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
-        <div class="overlay"></div>
-        
-    </div>
+
+<div class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+
+</div>
+
+@if (!@Model.Announcements.Any())
+{
+    <div class="text-center"><h1>Не бяха намерени обяви в категория @Model.Announcements.FirstOrDefault()?.CategoryName</h1></div>
+}
+else
+{
+    <div class="text-center"><h1>Всички обяви в категория @Model.Announcements.FirstOrDefault()?.CategoryName</h1></div>
+}
 
 <section class="ftco-section bg-light">
     <div class="container">
@@ -16,29 +27,38 @@
                     <div class="col text-center">
                         <div class="block-27">
                             <ul>
-                                <li><a href="#">&lt;</a></li>
+
                                 @if (Model.Page.PagesCount > 1)
                                 {
+                                    if (Model.Page.CurrentPage != 1)
+                                    {
+                                        <li><a asp-controller="Categories" asp-action="AnnouncementsByCategory" value="@(Model.Page.CurrentPage-1)" asp-route-currentPage="@(Model.Page.CurrentPage-1)">&lt;</a></li>
+                                    }
+
                                     for (int i = 1; i <= Model.Page.PagesCount; i++)
                                     {
                                         var active = Model.Page.CurrentPage == i ? "active" : string.Empty;
 
                                         <li class="@active"><a asp-controller="Categories" asp-action="AnnouncementsByCategory" value="@i" asp-route-currentPage="@i">@i</a></li>
                                     }
-
+                                    if (Model.Page.CurrentPage != Model.Page.PagesCount)
+                                    {
+                                        <li><a asp-controller="Categories" asp-action="AnnouncementsByCategory" value="@(Model.Page.CurrentPage+1)" asp-route-currentPage="@(Model.Page.CurrentPage+1)">&gt;</a></li>
+                                    }
+                                    
                                 }
-                                <li><a href="#">&gt;</a></li>
+
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
-           
+
         </div>
     </div>
 </section>
 
-<partial name="_Subscribe"/>
+<partial name="_Subscribe" />
 
 
 

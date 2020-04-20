@@ -12,5 +12,9 @@ namespace NeighbourhoodServices.Services.Data.Interface
         IEnumerable<T> GetCommentByPostId<T>(string announcementId, int skip = 0);
 
         IEnumerable<T> GetCommentByUserId<T>(string userId);
+
+        Task<string> DeleteAsync(int id);
+
+        Task<string> UpdateAsync(CommentViewModel commentViewModel);
     }
 }

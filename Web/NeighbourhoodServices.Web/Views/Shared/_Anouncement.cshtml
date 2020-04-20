@@ -26,6 +26,7 @@
                     <div class="mr-3"><span class="icon-my_location"></span> <span>@announcement.Place</span></div>
                     <div class="mr-3"><span class="icon-calendar"></span> <span>@announcement.CreatedOn</span></div>
                     <div class="mr-3"><span class="icon-align-justify"></span> <a asp-controller="Categories" asp-action="AnnouncementsByCategory" asp-route-categoryName="@announcement.CategoryName">@announcement.CategoryName</a></div>
+                    <div class="mr-3"><span class="icon-money"></span> <span>@announcement.Price</span></div>
                 </div>
                 <div>
 
@@ -41,13 +42,7 @@
             </div>
 
             <div class="one-forth ml-auto d-flex align-items-center mt-4 md-md-0">
-                <div>
-                    <a href="#" class="icon text-center d-flex justify-content-center align-items-center icon mr-2">
-                        <span class="icon-heart"></span>
-                    </a>
-                </div>
-
-                <a asp-controller="Announcements" asp-action="GetDetails" asp-route-id="@announcement.Id" class="btn btn-primary py-2">Детайли</a>
+               <a asp-controller="Announcements" asp-action="GetDetails" asp-route-id="@announcement.Id" class="btn btn-primary py-2">Детайли</a>
             </div>
         </div>
     </div>
