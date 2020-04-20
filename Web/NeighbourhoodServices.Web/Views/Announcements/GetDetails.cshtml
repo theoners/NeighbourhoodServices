@@ -59,7 +59,7 @@
 
                     <p>@comment.Text</p>
                     <p>@comment.CreatedOn</p>
-                    @if (comment.UserId == userId)
+                    @if (comment.UserId == userId || User.IsInRole("Administrator"))
                     {
                         <a class="btn btn-danger" type="submit" asp-controller="Comments" asp-action="Delete" asp-route-commentId="@comment.Id">Изтрий</a>
                     }
