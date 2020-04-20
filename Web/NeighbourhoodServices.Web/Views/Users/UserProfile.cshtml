@@ -59,7 +59,7 @@
 
                                     @if (userId == comment.UserId || User.IsInRole("Administrator"))
                                     {
-                                        <a class="btn btn-danger" type="submit" asp-controller="Comments" asp-action="Delete" asp-route-id="@comment.Id">Изтрий</a>
+                                        <a class="btn btn-danger" type="submit" asp-controller="Comments" asp-action="Delete" asp-route-commentId="@comment.Id">Изтрий</a>
                                         <a class="btn btn-secondary" type="submit" asp-controller="Comments" asp-action="GetUpdateView" asp-route-id="@comment.Id">Редактирай</a>
                                     }
                                 </div>

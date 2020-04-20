@@ -13,7 +13,7 @@ namespace NeighbourhoodServices.Services.Data.Interface
 
         IEnumerable<T> GetCommentByUserId<T>(string userId);
 
-        Task<string> DeleteAsync(int id);
+        Task<int> DeleteAsync(int id);
 
         Task<string> UpdateAsync(CommentViewModel commentViewModel);
     }

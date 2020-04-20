@@ -57,13 +57,11 @@ namespace NeighbourhoodServices.Services.Data.Service
             return comments.To<T>().ToList();
         }
 
-        public async Task<string> DeleteAsync(int id)
+        public async Task<int> DeleteAsync(int id)
         {
             var comment = await this.commentRepository.GetByIdWithDeletedAsync(id);
-            var announcementId = comment.AnnouncementId;
             this.commentRepository.Delete(comment);
-            await this.commentRepository.SaveChangesAsync();
-            return announcementId;
+            return await this.commentRepository.SaveChangesAsync();
         }
 
         public Task<string> UpdateAsync(CommentViewModel commentViewModel)

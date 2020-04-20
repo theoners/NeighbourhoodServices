@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NeighbourhoodServices.Services.Data.Interface;
@@ -33,10 +34,9 @@ namespace NeighbourhoodServices.Web.Controllers
         [Authorize]
         public async Task<IActionResult> Delete(int commentId)
         {
-            
-           var announcementId = await this.commentService.DeleteAsync(commentId);
-
-            return this.RedirectToAction("GetDetails", "Announcements", new { id = announcementId });
+            var currentUrl = this.HttpContext.Request.Headers.FirstOrDefault(x => x.Key == "Referer").Value;
+            var announcementId = await this.commentService.DeleteAsync(commentId);
+            return this.Redirect(currentUrl);
         }
     }
 }

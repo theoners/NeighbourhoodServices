@@ -1,4 +1,6 @@
-﻿namespace NeighbourhoodServices.Web.Controllers
+﻿using System.Linq;
+
+namespace NeighbourhoodServices.Web.Controllers
 {
     using System;
     using System.Collections.Generic;
@@ -106,8 +108,9 @@
 
         public async Task<IActionResult> Delete(string id)
         {
+            var currentUrl = this.HttpContext.Request.Headers.FirstOrDefault(x => x.Key == "Referer").Value;
             await this.announcementService.DeleteAsync(id);
-            return this.Redirect("/");
+            return this.Redirect(currentUrl);
         }
 
         public IActionResult GetUpdateView(string id)
