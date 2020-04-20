@@ -1,7 +1,9 @@
 ﻿@model NeighbourhoodServices.Web.ViewModels.Home.IndexViewModel
+<div class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+</div>
 @{
     this.ViewData["Title"] = "Admin dashboard";
 }
+<div class="text-center"><h1>@this.ViewData["Title"]</h1></div>
 
-<h1>@this.ViewData["Title"]</h1>
-Settings: @this.Model.SettingsCount

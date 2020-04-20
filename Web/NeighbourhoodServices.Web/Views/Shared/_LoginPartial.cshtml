@@ -19,7 +19,7 @@
                     <button type="submit" class="btn-danger">Изход</button>
                 </form>
             </li>
-            if (!this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+            if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
             {
                 <li class="nav-item cta cta-colored">
                     <a class="nav-link" asp-area="Administration" asp-controller="Dashboard" asp-action="Index" title="Админ">Админ</a>
