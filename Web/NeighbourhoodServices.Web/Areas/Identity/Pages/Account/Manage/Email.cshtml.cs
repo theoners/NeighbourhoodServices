@@ -31,8 +31,10 @@
             _emailSender = emailSender;
         }
 
+        [Display(Name = "Потребителско Име")]
         public string Username { get; set; }
 
+        [Display(Name = "Имейл")]
         public string Email { get; set; }
 
         public bool IsEmailConfirmed { get; set; }
@@ -47,7 +49,7 @@
         {
             [Required]
             [EmailAddress]
-            [Display(Name = "New email")]
+            [Display(Name = "Нов Имейл")]
             public string NewEmail { get; set; }
         }
 

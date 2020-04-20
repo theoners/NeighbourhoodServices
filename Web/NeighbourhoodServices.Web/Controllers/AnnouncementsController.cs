@@ -1,21 +1,20 @@
-﻿using System;
-using NeighbourhoodServices.Common;
-using NeighbourhoodServices.Web.Infrastructure;
-using NeighbourhoodServices.Web.ViewModels.Comments;
-
-namespace NeighbourhoodServices.Web.Controllers
+﻿namespace NeighbourhoodServices.Web.Controllers
 {
+    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using NeighbourhoodServices.Common;
     using NeighbourhoodServices.Data.Models;
     using NeighbourhoodServices.Services.Data;
     using NeighbourhoodServices.Services.Data.Interface;
+    using NeighbourhoodServices.Web.Infrastructure;
     using NeighbourhoodServices.Web.ViewModels.Announcements;
     using NeighbourhoodServices.Web.ViewModels.Categories;
+    using NeighbourhoodServices.Web.ViewModels.Comments;
 
     [Authorize]
     public class AnnouncementsController : BaseController
