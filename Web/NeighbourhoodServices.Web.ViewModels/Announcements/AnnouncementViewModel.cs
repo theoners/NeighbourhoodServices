@@ -10,9 +10,9 @@ namespace NeighbourhoodServices.Web.ViewModels.Announcements
     public class AnnouncementViewModel : IMapFrom<Announcement>
     {
         public string Id { get; set; }
-        
+
         public string Title { get; set; }
-        
+
         public string Description { get; set; }
 
         public ServiceType ServiceType { get; set; }
@@ -29,6 +29,6 @@ namespace NeighbourhoodServices.Web.ViewModels.Announcements
 
         public string CategoryName { get; set; }
 
-        public Page Page { get; set; }
+        public Page Page { get; set; } = new Page();
     }
 }

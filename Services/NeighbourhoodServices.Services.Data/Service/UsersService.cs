@@ -1,11 +1,7 @@
-﻿using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-
-namespace NeighbourhoodServices.Services.Data
+﻿namespace NeighbourhoodServices.Services.Data
 {
     using System.Collections.Generic;
     using System.Linq;
-
     using NeighbourhoodServices.Data.Common.Repositories;
     using NeighbourhoodServices.Data.Models;
     using NeighbourhoodServices.Services.Mapping;
@@ -23,8 +19,6 @@ namespace NeighbourhoodServices.Services.Data
         {
             var userCount =
                 this.userRepository.All().Count();
-
-
             return userCount;
         }
 

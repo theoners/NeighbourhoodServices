@@ -61,7 +61,7 @@ namespace NeighbourhoodServices.Services.Data.Service
             var query =
                  this.announcementRepository
                      .All()
-                     .OrderByDescending(x => x.CreatedOn)
+                     .OrderByDescending(x => x.ModifiedOn ?? x.CreatedOn)
                      .Skip(skip)
                      .Take(AnnouncementsPerPage);
 
