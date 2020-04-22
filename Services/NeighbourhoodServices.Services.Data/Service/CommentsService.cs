@@ -1,16 +1,15 @@
-﻿using System.Linq;
-using NeighbourhoodServices.Services.Mapping;
-
-namespace NeighbourhoodServices.Services.Data.Service
+﻿namespace NeighbourhoodServices.Services.Data.Service
 {
-
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+
     using NeighbourhoodServices.Data.Common.Repositories;
     using NeighbourhoodServices.Data.Models;
     using NeighbourhoodServices.Services.Data.Interface;
+    using NeighbourhoodServices.Services.Mapping;
     using NeighbourhoodServices.Web.ViewModels.Comments;
 
     public class CommentsService : ICommentService
@@ -40,7 +39,7 @@ namespace NeighbourhoodServices.Services.Data.Service
         {
             var comments =
                 this.commentRepository
-                    .All().OrderByDescending(x => x.CreatedOn)
+                    .All().OrderByDescending(x => x.ModifiedOn ?? x.CreatedOn)
                     .Where(x => x.AnnouncementId == announcementId);
 
             return comments.To<T>().ToList();
@@ -51,7 +50,7 @@ namespace NeighbourhoodServices.Services.Data.Service
             var comments =
                 this.commentRepository
                     .All()
-                    .OrderByDescending(x => x.CreatedOn)
+                    .OrderByDescending(x => x.ModifiedOn ?? x.CreatedOn)
                     .Where(x => x.UserId == userId);
 
             return comments.To<T>().ToList();
@@ -66,7 +65,7 @@ namespace NeighbourhoodServices.Services.Data.Service
 
         public Task<string> UpdateAsync(CommentViewModel commentViewModel)
         {
-            throw new NotImplementedException();
+            var comment = this.commentRepository.All().FirstOrDefault(x => x.Id == commentViewModel.Id);
         }
     }
 }
