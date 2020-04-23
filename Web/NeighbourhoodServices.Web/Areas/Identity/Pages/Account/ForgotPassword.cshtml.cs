@@ -33,8 +33,9 @@ namespace NeighbourhoodServices.Web.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage = "Имейл полето е задължително")]
             [EmailAddress]
+            [Display(Name = "Имейл")]
             public string Email { get; set; }
         }
 
