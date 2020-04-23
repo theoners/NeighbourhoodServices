@@ -47,24 +47,24 @@
 
         public class InputModel
         {
-            [Required]
-            [Display(Name = "Username")]
+            [Required(ErrorMessage = "Потребителско име e задължително")]
+            [Display(Name = "Потребителско име")]
             public string UserName { get; set; }
 
-            [Required]
-            [EmailAddress]
-            [Display(Name = "Email")]
+            [Required(ErrorMessage = "Имейл e задължително")]
+            [EmailAddress(ErrorMessage = "Невалиден имейл ")]
+            [Display(Name = "Имейл")]
             public string Email { get; set; }
 
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Required(ErrorMessage = "Парола e задължително")]
+            [StringLength(100, ErrorMessage = " {0} най-малко {2} най-много {1} символа.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
+            [Display(Name = "Парола")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = "Потвърди парола")]
+            [Compare("Password", ErrorMessage = "Двете пароли не съвпадат")]
             public string ConfirmPassword { get; set; }
         }
 

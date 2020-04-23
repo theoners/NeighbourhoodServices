@@ -1,10 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using NeighbourhoodServices.Common
 @using NeighbourhoodServices.Data.Models
-@inject UserManager<ApplicationUser> UserManager
-@{
-    var userId = UserManager.GetUserId(this.User);
-}
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,19 +71,12 @@
 
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Test">Test</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Начало</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="AllAnnouncements">Обяви</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Announcements" asp-action="GetByUser" asp-route-id="@userId">Моите Обяви</a>
-                        </li>
-
-                    </ul>
+                        </ul>
                     <partial name="_LoginPartial" />
                 </div>
             </div>

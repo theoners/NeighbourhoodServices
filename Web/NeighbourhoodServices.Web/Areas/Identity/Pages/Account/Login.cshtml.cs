@@ -42,15 +42,16 @@
 
         public class InputModel
         {
-            [Required]
-            [Display(Name = "Username or Email")]
+            [Required(ErrorMessage = "Потребителско име или Имейл е задължително")]
+            [Display(Name = "Потребителско име или Имейл")]
             public string UserNameEmail { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Парола е задължително")]
+            [Display(Name = "Парола")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
-            [Display(Name = "Remember me?")]
+            [Display(Name = "Запомни ме")]
             public bool RememberMe { get; set; }
         }
 
@@ -89,24 +90,11 @@
                         _logger.LogInformation("User logged in.");
                         return LocalRedirect(returnUrl);
                     }
-
-                    if (result.RequiresTwoFactor)
-                    {
-                        return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
-                    }
-
-                    if (result.IsLockedOut)
-                    {
-                        _logger.LogWarning("User account locked out.");
-                        return RedirectToPage("./Lockout");
-                    }
-                    else
-                    {
-                       
-                        ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    
                         return Page();
-                    }
+                    
                 }
+                ModelState.AddModelError(string.Empty, "Невалиден опит за вход");
             }
 
             // If we got this far, something failed, redisplay form
