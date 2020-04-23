@@ -143,7 +143,7 @@
                 "Confirm your email",
                 $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-            StatusMessage = "Verification email sent. Please check your email.";
+            StatusMessage = "Имейл за потвръждение беше изпратено";
             return RedirectToPage();
         }
     }

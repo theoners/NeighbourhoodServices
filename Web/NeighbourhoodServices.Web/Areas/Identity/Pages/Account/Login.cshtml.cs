@@ -90,8 +90,8 @@
                         _logger.LogInformation("User logged in.");
                         return LocalRedirect(returnUrl);
                     }
-                    
-                        return Page();
+                    ModelState.AddModelError(string.Empty, "Невалиден опит за вход");
+                    return Page();
                     
                 }
                 ModelState.AddModelError(string.Empty, "Невалиден опит за вход");
