@@ -9,8 +9,8 @@
             string to,
             string subject,
             string htmlContent,
-            string from = "test@test.com",
-            string fromName = "test",
+            string from = "admin@NeighbourhoodServices.com",
+            string fromName = "admin",
             IEnumerable<EmailAttachment> attachments = null);
     }
 }

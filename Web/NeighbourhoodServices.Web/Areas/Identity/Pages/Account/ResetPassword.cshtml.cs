@@ -29,18 +29,20 @@
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage = "Имейл e задължително")]
             [EmailAddress]
+            [Display(Name = "Имейл")]
             public string Email { get; set; }
 
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Required(ErrorMessage = "Парола име e задължително")]
+            [StringLength(100, ErrorMessage = "{0}трябва да бъде най-малко {2} и най-много {1} символа.", MinimumLength = 6)]
             [DataType(DataType.Password)]
+            [Display(Name = "Парола")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = "Потвърди парола")]
+            [Compare("Password", ErrorMessage = "Паролите не съвпадат.")]
             public string ConfirmPassword { get; set; }
 
             public string Code { get; set; }
