@@ -1,5 +1,5 @@
 ﻿@using NeighbourhoodServices.Data.Models
-@model IEnumerable<NeighbourhoodServices.Web.ViewModels.Announcements.AnnouncementCategoriesView>
+@model NeighbourhoodServices.Web.ViewModels.Announcements.CreateModel
 @{
 }
 
@@ -7,40 +7,55 @@
     <div class="overlay"></div>
 
 </div>
+<div class="text-center">
 
+    <h1>Създай обява</h1>
+</div>
 <section class="ftco-section bg-light">
     <div class="container">
         <div class="row">
 
             <div class="col-md-12 col-lg-12 mb-5">
+                @if (@Model.Announcement.Category != null)
+                {
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                }
 
                 <form method="post" class="p-5 bg-white">
+                    <h3>Вид на услугата</h3>
                     <div class="radio">
                         @{
-                            var check = "checked";
+
                             var serviceTypes = Enum.GetValues(typeof(ServiceType));
                             @foreach (var serviceType in serviceTypes)
                             {
-                               
+
+                                var check = serviceType.ToString() == Model.Announcement.ServiceType.ToString() ? "checked" : string.Empty;
                                 <label><input @check type="radio" name="ServiceType" value="@serviceType">@serviceType</label>
-                                check =  string.Empty;
                             }
                         }
                     </div>
-                    <div class="col-md-12 mb-3 mb-md-0">
-                        <input type="text" class="form-control" name="title" placeholder="Тема">
+                    <div class="row form-group mb-4">
+                        <div class="col-md-12">
+                            <h3>Тема</h3>
+                        </div>
+                        <div class="col-md-12 mb-3 mb-md-0">
+                            <input type="text" class="form-control" name="title" value="@(Model.Announcement.Title)">
+                        </div>
                     </div>
                     <div class="row form-group">
-                        <div class="col-md-12"><h3>Тема</h3></div>
+                        <div class="col-md-12">
+                            <h3>Описание</h3>
+                        </div>
                         <div class="col-md-12 mb-3 mb-md-0">
-                            <textarea name="description" class="form-control" id="" cols="30" rows="5"></textarea>
+                            <textarea name="description" class="form-control" id="" cols="30" rows="5" value="@(Model.Announcement.Description)"></textarea>
                         </div>
                     </div>
                     <div class="row form-group">
                     </div>
                     <div class="form-group">
                         <h3>Бюджет</h3>
-                        <input type="number" class="form-control" min="0" value ="0" name="price">
+                        <input type="number" class="form-control" min="0" value="0" name="price">
                     </div>
 
                     <div class="row form-group mb-4">
@@ -48,15 +63,22 @@
                             <h3>Място</h3>
                         </div>
                         <div class="col-md-12 mb-3 mb-md-0">
-                            <input type="text" class="form-control" name="place" placeholder="Улица, Град">
+                            <input type="text" class="form-control" name="place" placeholder="Улица, Град" value="@(Model.Announcement.Place)">
                         </div>
                     </div>
-                    <div class="form-group col-md-4" name="category">
+                    <div class="row form-group col-md-4" name="category">
                         <h3>Категория</h3>
                         <select id="inputState" class="form-control" name="category">
-                           @foreach (var category in Model)
+                            @foreach (var category in Model.Categories)
                             {
-                                <option value="@category.Id">@category.Name</option>
+                                if (category.Id.ToString() == @Model.Announcement.Category)
+                                {
+                                    <option value="@category.Id" selected>@category.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@category.Id">@category.Name</option>
+                                }
 
                             }
                         </select>

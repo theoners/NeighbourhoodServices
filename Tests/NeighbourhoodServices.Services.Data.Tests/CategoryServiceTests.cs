@@ -18,7 +18,6 @@
 
     public class CategoryServiceTests : IDisposable
     {
-
         private readonly EfDeletableEntityRepository<Category> categoryRepository;
         private readonly ApplicationDbContext dbContext;
 

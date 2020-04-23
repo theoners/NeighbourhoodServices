@@ -7,7 +7,7 @@
     <div class="overlay"></div>
    
 </div>
-
+<div class="text-center"><h1>Редактирай обява</h1></div>
 <section class="ftco-section bg-light">
     <div class="container">
         <div class="row">
@@ -15,6 +15,8 @@
             <div class="col-md-12 col-lg-12 mb-5">
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <form method="post" class="p-5 bg-white">
+
+                    <h3>Вид на услугата</h3>
                     <div class="radio">
                         @{
                             var serviceTypes = Enum.GetValues(typeof(ServiceType));
@@ -25,15 +27,18 @@
                             }
                         }
                     </div>
-                    <div class="col-md-12 mb-3 mb-md-0">
-                        <h3>Заглавие</h3>
-                        <input type="text" class="form-control" name="title" value="@Model.Announcement.Title">
-
+                    <div class="row form-group mb-4">
+                        <div class="col-md-12">
+                            <h3>Тема</h3>
+                        </div>
+                        <div class="col-md-12 mb-3 mb-md-0">
+                            <input type="text" class="form-control" name="title" value="@Model.Announcement.Title">
+                        </div>
                     </div>
                     <div class="row form-group">
 
                         <div class="col-md-12">
-                            <h3>Тема</h3>
+                            <h3>Описание</h3>
                         </div>
 
                         <div class="col-md-12 mb-3 mb-md-0">
@@ -57,13 +62,13 @@
 
                         </div>
                     </div>
-                    <div class="form-group col-md-4" name="category">
+                    <div class=" row form-group col-md-4" name="category">
                         <label for="inputState">Категория</label>
                         <select id="inputState" class="form-control" name="category">
 
                             @foreach (var category in Model.Categories)
                             {
-                                if (category.Name == @Model.Announcement.CategoryName)
+                                if (category.Id.ToString() == @Model.Announcement.CategoryName)
                                 {
                                     <option value="@category.Id" selected>@category.Name</option>
                                 }

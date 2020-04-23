@@ -35,11 +35,17 @@ namespace NeighbourhoodServices.Web.Controllers
             this.commentService = commentService;
         }
 
+        [Authorize]
         [Route("ПубликувайОбява")]
-        public IActionResult GetCreateView()
+        public IActionResult GetCreateView(AnnouncementInputModel announcementInputModel)
         {
-            var viewModel = this.categoriesService.GetAll<AnnouncementCategoriesView>();
-            return this.View(viewModel);
+            var categories = this.categoriesService.GetAll<AnnouncementCategoriesView>();
+            var createModel = new CreateModel()
+            {
+               Categories = categories,
+               Announcement = announcementInputModel,
+            }; 
+            return this.View(createModel);
         }
 
         [HttpPost]
@@ -49,29 +55,22 @@ namespace NeighbourhoodServices.Web.Controllers
             if (!this.ModelState.IsValid)
             {
                 var categories = this.categoriesService.GetAll<AnnouncementCategoriesView>();
-                var currentAnnouncement = new AnnouncementViewModel()
-                {
-                    Title = announcementInputModel.Title,
-                    ServiceType = announcementInputModel.ServiceType,
-                    CategoryName = announcementInputModel.Category,
-                    Description = announcementInputModel.Description,
-                    Price = announcementInputModel.Price,
-                    Place = announcementInputModel.Place,
-                };
-                var viewModel = new AnnouncementUpdateModel()
+              
+                var createModel = new CreateModel()
                 {
                     Categories = categories,
-                    Announcement = currentAnnouncement,
+                    Announcement = announcementInputModel,
                 };
 
-                return this.View("GetUpdateView", viewModel);
+
+                return this.View("GetCreateView", createModel);
 
             }
 
             var user = await this.userManager.GetUserAsync(this.User);
-            await this.announcementService.CreateAsync(announcementInputModel, user.Id);
+           var id = await this.announcementService.CreateAsync(announcementInputModel, user.Id);
 
-            return this.Redirect("/");
+           return this.RedirectToAction("GetDetails", new { id = id });
         }
 
         [Route("Обява/{id}")]
@@ -91,7 +90,6 @@ namespace NeighbourhoodServices.Web.Controllers
         [Route("МоитеОбяви/{currentPage?}")]
         public IActionResult GetByUser(string id, int currentPage = 1)
         {
-
             var skip = (currentPage - 1) * AnnouncementsConstants.AnnouncementsPerPage;
             var pageModel = new Page
             {
@@ -113,26 +111,36 @@ namespace NeighbourhoodServices.Web.Controllers
             return this.Redirect(currentUrl);
         }
 
+        [HttpGet]
+        [Route("Редактирай/{id?}")]
         public IActionResult GetUpdateView(string id)
         {
             var announcement = this.announcementService.GetDetails<AnnouncementViewModel>(id);
+            if (announcement == null)
+            {
+                return this.Redirect("/");
+            }
+
             var categories = this.categoriesService.GetAll<AnnouncementCategoriesView>();
             var viewModel = new AnnouncementUpdateModel()
             {
                 Categories = categories,
                 Announcement = announcement,
             };
+
             return this.View(viewModel);
         }
 
+        [HttpPost]
+        [Route("Редактирай/{id?}")]
         public async Task<IActionResult> Update(AnnouncementInputModel announcementInputModel, string id)
         {
-            
             if (!this.ModelState.IsValid)
             {
                 var categories = this.categoriesService.GetAll<AnnouncementCategoriesView>();
                 var currentAnnouncement = new AnnouncementViewModel()
                 {
+                    Id = id,
                     Title = announcementInputModel.Title,
                     ServiceType = announcementInputModel.ServiceType,
                     CategoryName = announcementInputModel.Category,
