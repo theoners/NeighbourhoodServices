@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-
-namespace NeighbourhoodServices.Services.Data.Interface
+﻿namespace NeighbourhoodServices.Services.Data.Interface
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
+
     using NeighbourhoodServices.Web.ViewModels.Comments;
 
     public interface ICommentService
@@ -15,6 +15,6 @@ namespace NeighbourhoodServices.Services.Data.Interface
 
         Task<int> DeleteAsync(int id);
 
-        Task<string> UpdateAsync(CommentViewModel commentViewModel);
+        // Task<string> UpdateAsync(CommentViewModel commentViewModel);
     }
 }

@@ -1,11 +1,12 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using NeighbourhoodServices.Data.Models
+@using NeighbourhoodServices.Web.Pages
 @inject UserManager<ApplicationUser> UserManager
 @{
     var userId = UserManager.GetUserId(this.User);
 }
 
-@if (Model.Announcements.Count==0)
+@if (Model.Announcements.Count == 0)
 {
     <div class="text-center"><h1>Не бяха намерени обяви</h1></div>
 
@@ -18,6 +19,7 @@
             <div class="one-third mb-4 mb-md-0">
                 <div class="align-items-center">
                     <h2 class="mr-3 text-black">@announcement.Title</h2>
+
                     <span class="subadge">@announcement.ServiceType</span>
                     <div>@announcement.Description</div>
                 </div>
@@ -27,14 +29,13 @@
                     <div class="mr-3"><span class="icon-calendar"></span> <span>@announcement.CreatedOn</span></div>
                     <div class="mr-3"><span class="icon-align-justify"></span> <a asp-controller="Categories" asp-action="AnnouncementsByCategory" asp-route-categoryName="@announcement.CategoryName">@announcement.CategoryName</a></div>
                     <div class="mr-3"><span class="icon-money"></span> <span>@announcement.Price</span></div>
+
                 </div>
                 <div>
-
-
-                    @if (userId == announcement.UserId || User.IsInRole("Administrator"))
+                   @if (userId == announcement.UserId || User.IsInRole("Administrator"))
                     {
                         <a class="btn btn-danger" type="submit" asp-controller="Announcements" asp-action="Delete" asp-route-id="@announcement.Id">Изтрий</a>
-                       // <a class="btn btn-secondary" type="submit" asp-controller="Announcements" asp-action="GetUpdateView" asp-route-id="@announcement.Id">Редактирай</a>
+                        <a class="btn btn-secondary" type="submit" asp-controller="Announcements" asp-action="GetUpdateView" asp-route-id="@announcement.Id">Редактирай</a>
                     }
                 </div>
 
@@ -42,7 +43,7 @@
             </div>
 
             <div class="one-forth ml-auto d-flex align-items-center mt-4 md-md-0">
-               <a asp-controller="Announcements" asp-action="GetDetails" asp-route-id="@announcement.Id" class="btn btn-primary py-2">Детайли</a>
+                <a asp-controller="Announcements" asp-action="GetDetails" asp-route-id="@announcement.Id" class="btn btn-primary py-2">Детайли</a>
             </div>
         </div>
     </div>

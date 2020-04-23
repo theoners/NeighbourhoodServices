@@ -48,7 +48,7 @@
                 Title = "test",
                 UserId = "a",
             };
-            var service = new AnnouncementService(this.categoryRepository, this.announcementRepository);
+            var service = new AnnouncementService(this.announcementRepository);
             await service.CreateAsync(announcement, "aa");
             Assert.Equal(1, this.dbContext.Announcements.Count());
         }
@@ -65,7 +65,7 @@
                 Title = "test",
                 UserId = "a",
             };
-            var service = new AnnouncementService(this.categoryRepository, this.announcementRepository);
+            var service = new AnnouncementService(this.announcementRepository);
             var expectedId = await service.CreateAsync(announcement, "aa");
             var actualId = this.dbContext.Announcements.FirstOrDefault()?.Id;
             Assert.Equal(expectedId, actualId);
@@ -91,7 +91,7 @@
 
             await this.dbContext.Announcements.AddAsync(announcement);
             await this.dbContext.SaveChangesAsync();
-            var service = new AnnouncementService(this.categoryRepository, this.announcementRepository);
+            var service = new AnnouncementService(this.announcementRepository);
             var expectedAnnouncements = service.GetByCategory<AnnouncementInputModel>("Aa");
             Assert.Single(expectedAnnouncements);
         }
@@ -122,7 +122,7 @@
 
             await this.dbContext.Announcements.AddRangeAsync(announcements);
             await this.dbContext.SaveChangesAsync();
-            var service = new AnnouncementService(this.categoryRepository, this.announcementRepository);
+            var service = new AnnouncementService(this.announcementRepository);
             var expectedAnnouncements = service.GetByCreatedOn<AnnouncementInputModel>();
             Assert.Equal(5, expectedAnnouncements.Count());
         }
@@ -150,7 +150,7 @@
             var obj = await this.dbContext.Announcements.AddAsync(announcement);
             await this.dbContext.SaveChangesAsync();
             var id = obj.Entity.Id;
-            var service = new AnnouncementService(this.categoryRepository, this.announcementRepository);
+            var service = new AnnouncementService(this.announcementRepository);
             var expectedAnnouncements = service.GetDetails<AnnouncementInputModel>(id);
             Assert.Equal(11, expectedAnnouncements.Price);
         }
@@ -178,7 +178,7 @@
             await this.dbContext.Announcements.AddAsync(announcement);
             await this.dbContext.SaveChangesAsync();
 
-            var service = new AnnouncementService(this.categoryRepository, this.announcementRepository);
+            var service = new AnnouncementService(this.announcementRepository);
             var expectedAnnouncements = service.GetByUser<AnnouncementInputModel>("a").FirstOrDefault();
             Assert.Equal(11, expectedAnnouncements?.Price);
         }
@@ -210,7 +210,7 @@
             await this.dbContext.Announcements.AddRangeAsync(announcements);
             await this.dbContext.SaveChangesAsync();
 
-            var service = new AnnouncementService(this.categoryRepository, this.announcementRepository);
+            var service = new AnnouncementService(this.announcementRepository);
             var expectedAnnouncementsCount = service.AllAnnouncementByCategoryCount(category.Name);
             Assert.Equal(5, expectedAnnouncementsCount);
         }
@@ -239,7 +239,7 @@
             await this.dbContext.SaveChangesAsync();
             var id = obj.Entity.Id;
 
-            var service = new AnnouncementService(this.categoryRepository, this.announcementRepository);
+            var service = new AnnouncementService(this.announcementRepository);
             var announcementForUpdate = service.GetDetails<AnnouncementInputModel>(id);
             announcementForUpdate.Place = "Varna";
             announcementForUpdate.Category = "1";
@@ -270,7 +270,7 @@
             await this.dbContext.Announcements.AddAsync(announcement);
             await this.dbContext.SaveChangesAsync();
 
-            var service = new AnnouncementService(this.categoryRepository, this.announcementRepository);
+            var service = new AnnouncementService(this.announcementRepository);
             var result = service.GetByKeyWord<AnnouncementInputModel>("test", null, null).FirstOrDefault();
             Assert.Equal("test", result?.Place);
         }
@@ -298,7 +298,7 @@
             await this.dbContext.Announcements.AddAsync(announcement);
             await this.dbContext.SaveChangesAsync();
 
-            var service = new AnnouncementService(this.categoryRepository, this.announcementRepository);
+            var service = new AnnouncementService(this.announcementRepository);
             var result = service.GetByKeyWord<AnnouncementInputModel>(null, null, "test").FirstOrDefault();
             Assert.Equal("test", result?.Place);
         }
@@ -326,7 +326,7 @@
             await this.dbContext.Announcements.AddAsync(announcement);
             await this.dbContext.SaveChangesAsync();
 
-            var service = new AnnouncementService(this.categoryRepository, this.announcementRepository);
+            var service = new AnnouncementService(this.announcementRepository);
             var result = service.GetByKeyWord<AnnouncementInputModel>("test", category.Name, null).FirstOrDefault();
             Assert.Equal("test", result?.Place);
         }
@@ -354,7 +354,7 @@
             await this.dbContext.Announcements.AddAsync(announcement);
             await this.dbContext.SaveChangesAsync();
 
-            var service = new AnnouncementService(this.categoryRepository, this.announcementRepository);
+            var service = new AnnouncementService(this.announcementRepository);
             var result = service.GetByKeyWord<AnnouncementInputModel>("test", category.Name, "test").FirstOrDefault();
             Assert.Equal(11, result?.Price);
         }
@@ -385,7 +385,7 @@
 
             await this.dbContext.Announcements.AddRangeAsync(announcements);
             await this.dbContext.SaveChangesAsync();
-            var service = new AnnouncementService(this.categoryRepository, this.announcementRepository);
+            var service = new AnnouncementService(this.announcementRepository);
             var expectedAnnouncementsCount = service.AllAnnouncementCount();
             Assert.Equal(5, expectedAnnouncementsCount);
         }
@@ -416,7 +416,7 @@
 
             await this.dbContext.Announcements.AddRangeAsync(announcements);
             await this.dbContext.SaveChangesAsync();
-            var service = new AnnouncementService(this.categoryRepository, this.announcementRepository);
+            var service = new AnnouncementService(this.announcementRepository);
             var id = this.dbContext.Announcements.FirstOrDefault()?.Id;
             var expectedAnnouncementsCount = service.DeleteAsync(id);
             var announcementCount = service.AllAnnouncementCount();

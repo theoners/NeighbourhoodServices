@@ -19,7 +19,7 @@ namespace NeighbourhoodServices.Services.Data.Service
         private readonly IDeletableEntityRepository<Announcement> announcementRepository;
 
 
-        public AnnouncementService(IDeletableEntityRepository<Category> categoriesRepository, IDeletableEntityRepository<Announcement> announcementRepository)
+        public AnnouncementService(IDeletableEntityRepository<Announcement> announcementRepository)
         {
             this.announcementRepository = announcementRepository;
         }

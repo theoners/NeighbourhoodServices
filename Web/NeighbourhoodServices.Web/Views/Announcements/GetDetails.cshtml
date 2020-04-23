@@ -1,6 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Http.Extensions
 @using Microsoft.AspNetCore.Identity
 @using NeighbourhoodServices.Data.Models
+@using NeighbourhoodServices.Web.Pages
 @model NeighbourhoodServices.Web.ViewModels.Announcements.AnnouncementDetails;
 @inject UserManager<ApplicationUser> usermanager
 @{
@@ -26,20 +27,12 @@
                 <div class="mr-3"><span class="icon-money"></span> <span>@Model.Price</span></div>
             </div>
             <div>
-
+                @(await Html.RenderComponentAsync<Ratings>(RenderMode.ServerPrerendered))
 
             </div>
 
             <div class="fb-share-button" data-href=" @Context.Request.GetEncodedUrl()" data-layout="button_count" data-size="large"><a target="_blank" href="" class="fb-xfbml-parse-ignore">Споделяне</a></div>
 
-        </div>
-
-        <div class="one-forth ml-auto d-flex align-items-center mt-4 md-md-0">
-            <div>
-                <a href="#" class="icon text-center d-flex justify-content-center align-items-center icon mr-2">
-                    <span class="icon-heart"></span>
-                </a>
-            </div>
         </div>
     </div>
 </div>

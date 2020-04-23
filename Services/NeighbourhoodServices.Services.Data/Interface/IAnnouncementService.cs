@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace NeighbourhoodServices.Services.Data.Interface
+﻿namespace NeighbourhoodServices.Services.Data.Interface
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -29,6 +27,5 @@ namespace NeighbourhoodServices.Services.Data.Interface
         Task<string> UpdateAsync(AnnouncementInputModel announcementInputModel, string id);
 
         IEnumerable<T> GetByKeyWord<T>(string search, string category, string city);
-
     }
 }

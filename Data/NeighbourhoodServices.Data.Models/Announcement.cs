@@ -15,6 +15,7 @@ namespace NeighbourhoodServices.Data.Models
         {
             this.Id = Guid.NewGuid().ToString();
             this.Comments = new HashSet<Comment>();
+            this.Rating = new HashSet<Rating>();
         }
 
         [Required]
@@ -44,5 +45,7 @@ namespace NeighbourhoodServices.Data.Models
         public virtual string UserId { get; set; }
 
         public virtual ApplicationUser User { get; set; }
+
+        public IEnumerable<Rating> Rating { get; set; }
     }
 }

@@ -1,0 +1,60 @@
+﻿@page "/ratings"
+@using Microsoft.AspNetCore.Components.Authorization
+@using System.Security.Claims
+@using NeighbourhoodServices.Services.Data.Interface
+@using NeighbourhoodServices.Services.Data.Service
+@inject NavigationManager MyNavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IRatingService RatingService
+
+<MatRadioGroup @bind-Value="@Value" TValue="string">
+    <MatRadioButton Value="@("1")" Label="1" TValue="string"></MatRadioButton>
+    <MatRadioButton Value="@("2")" Label="2" TValue="string"></MatRadioButton>
+    <MatRadioButton Value="@("3")" Label="3" TValue="string"></MatRadioButton>
+    <MatRadioButton Value="@("4")" Label="4" TValue="string"></MatRadioButton>
+    <MatRadioButton Value="@("5")" Label="5" TValue="string"></MatRadioButton>
+</MatRadioGroup>
+<MatButton @onclick="Add">Оцени</MatButton>
+<div>
+    <b> Вие оценихте с :</b>
+    <b>@currentValue</b>
+</div>
+<div>
+    <b>Оценка :</b>
+    @if (TotalRating > 0)
+    {
+        <b>@TotalRating / 5</b>
+    }
+   
+
+</div>
+
+@code {
+    protected string Value;
+    protected double TotalRating { get; set; }
+    string userId;
+    string announcementId;
+    string currentValue;
+    protected override async Task OnInitializedAsync()
+    {
+
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+        announcementId = MyNavigationManager.Uri.Split("/").Last();
+        if (user.Identity.IsAuthenticated)
+        {
+            userId = user.FindFirst(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            var currentUserRating = RatingService.CurrentUserRating(announcementId, userId);
+            TotalRating = RatingService.GetCurrentRating(this.announcementId);
+        }
+
+    }
+
+
+    async void Add()
+    {
+        currentValue = Value;
+        var result =await RatingService.AddRating(announcementId, int.Parse(Value), userId);
+        TotalRating = result;
+    }
+}

@@ -33,6 +33,8 @@
 
         public DbSet<Comment> Comments { get; set; }
 
+        public DbSet<Rating> Ratings { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)

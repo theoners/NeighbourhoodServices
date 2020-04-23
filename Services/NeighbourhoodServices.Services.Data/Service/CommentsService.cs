@@ -62,10 +62,5 @@
             this.commentRepository.Delete(comment);
             return await this.commentRepository.SaveChangesAsync();
         }
-
-        public Task<string> UpdateAsync(CommentViewModel commentViewModel)
-        {
-            var comment = this.commentRepository.All().FirstOrDefault(x => x.Id == commentViewModel.Id);
-        }
     }
 }
