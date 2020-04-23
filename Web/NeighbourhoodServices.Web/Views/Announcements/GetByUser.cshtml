@@ -1,10 +1,24 @@
-﻿@model NeighbourhoodServices.Web.ViewModels.Announcements.GetAllViewModel
-
+﻿@using Microsoft.AspNetCore.Identity
+@using NeighbourhoodServices.Data.Models
+@model NeighbourhoodServices.Web.ViewModels.Announcements.GetAllViewModel
+@inject UserManager<ApplicationUser> UserManager
 <div class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
 </div>
+@{
+    var userId = UserManager.GetUserId(User);
+    if (userId==Model.Announcements.FirstOrDefault()?.UserId)
+    {
+        <div class="text-center"><h1>Моите Обяви</h1></div>
+    }
+    else if (Model.Announcements.Any())
+    {
+        <div class="text-center"><h1>Всички обяви на @Model.Announcements.FirstOrDefault()?.User</h1></div>
+    }
+   
+}
 
-<div class="text-center"><h1>Моите Обяви</h1></div>
+
 <section class="ftco-section bg-light">
     <div class="container">
         <div class="row">
@@ -19,14 +33,14 @@
 
                                 @if (Model.Page.PagesCount > 1)
                                 {
-                                    <li><a href="#">&lt;</a></li>
+                                <li><a href="#">&lt;</a></li>
                                     for (int i = 1; i <= Model.Page.PagesCount; i++)
                                     {
                                         var active = Model.Page.CurrentPage == i ? "active" : string.Empty;
 
-                                        <li class="@active"><a asp-controller="Announcements" asp-action="GetByUser" value="@i" asp-route-currentPage="@i">@i</a></li>
+                                <li class="@active"><a asp-controller="Announcements" asp-action="GetByUser" value="@i" asp-route-currentPage="@i">@i</a></li>
                                     }
-                                    <li><a href="#">&gt;</a></li>
+                                <li><a href="#">&gt;</a></li>
                                 }
 
                             </ul>

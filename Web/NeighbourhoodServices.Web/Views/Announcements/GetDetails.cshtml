@@ -3,9 +3,9 @@
 @using NeighbourhoodServices.Data.Models
 @using NeighbourhoodServices.Web.Pages
 @model NeighbourhoodServices.Web.ViewModels.Announcements.AnnouncementDetails;
-@inject UserManager<ApplicationUser> usermanager
+@inject UserManager<ApplicationUser> UserManager
 @{
-    var userId = usermanager.GetUserId(User);
+    var userId = UserManager.GetUserId(User);
 }
 
 <div class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">

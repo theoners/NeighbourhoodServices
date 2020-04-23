@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using NeighbourhoodServices.Web.ViewModels.Users;
 
 namespace NeighbourhoodServices.Web.Controllers
@@ -45,7 +46,8 @@ namespace NeighbourhoodServices.Web.Controllers
             };
             return this.View(viewModel);
         }
-
+        
+        [Authorize]
         [Route("Обяви/{currentPage?}")]
         public IActionResult AllAnnouncements(int currentPage = 1)
         {

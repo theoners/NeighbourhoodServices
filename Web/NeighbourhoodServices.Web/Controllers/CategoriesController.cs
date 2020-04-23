@@ -1,14 +1,15 @@
-﻿using NeighbourhoodServices.Services.Data;
-using NeighbourhoodServices.Web.ViewModels.Categories;
-
-namespace NeighbourhoodServices.Web.Controllers
+﻿namespace NeighbourhoodServices.Web.Controllers
 {
     using System.Linq;
+
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using NeighbourhoodServices.Common;
+    using NeighbourhoodServices.Services.Data;
+    using NeighbourhoodServices.Services.Data.Interface;
     using NeighbourhoodServices.Web.Infrastructure;
     using NeighbourhoodServices.Web.ViewModels.Announcements;
-    using NeighbourhoodServices.Services.Data.Interface;
+    using NeighbourhoodServices.Web.ViewModels.Categories;
 
     public class CategoriesController : BaseController
     {
@@ -21,6 +22,7 @@ namespace NeighbourhoodServices.Web.Controllers
             this.categoryService = categoryService;
         }
 
+        [Authorize]
         [Route("{categoryName}/{currentPage?}")]
         public IActionResult AnnouncementsByCategory(string categoryName, int currentPage = 1)
         {

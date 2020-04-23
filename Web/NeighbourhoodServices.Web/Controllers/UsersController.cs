@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using NeighbourhoodServices.Services.Data.Interface;
 using NeighbourhoodServices.Web.ViewModels.Comments;
 
@@ -26,6 +27,7 @@ namespace NeighbourhoodServices.Web.Controllers
             this.commentService = commentService;
         }
 
+        [Authorize]
         public IActionResult UserProfile(string id)
         {
             var user = this.userService.GetUser<UserViewModel>(id);
@@ -33,12 +35,13 @@ namespace NeighbourhoodServices.Web.Controllers
             return this.View(user);
         }
 
+        [Authorize]
         public IActionResult SearchUser(string username, string city)
         {
             var user = this.userService.SearchUser<UserViewModel>(username, city);
             if (user == null)
             {
-                return this.Redirect("/");
+                return this.View("NotFound");
             }
 
             user.Comments = this.commentService.GetCommentByUserId<CommentViewModel>(user.Id).ToList();

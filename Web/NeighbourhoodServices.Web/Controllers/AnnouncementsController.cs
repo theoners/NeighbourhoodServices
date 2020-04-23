@@ -35,7 +35,7 @@ namespace NeighbourhoodServices.Web.Controllers
             this.commentService = commentService;
         }
 
-        [Authorize]
+       
         [Route("ПубликувайОбява")]
         public IActionResult GetCreateView(AnnouncementInputModel announcementInputModel)
         {
@@ -49,7 +49,7 @@ namespace NeighbourhoodServices.Web.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+       
         public async Task<IActionResult> Create(AnnouncementInputModel announcementInputModel)
         {
             if (!this.ModelState.IsValid)
