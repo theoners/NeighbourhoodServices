@@ -1,11 +1,9 @@
-﻿using System.Linq;
-using Microsoft.AspNetCore.Authorization;
-using NeighbourhoodServices.Web.ViewModels.Users;
-
-namespace NeighbourhoodServices.Web.Controllers
+﻿namespace NeighbourhoodServices.Web.Controllers
 {
     using System.Diagnostics;
-   
+    using System.Linq;
+
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using NeighbourhoodServices.Common;
     using NeighbourhoodServices.Services.Data;
@@ -15,19 +13,19 @@ namespace NeighbourhoodServices.Web.Controllers
     using NeighbourhoodServices.Web.ViewModels.Announcements;
     using NeighbourhoodServices.Web.ViewModels.Categories;
     using NeighbourhoodServices.Web.ViewModels.Home;
+    using NeighbourhoodServices.Web.ViewModels.Users;
 
     public class HomeController : BaseController
     {
         private readonly ICategoriesService categoriesService;
         private readonly IUsersService userService;
         private readonly IAnnouncementService announcementService;
-        
+
         public HomeController(ICategoriesService categoriesService, IUsersService userService, IAnnouncementService announcementService)
         {
             this.categoriesService = categoriesService;
             this.userService = userService;
             this.announcementService = announcementService;
-          
         }
 
         public IActionResult Test(int? page)
@@ -46,7 +44,7 @@ namespace NeighbourhoodServices.Web.Controllers
             };
             return this.View(viewModel);
         }
-        
+
         [Authorize]
         [Route("Обяви/{currentPage?}")]
         public IActionResult AllAnnouncements(int currentPage = 1)

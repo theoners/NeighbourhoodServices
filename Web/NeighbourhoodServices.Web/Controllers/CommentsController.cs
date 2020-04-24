@@ -1,13 +1,14 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using NeighbourhoodServices.Services.Data.Interface;
-using NeighbourhoodServices.Web.ViewModels.Announcements;
-using NeighbourhoodServices.Web.ViewModels.Comments;
-
-namespace NeighbourhoodServices.Web.Controllers
+﻿namespace NeighbourhoodServices.Web.Controllers
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using NeighbourhoodServices.Services.Data.Interface;
+    using NeighbourhoodServices.Web.ViewModels.Announcements;
+    using NeighbourhoodServices.Web.ViewModels.Comments;
+
     public class CommentsController : BaseController
     {
         private readonly ICommentService commentService;

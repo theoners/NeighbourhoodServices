@@ -1,8 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace NeighbourhoodServices.Data.Migrations
+﻿namespace NeighbourhoodServices.Data.Migrations
 {
+    using System;
+
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class renameServiceToAnnouncement : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

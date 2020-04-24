@@ -1,15 +1,15 @@
-﻿using System.Linq;
-using Microsoft.AspNetCore.Authorization;
-using NeighbourhoodServices.Services.Data.Interface;
-using NeighbourhoodServices.Web.ViewModels.Comments;
-
-namespace NeighbourhoodServices.Web.Controllers
+﻿namespace NeighbourhoodServices.Web.Controllers
 {
+    using System.Linq;
+
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using NeighbourhoodServices.Data.Common.Repositories;
     using NeighbourhoodServices.Data.Models;
     using NeighbourhoodServices.Services.Data;
+    using NeighbourhoodServices.Services.Data.Interface;
+    using NeighbourhoodServices.Web.ViewModels.Comments;
     using NeighbourhoodServices.Web.ViewModels.Users;
 
     public class UsersController : BaseController

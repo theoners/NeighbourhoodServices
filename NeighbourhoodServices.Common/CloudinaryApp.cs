@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-
-namespace NeighbourhoodServices.Common
+﻿namespace NeighbourhoodServices.Common
 {
+    using System.Collections.Generic;
     using System.IO;
     using System.Threading.Tasks;
 
@@ -25,7 +24,6 @@ namespace NeighbourhoodServices.Common
             {
                 File = new FileDescription(file.FileName, destinationStream),
                 Transformation = new Transformation().Width(200).Height(200),
-
             };
             var result = await cloudinary.UploadAsync(uploadParams);
 

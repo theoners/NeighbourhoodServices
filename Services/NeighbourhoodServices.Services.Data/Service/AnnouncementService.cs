@@ -1,10 +1,9 @@
-﻿using System.Web.Mvc;
-
-namespace NeighbourhoodServices.Services.Data.Service
+﻿namespace NeighbourhoodServices.Services.Data.Service
 {
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using System.Web.Mvc;
 
     using NeighbourhoodServices.Data.Common.Repositories;
     using NeighbourhoodServices.Data.Models;
@@ -17,7 +16,6 @@ namespace NeighbourhoodServices.Services.Data.Service
     public class AnnouncementService : IAnnouncementService
     {
         private readonly IDeletableEntityRepository<Announcement> announcementRepository;
-
 
         public AnnouncementService(IDeletableEntityRepository<Announcement> announcementRepository)
         {
@@ -36,7 +34,6 @@ namespace NeighbourhoodServices.Services.Data.Service
                 CategoryId = int.Parse(announcementInputModel.Category),
                 UserId = userId,
                 Price = announcementInputModel.Price,
-
             };
 
             await this.announcementRepository.AddAsync(announcement);

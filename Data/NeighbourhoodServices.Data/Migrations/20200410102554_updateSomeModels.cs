@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace NeighbourhoodServices.Data.Migrations
+﻿namespace NeighbourhoodServices.Data.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class updateSomeModels : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

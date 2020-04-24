@@ -1,7 +1,7 @@
-﻿using NeighbourhoodServices.Data.Common.Models;
-
-namespace NeighbourhoodServices.Data.Models
+﻿namespace NeighbourhoodServices.Data.Models
 {
+    using NeighbourhoodServices.Data.Common.Models;
+
     public class Rating : BaseDeletableModel<int>
     {
         public double TotalRating { get; set; }

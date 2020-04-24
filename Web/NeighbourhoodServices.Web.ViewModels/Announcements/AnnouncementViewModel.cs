@@ -1,8 +1,8 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace NeighbourhoodServices.Web.ViewModels.Announcements
+﻿namespace NeighbourhoodServices.Web.ViewModels.Announcements
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
     using NeighbourhoodServices.Data.Models;
     using NeighbourhoodServices.Services.Mapping;
     using NeighbourhoodServices.Web.Infrastructure;

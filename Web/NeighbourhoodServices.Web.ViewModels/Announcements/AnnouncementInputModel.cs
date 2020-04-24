@@ -1,17 +1,16 @@
-﻿using System.Collections.Generic;
-using NeighbourhoodServices.Web.ViewModels.Categories;
-
-namespace NeighbourhoodServices.Web.ViewModels.Announcements
+﻿namespace NeighbourhoodServices.Web.ViewModels.Announcements
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using NeighbourhoodServices.Data.Models;
     using NeighbourhoodServices.Services.Mapping;
+    using NeighbourhoodServices.Web.ViewModels.Categories;
 
     public class AnnouncementInputModel : IMapFrom<Announcement>
     {
         public string Id { get; set; }
-       
+
         [Required(ErrorMessage = "Тема е задължително")]
         [Display(Name = "Тема")]
         public string Title { get; set; }
@@ -35,7 +34,5 @@ namespace NeighbourhoodServices.Web.ViewModels.Announcements
         public ServiceType ServiceType { get; set; }
 
         public string UserId { get; set; }
-       
-        
     }
 }

@@ -92,7 +92,6 @@
             Assert.Equal("Test0", expectedUser.UserName);
         }
 
-
         [Fact]
         public async Task GetTopUsersWorkCorrectly()
         {

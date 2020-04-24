@@ -1,10 +1,9 @@
 ﻿// ReSharper disable VirtualMemberCallInConstructor
 
-using System.Collections.Generic;
-
 namespace NeighbourhoodServices.Data.Models
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using NeighbourhoodServices.Data.Common.Models;

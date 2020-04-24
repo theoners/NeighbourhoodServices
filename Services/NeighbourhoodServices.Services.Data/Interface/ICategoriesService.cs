@@ -1,8 +1,7 @@
-﻿using System.Threading.Tasks;
-
-namespace NeighbourhoodServices.Services.Data
+﻿namespace NeighbourhoodServices.Services.Data
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     public interface ICategoriesService
     {

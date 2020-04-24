@@ -13,7 +13,7 @@
         {
             if (dbContext.Announcements.Count() > 100)
             {
-               return;
+                return;
             }
 
             var place = new char[8];

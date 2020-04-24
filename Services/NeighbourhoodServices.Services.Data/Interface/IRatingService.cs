@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
-
-namespace NeighbourhoodServices.Services.Data.Interface
+﻿namespace NeighbourhoodServices.Services.Data.Interface
 {
+    using System.Threading.Tasks;
+
     public interface IRatingService
     {
         Task<double> AddRating(string announcementId, int rating, string userId);

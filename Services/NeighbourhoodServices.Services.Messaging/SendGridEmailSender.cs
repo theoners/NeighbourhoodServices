@@ -17,7 +17,7 @@
             this.client = new SendGridClient(apiKey);
         }
 
-        public async Task SendEmailAsync (string to, string subject, string htmlContent,string from, string fromName, IEnumerable <EmailAttachment> attachments = null)
+        public async Task SendEmailAsync(string to, string subject, string htmlContent, string from, string fromName, IEnumerable<EmailAttachment> attachments = null)
         {
             if (string.IsNullOrWhiteSpace(subject) && string.IsNullOrWhiteSpace(htmlContent))
             {

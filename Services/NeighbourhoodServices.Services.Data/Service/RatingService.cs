@@ -1,8 +1,7 @@
-﻿using System.Threading.Tasks;
-
-namespace NeighbourhoodServices.Services.Data.Service
+﻿namespace NeighbourhoodServices.Services.Data.Service
 {
     using System.Linq;
+    using System.Threading.Tasks;
 
     using NeighbourhoodServices.Data.Common.Repositories;
     using NeighbourhoodServices.Data.Models;

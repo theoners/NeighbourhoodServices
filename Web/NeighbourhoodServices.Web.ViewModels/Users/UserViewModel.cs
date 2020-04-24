@@ -17,7 +17,6 @@
 
         public string City { get; set; }
 
-        
         public Gender Gender { get; set; }
 
         public virtual ICollection<AnnouncementViewModel> Announcements { get; set; }

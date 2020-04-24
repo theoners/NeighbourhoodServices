@@ -1,7 +1,7 @@
-﻿using CloudinaryDotNet;
-
-namespace NeighbourhoodServices.Web
+﻿namespace NeighbourhoodServices.Web
 {
+    using CloudinaryDotNet;
+
     using System.Reflection;
 
     using Microsoft.AspNetCore.Builder;
@@ -52,7 +52,6 @@ namespace NeighbourhoodServices.Web
             {
                 option.AppId = this.configuration["Facebook:AppId"];
                 option.AppSecret = this.configuration["Facebook:AppSecret"];
-
             });
 
             services.Configure<CookiePolicyOptions>(

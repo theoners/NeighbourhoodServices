@@ -117,7 +117,7 @@
             };
             var service = new RatingService(this.ratingRepository);
             await service.AddRating(rating.AnnouncementId, (int)rating.TotalRating, rating.UserId);
-            var result =service.GetCurrentRating("2");
+            var result = service.GetCurrentRating("2");
             Assert.Equal(result, -1);
         }
     }

@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace NeighbourhoodServices.Web.ViewModels.Announcements
+﻿namespace NeighbourhoodServices.Web.ViewModels.Announcements
 {
+    using System.Collections.Generic;
+
     public class CreateModel
     {
         public AnnouncementInputModel Announcement { get; set; }

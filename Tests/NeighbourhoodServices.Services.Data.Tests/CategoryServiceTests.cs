@@ -98,8 +98,8 @@
             var service = new CategoriesService(this.categoryRepository);
             var result = service.GetAll<AnnouncementCategoriesView>();
             Assert.Equal(5, result.Count());
-           var isDelete = service.Delete("11");
-            
+            var isDelete = service.Delete("11");
+
             Assert.False(isDelete);
         }
 
@@ -124,10 +124,10 @@
         [Fact]
         public async Task AddWorkCorrectly()
         {
-            
+
             var service = new CategoriesService(this.categoryRepository);
 
-           await service.Add("Edit", "Edit");
+            await service.Add("Edit", "Edit");
             var result = service.GetAll<AnnouncementCategoriesView>().FirstOrDefault();
 
             Assert.Equal("Edit", result.Name);

@@ -16,7 +16,7 @@
         private readonly IAnnouncementService announcementService;
         private readonly ICategoriesService categoryService;
 
-        public CategoriesController(IAnnouncementService announcementService , ICategoriesService categoryService)
+        public CategoriesController(IAnnouncementService announcementService, ICategoriesService categoryService)
         {
             this.announcementService = announcementService;
             this.categoryService = categoryService;
@@ -43,7 +43,6 @@
                 Categories = categories,
             };
             return this.View(viewModel);
-
         }
     }
 }

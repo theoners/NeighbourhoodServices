@@ -1,8 +1,4 @@
-﻿using CloudinaryDotNet;
-using Microsoft.AspNetCore.Http;
-using NeighbourhoodServices.Common;
-
-namespace NeighbourhoodServices.Web.Areas.Identity.Pages.Account.Manage
+﻿namespace NeighbourhoodServices.Web.Areas.Identity.Pages.Account.Manage
 {
     using System;
     using System.Collections.Generic;
@@ -10,9 +6,12 @@ namespace NeighbourhoodServices.Web.Areas.Identity.Pages.Account.Manage
     using System.Linq;
     using System.Threading.Tasks;
 
+    using CloudinaryDotNet;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
+    using NeighbourhoodServices.Common;
     using NeighbourhoodServices.Data.Models;
 
     public partial class IndexModel : PageModel
@@ -55,7 +54,6 @@ namespace NeighbourhoodServices.Web.Areas.Identity.Pages.Account.Manage
 
             [Display(Name = "Адрес")]
             public string Address { get; set; }
-
         }
 
         private async Task LoadAsync(ApplicationUser user)
@@ -113,19 +111,16 @@ namespace NeighbourhoodServices.Web.Areas.Identity.Pages.Account.Manage
             if (Input.City != user.City)
             {
                 user.City = this.Input.City;
-
             }
 
             if (Input.Address != user.Address)
             {
                 user.Address = Input.Address;
-
             }
 
             if (Input.Address != user.Address)
             {
                 user.Address = Input.Address;
-
             }
 
             if (file != null)
@@ -141,6 +136,5 @@ namespace NeighbourhoodServices.Web.Areas.Identity.Pages.Account.Manage
             StatusMessage = "Профила е обновен";
             return RedirectToPage();
         }
-
     }
 }

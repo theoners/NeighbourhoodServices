@@ -1,6 +1,4 @@
-﻿using NeighbourhoodServices.Services.Messaging;
-
-namespace NeighbourhoodServices.Web.Areas.Identity.Pages.Account
+﻿namespace NeighbourhoodServices.Web.Areas.Identity.Pages.Account
 {
     using System;
     using System.Collections.Generic;
@@ -15,6 +13,7 @@ namespace NeighbourhoodServices.Web.Areas.Identity.Pages.Account
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.AspNetCore.WebUtilities;
     using NeighbourhoodServices.Data.Models;
+    using NeighbourhoodServices.Services.Messaging;
 
     [AllowAnonymous]
     public class ForgotPasswordModel : PageModel

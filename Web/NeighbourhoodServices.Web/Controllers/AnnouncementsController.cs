@@ -1,9 +1,8 @@
-﻿using System.Linq;
-
-namespace NeighbourhoodServices.Web.Controllers
+﻿namespace NeighbourhoodServices.Web.Controllers
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
@@ -35,42 +34,39 @@ namespace NeighbourhoodServices.Web.Controllers
             this.commentService = commentService;
         }
 
-       
         [Route("ПубликувайОбява")]
         public IActionResult GetCreateView(AnnouncementInputModel announcementInputModel)
         {
             var categories = this.categoriesService.GetAll<AnnouncementCategoriesView>();
             var createModel = new CreateModel()
             {
-               Categories = categories,
-               Announcement = announcementInputModel,
-            }; 
+                Categories = categories,
+                Announcement = announcementInputModel,
+            };
             return this.View(createModel);
         }
 
         [HttpPost]
-       
+
         public async Task<IActionResult> Create(AnnouncementInputModel announcementInputModel)
         {
             if (!this.ModelState.IsValid)
             {
                 var categories = this.categoriesService.GetAll<AnnouncementCategoriesView>();
-              
+
                 var createModel = new CreateModel()
                 {
                     Categories = categories,
                     Announcement = announcementInputModel,
                 };
 
-
                 return this.View("GetCreateView", createModel);
-
             }
 
             var user = await this.userManager.GetUserAsync(this.User);
-           var id = await this.announcementService.CreateAsync(announcementInputModel, user.Id);
+            var id = await this.announcementService.CreateAsync(announcementInputModel, user.Id);
 
-           return this.RedirectToAction("GetDetails", new { id = id });
+            return this.RedirectToAction("GetDetails", new { id = id });
         }
 
         [Route("Обява/{id}")]
