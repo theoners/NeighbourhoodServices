@@ -1,9 +1,21 @@
-﻿@model NeighbourhoodServices.Web.ViewModels.Home.IndexViewModel
+﻿@using NeighbourhoodServices.Web.Pages
+@model NeighbourhoodServices.Web.ViewModels.Home.IndexViewModel
 <div class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
 </div>
 @{
-    this.ViewData["Title"] = "Admin dashboard";
+    this.ViewData["Title"] = "Aдмин панел";
 }
 <div class="text-center"><h1>@this.ViewData["Title"]</h1></div>
+<div class="text-center">
+    <h3>Категории</h3>
+</div>
+<div class=" row justify-content-center">
+
+
+    <div>
+        @(await Html.RenderComponentAsync<CategoryAdmin>(RenderMode.ServerPrerendered))
+    </div>
+
+</div>
 

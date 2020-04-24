@@ -1,0 +1,69 @@
+﻿@using NeighbourhoodServices.Services.Data
+@using NeighbourhoodServices.Web.Areas.Administration.Controllers
+@using NeighbourhoodServices.Web.ViewModels.Categories
+@using Microsoft.AspNetCore.WebUtilities
+@using NeighbourhoodServices.Web.ViewModels.Administration.Dashboard
+@inject NavigationManager NavigationManager
+@inject ICategoriesService CategoriesService
+
+<form>
+    <div class="form-row">
+
+        <div class="col">
+            <labe>Name</labe>
+        </div>
+        <div class="col">
+            <labe>Description</labe>
+        </div>
+        <div class="col">
+            <labe>ServicesCount</labe>
+        </div>
+    </div>
+</form>
+@foreach (var category in Categories)
+{
+    <form>
+        <div class="form-row">
+            <div class="col mb-3">
+                <input type="text" name="Name" value="@category.Name" class="form-control" placeholder="@nameof(category.Name)">
+            </div>
+            <div class="col  mb-3">
+                <input type="text" name="Description" value="@category.Description" class="form-control" placeholder="@nameof(category.Description)">
+            </div>
+            <div class="col  mb-3">
+                <input disabled="disabled" name="ServicesCount" type="text" value="@category.ServicesCount" class="form-control" placeholder="@nameof(category.ServicesCount)">
+            </div>
+            <input type="hidden" name="id" value="@category.Id" />
+            <button @onclick="() => this.Modify()" class="btn btn-secondary mr-3  mb-3">Modify</button>
+            <button class="btn-danger  mb-3">Delete</button>
+        </div>
+    </form>
+}
+
+
+
+
+
+
+@code
+{
+
+
+    IEnumerable<CategoryViewModel> Categories { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Categories = CategoriesService.GetAll<CategoryViewModel>();
+    }
+
+    protected async void Modify()
+    {
+        var uri = NavigationManager.ToAbsoluteUri(NavigationManager.Uri);
+        var IsValid = QueryHelpers.ParseQuery(uri.Query).TryGetValue("name", out var name)
+                      && QueryHelpers.ParseQuery(uri.Query).TryGetValue("description", out var description)
+                      && QueryHelpers.ParseQuery(uri.Query).TryGetValue("id", out var id);
+        if (!IsValid) return;
+        var result = await CategoriesService.Update(name.First(), description.First(), id.First());
+        Console.WriteLine(result);
+    }
+}

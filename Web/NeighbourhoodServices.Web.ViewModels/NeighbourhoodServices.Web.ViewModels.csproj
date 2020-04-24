@@ -27,8 +27,4 @@
     <ProjectReference Include="..\NeighbourhoodServices.Web.Infrastructure\NeighbourhoodServices.Web.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Administration\Dashboard\" />
-  </ItemGroup>
-
 </Project>

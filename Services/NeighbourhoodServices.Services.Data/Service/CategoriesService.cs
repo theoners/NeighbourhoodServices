@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-
+    using System.Threading.Tasks;
     using NeighbourhoodServices.Data.Common.Repositories;
     using NeighbourhoodServices.Data.Models;
     using NeighbourhoodServices.Services.Mapping;
@@ -28,5 +28,21 @@
             return query.To<T>().ToList();
         }
 
+        public async Task<int> Update(string name, string description, string id)
+        {
+            var result = -1;
+            var category = this.categoriesRepository.All().FirstOrDefault(x => x.Id == int.Parse(id));
+
+            if (category == null)
+            {
+                return result;
+            }
+
+            category.Description = description;
+            category.Name = name;
+            result = await this.categoriesRepository.SaveChangesAsync();
+
+            return result;
+        }
     }
 }

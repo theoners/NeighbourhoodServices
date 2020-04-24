@@ -105,7 +105,7 @@ namespace NeighbourhoodServices.Web
             {
                 var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
-                if (env.IsDevelopment())
+                if (!env.IsDevelopment())
                 {
                     dbContext.Database.Migrate();
                 }
