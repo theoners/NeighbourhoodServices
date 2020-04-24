@@ -16,10 +16,37 @@
             this.categoriesRepository = categoriesRepository;
         }
 
+        public async Task<int> Add(string name, string description)
+        {
+
+            var category = new Category()
+            {
+                Name = name,
+                Description = description,
+            };
+
+            await this.categoriesRepository.AddAsync(category);
+            await this.categoriesRepository.SaveChangesAsync();
+            return category.Id;
+        }
+
+        public bool Delete(string id)
+        {
+            var category = this.categoriesRepository.All().FirstOrDefault(x => x.Id == int.Parse(id));
+            if (category != null)
+            {
+                this.categoriesRepository.Delete(category);
+                this.categoriesRepository.SaveChangesAsync();
+                return true;
+            }
+
+            return false;
+        }
+
         public IEnumerable<T> GetAll<T>(int? count = null)
         {
             IQueryable<Category> query =
-                this.categoriesRepository.All().OrderBy(x => x.Name);
+                this.categoriesRepository.AllAsNoTracking().OrderBy(x => x.Name);
             if (count.HasValue)
             {
                 query = query.Take(count.Value);
@@ -30,19 +57,18 @@
 
         public bool Update(string name, string description, string id)
         {
-            
             var category = this.categoriesRepository.All().FirstOrDefault(x => x.Id == int.Parse(id));
 
             if (category == null)
             {
-               return false;
+                return false;
             }
 
             category.Description = description;
             category.Name = name;
-            this.categoriesRepository.SaveChangesAsync();
+            var result = this.categoriesRepository.SaveChangesAsync().Result;
 
-            return true;
+            return result > 0 ? true : false;
         }
     }
 }

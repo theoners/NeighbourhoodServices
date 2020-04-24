@@ -3,8 +3,10 @@
 @using NeighbourhoodServices.Web.ViewModels.Categories
 @using Microsoft.AspNetCore.WebUtilities
 @using NeighbourhoodServices.Web.ViewModels.Administration.Dashboard
+@using System.Threading
 @inject NavigationManager NavigationManager
 @inject ICategoriesService CategoriesService
+@inject ICategoriesService CategoriesServic
 
 <form>
     <div class="form-row">
@@ -20,6 +22,7 @@
         </div>
     </div>
 </form>
+
 @foreach (var category in Categories)
 {
     <form>
@@ -34,20 +37,29 @@
                 <input disabled="disabled" name="ServicesCount" type="text" value="@category.ServicesCount" class="form-control" placeholder="@nameof(category.ServicesCount)">
             </div>
             <input type="hidden" name="id" value="@category.Id" />
-            <button @onclick="() => this.Modify()" class="btn btn-secondary mr-3  mb-3">Modify</button>
-            <button class="btn-danger  mb-3">Delete</button>
+            <button @onclick="() => this.Update()" class="btn btn-secondary mr-3  mb-3">Edit</button>
+            <button @onclick="() => this.Delete()" class="btn-danger  mb-3">Delete</button>
         </div>
     </form>
 }
 
+<form>
+    <div class="form-row">
+        <div class="col mb-3">
+            <input type="text" name="Name" value="" class="form-control" placeholder="Name">
+        </div>
+        <div class="col  mb-3">
+            <input type="text" name="Description" value="" class="form-control" placeholder="Description">
+        </div>
 
+        <button @onclick="() => this.Add()" class="btn btn-secondary mr-3  mb-3">Add</button>
 
-
+    </div>
+</form>
 
 
 @code
 {
-
 
     IEnumerable<CategoryViewModel> Categories { get; set; }
 
@@ -56,18 +68,36 @@
         Categories = CategoriesService.GetAll<CategoryViewModel>();
     }
 
-    protected  void Modify()
+    protected void Update()
     {
         var uri = NavigationManager.ToAbsoluteUri(NavigationManager.Uri);
-        
+
         if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("name", out var name)
             && QueryHelpers.ParseQuery(uri.Query).TryGetValue("description", out var description)
             && QueryHelpers.ParseQuery(uri.Query).TryGetValue("id", out var id))
         {
-            var result =  CategoriesService.Update(name.First(), description.First(), id.First());
-            Console.WriteLine(result);
+            var result = CategoriesService.Update(name.First(), description.First(), id.First());
+
         }
-       
-       
+
+
+    }
+
+    protected void Delete()
+    {
+        var uri = NavigationManager.ToAbsoluteUri(NavigationManager.Uri);
+        if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("id", out var id))
+        {
+            var result = CategoriesService.Delete(id.First());
+        }
+    }
+
+    protected async void Add()
+    {
+        var uri = NavigationManager.ToAbsoluteUri(NavigationManager.Uri);
+        if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("name", out var name) && QueryHelpers.ParseQuery(uri.Query).TryGetValue("description", out var description))
+        {
+            var result = await CategoriesServic.Add(name.First(), description.First());
+        }
     }
 }
