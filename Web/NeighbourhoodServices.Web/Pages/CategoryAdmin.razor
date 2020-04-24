@@ -56,14 +56,18 @@
         Categories = CategoriesService.GetAll<CategoryViewModel>();
     }
 
-    protected async void Modify()
+    protected  void Modify()
     {
         var uri = NavigationManager.ToAbsoluteUri(NavigationManager.Uri);
-        var IsValid = QueryHelpers.ParseQuery(uri.Query).TryGetValue("name", out var name)
-                      && QueryHelpers.ParseQuery(uri.Query).TryGetValue("description", out var description)
-                      && QueryHelpers.ParseQuery(uri.Query).TryGetValue("id", out var id);
-        if (!IsValid) return;
-        var result = await CategoriesService.Update(name.First(), description.First(), id.First());
-        Console.WriteLine(result);
+        
+        if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("name", out var name)
+            && QueryHelpers.ParseQuery(uri.Query).TryGetValue("description", out var description)
+            && QueryHelpers.ParseQuery(uri.Query).TryGetValue("id", out var id))
+        {
+            var result =  CategoriesService.Update(name.First(), description.First(), id.First());
+            Console.WriteLine(result);
+        }
+       
+       
     }
 }

@@ -8,6 +8,6 @@ namespace NeighbourhoodServices.Services.Data
     {
         IEnumerable<T> GetAll<T>(int? count = null);
 
-        Task<int> Update(string name, string description, string id);
+        bool Update(string name, string description, string id);
     }
 }

@@ -28,21 +28,21 @@
             return query.To<T>().ToList();
         }
 
-        public async Task<int> Update(string name, string description, string id)
+        public bool Update(string name, string description, string id)
         {
-            var result = -1;
+            
             var category = this.categoriesRepository.All().FirstOrDefault(x => x.Id == int.Parse(id));
 
             if (category == null)
             {
-                return result;
+               return false;
             }
 
             category.Description = description;
             category.Name = name;
-            result = await this.categoriesRepository.SaveChangesAsync();
+            this.categoriesRepository.SaveChangesAsync();
 
-            return result;
+            return true;
         }
     }
 }
