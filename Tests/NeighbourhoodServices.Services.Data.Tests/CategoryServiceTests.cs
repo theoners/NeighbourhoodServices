@@ -56,5 +56,47 @@
             var twoObj = service.GetAll<AnnouncementCategoriesView>(2);
             Assert.Equal(2, twoObj.Count());
         }
+
+        [Fact]
+        public async Task DeleteWorkCorrectly()
+        {
+            var categories = new List<Category>();
+            for (int i = 0; i < 5; i++)
+            {
+                var category = new Category()
+                {
+                    Name = "Test" + i.ToString(),
+                };
+                categories.Add(category);
+            }
+
+            await this.dbContext.Categories.AddRangeAsync(categories);
+            await this.dbContext.SaveChangesAsync();
+            var service = new CategoriesService(this.categoryRepository);
+            var result = service.GetAll<AnnouncementCategoriesView>();
+            Assert.Equal(5, result.Count());
+            service.Delete("1");
+            var resultAfterDelete = service.GetAll<AnnouncementCategoriesView>();
+            Assert.Equal(4, resultAfterDelete.Count());
+        }
+
+        [Fact]
+        public async Task UpdateWorkCorrectly()
+        {
+
+            var category = new Category()
+            {
+                Name = "Test",
+            };
+
+            await this.dbContext.Categories.AddAsync(category);
+            await this.dbContext.SaveChangesAsync();
+            var service = new CategoriesService(this.categoryRepository);
+
+            service.Update("Edit", "Edit", "1");
+            var result = service.GetAll<AnnouncementCategoriesView>().FirstOrDefault();
+
+            Assert.Equal("Edit", result.Name);
+        }
     }
 }
