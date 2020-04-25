@@ -26,7 +26,7 @@
                 <div class="job-post-item-body d-block d-md-flex">
                     <div class="mr-3"><span class="icon-user"></span> <a asp-controller="Users" asp-action="UserProfile" asp-route-id="@announcement.UserId">@announcement.User</a></div>
                     <div class="mr-3"><span class="icon-my_location"></span> <span>@announcement.Place</span></div>
-                    <div class="mr-3"><span class="icon-calendar"></span> <span>@announcement.CreatedOn</span></div>
+                    <div class="mr-3"><span class="icon-calendar"></span> <time datetime="@announcement.CreatedOn.ToString("O")"></time></div>
                     <div class="mr-3"><span class="icon-align-justify"></span> <a asp-controller="Categories" asp-action="AnnouncementsByCategory" asp-route-categoryName="@announcement.CategoryName">@announcement.CategoryName</a></div>
                     <div class="mr-3"><span class="icon-money"></span> <span>@announcement.Price</span></div>
 

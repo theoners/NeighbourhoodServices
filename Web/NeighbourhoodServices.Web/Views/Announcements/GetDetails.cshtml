@@ -23,7 +23,7 @@
             <div class="job-post-item-body d-block d-md-flex">
                 <div class="mr-3"><span class="icon-layers"></span> <a href="#">@Model.User</a></div>
                 <div class="mr-3"><span class="icon-my_location"></span> <span>@Model.Place</span></div>
-                <div class="mr-3"><span class="icon-my_location"></span> <span>@Model.CreatedOn</span></div>
+                <div class="mr-3"><span class="icon-my_location"></span> <time datetime="@Model.CreatedOn.ToString("O")"></time></div>
                 <div class="mr-3"><span class="icon-my_location"></span> <span>@Model.CategoryName</span></div>
                 <div class="mr-3"><span class="icon-money"></span> <span>@Model.Price</span></div>
             </div>
@@ -52,7 +52,7 @@
                     </p>
 
                     <p>@comment.Text</p>
-                    <p>@comment.CreatedOn</p>
+                    <time datetime="@comment.CreatedOn.ToString("O")"></time>
                     @if (comment.UserId == userId || User.IsInRole("Administrator"))
                     {
                         <a class="btn btn-danger" type="submit" asp-controller="Comments" asp-action="Delete" asp-route-commentId="@comment.Id">Изтрий</a>
