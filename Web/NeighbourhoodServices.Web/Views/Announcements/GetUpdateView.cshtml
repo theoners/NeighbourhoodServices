@@ -68,7 +68,7 @@
 
                             @foreach (var category in Model.Categories)
                             {
-                                if (category.Id.ToString() == @Model.Announcement.CategoryName)
+                                if (category.Name == @Model.Announcement.CategoryName)
                                 {
                                     <option value="@category.Id" selected>@category.Name</option>
                                 }
