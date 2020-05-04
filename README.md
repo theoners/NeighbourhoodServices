@@ -1,7 +1,7 @@
 # NeighbourhoodServices
 ASP.NET Core - Final Project
 https://neighbourhoodservices.azurewebsites.net/
-* NeighbourhoodServices - lets find neigbours around to offer or use services and privilege neigbourhood acquaintances.
+* NeighbourhoodServices - lets find neighbours around to offer or use services and privilege neighbourhood acquaintances.
 ## Using ASP.NET Core 3.1 Template by : Nikolay Kostov https://github.com/NikolayIT/ASP.NET-MVC-Template
 
 ### Technologies used:
