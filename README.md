@@ -23,8 +23,7 @@ https://neighbourhoodservices.azurewebsites.net/
 * [SendGrid](https://www.sendgrid.com/)
 
 ## Screen Shots:
-http://prntscr.com/saplk1
-![alt text](http://prntscr.com/sapm27)
+![alt text](http://prntscr.com/saplk1)
 ![alt text](http://prntscr.com/sapmni)
 ![alt text](http://prntscr.com/sapm27)
 
